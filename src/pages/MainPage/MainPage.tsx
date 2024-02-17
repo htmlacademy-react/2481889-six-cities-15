@@ -3,7 +3,7 @@ type MainPageProps = {
     rentAmount: number;
   }
 function MainPage({rentAmount} : MainPageProps):JSX.Element{
-  const cards = Array.from({ length: rentAmount }, (v, i) => <Card key={i} />);
+  const cards = Array.from({ length: rentAmount }, (_, i) => <Card key={i} />);
   return(
     <div className="page page--gray page--main">
       <header className="header">

@@ -5,10 +5,12 @@ import App from '../src/components/App';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-const rentAmount = 5;
+const EnumerateConstants = {
+  rentAmount:5
+} as const;
 
 root.render(
   <React.StrictMode>
-    <App rentAmount={rentAmount}/>
+    <App rentAmount={EnumerateConstants.rentAmount}/>
   </React.StrictMode>
 );
