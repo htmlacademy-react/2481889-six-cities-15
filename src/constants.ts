@@ -10,3 +10,7 @@ export enum AuthorizationStatus {
     NoAuth = 'NO_AUTH',
     Unknown = 'UNKNOWN',
   }
+export const EnumerateConstants = {
+  rentAmount:5
+} as const;
+

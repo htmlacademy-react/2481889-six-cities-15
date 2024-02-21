@@ -15,24 +15,21 @@ function App({rentAmount}:AppProps): JSX.Element{
   return(
     <BrowserRouter>
       <Routes>
-      <Route path={routes.Main}>
-        <Route index element={<MainPage rentAmount={rentAmount}/>} />
-        <Route path={routes.Login} element ={<LoginPage/>}/>
-        <Route path={routes.Favorites} element =
-        {<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-          <FavoritesPage/>
-          </PrivateRoute>
-        }
-        />
-        <Route path={routes.Offer} element = {<OfferPage/>}/>
-      </Route>
-      <Route
-            path="*"
-            element={<Error404/>}
+        <Route path={routes.Main}>
+          <Route index element={<MainPage rentAmount={rentAmount}/>} />
+          <Route path={routes.Login} element ={<LoginPage/>}/>
+          <Route path={routes.Favorites} element =
+            {<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><FavoritesPage/></PrivateRoute>}
           />
+          <Route path={routes.Offer} element = {<OfferPage/>}/>
+        </Route>
+        <Route
+          path="*"
+          element={<Error404/>}
+        />
       </Routes>
     </BrowserRouter>
-   
+
 
   );
 
