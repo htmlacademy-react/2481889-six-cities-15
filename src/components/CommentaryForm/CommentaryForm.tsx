@@ -1,12 +1,9 @@
-import { SyntheticEvent, useState } from 'react';
-
+import { useState } from 'react';
 export function CommentaryForm(){
   const [commentaryText, setCommentaryText] = useState('');
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentaryText(e.target.value);
-    console.log(e.target.value);
   };
-  
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
