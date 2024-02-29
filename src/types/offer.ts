@@ -1,3 +1,5 @@
+import { host } from './host';
+
 export type offerType = {
     id: string;
     title: string;
@@ -23,11 +25,7 @@ export type offerType = {
     description: string;
     bedrooms: number;
     goods: string[];
-    host: {
-        name: string;
-        avatarUrl: string;
-        isPro: boolean;
-    };
+    host: host;
     images: string[];
     maxAdults: number;
 }

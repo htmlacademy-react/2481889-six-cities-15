@@ -2,23 +2,11 @@ import { Link } from 'react-router-dom';
 import OfferCard from '../../components/OfferCard/OfferCard';
 import { offerType } from '../../types/offer';
 import { routes } from '../../constants';
+import { FC } from 'react';
 
 type favoritesProps = {offers:offerType[]}
-function FavoritesPage(props : favoritesProps){
-  const cards = props.offers.map((i) =>
-    (<OfferCard key={i.id}
-      id={i.id}
-      title={i.title}
-      type={i.type}
-      price={i.price}
-      previewImage={i.previewImage}
-      isFavorite={i.isFavorite}
-      isPremium={i.isPremium}
-      rating={i.rating}
-      onMouseOver={() => null}
-    // eslint-disable-next-line react/jsx-closing-bracket-location
-    />
-    ));
+export const FavoritesPage : FC<favoritesProps> = ({offers} : favoritesProps) => {
+  const cards = offers.map((i) => (<OfferCard offer = {i} key = {i.id} />));
   return(
     <div className="page">
       <header className="header">
@@ -97,5 +85,5 @@ function FavoritesPage(props : favoritesProps){
       </footer>
     </div>
   );
-}
+};
 export default FavoritesPage;

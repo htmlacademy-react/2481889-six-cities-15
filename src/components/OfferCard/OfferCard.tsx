@@ -1,35 +1,44 @@
 import { Link } from 'react-router-dom';
 import { routes } from '../../constants';
+import { offerType } from '../../types/offer';
+import { FC } from 'react';
 
-type OfferCardsProps = {
-    id: string;
-    title: string;
-    type: string;
-    price: number;
-    previewImage: string;
-    // eslint-disable-next-line react/no-unused-prop-types
-    isFavorite: boolean;
-    isPremium: boolean;
-    // eslint-disable-next-line react/no-unused-prop-types
-    rating: number;
-    onMouseOver:() => void;
+type OfferCardsoffer = {
+    offer: offerType;
+    onMouseOver?:(offer?:offerType) => void;
 }
 
-export function OfferCard(props : OfferCardsProps){
+export const OfferCard : FC<OfferCardsoffer> = ({offer, onMouseOver}) =>{
+  const handleMouseOn = () => {
+    if (onMouseOver) {
+      onMouseOver(offer);
+    }
+  };
+
+  const handleMouseOff = () => {
+    if (onMouseOver) {
+      onMouseOver();
+    }
+  };
   return(
-    <Link to={routes.Offer.replace(':id', props.id)} >
-      <article className="cities__card place-card" key={props.id} onMouseOver={props.onMouseOver}>
-        {props.isPremium ?
-          <div className="place-card__mark"> <span>{props.isPremium}</span> </div> : null}
+    <Link to={routes.Offer.replace(':id', offer.id)} >
+      <article
+        className="cities__card place-card"
+        key={offer.id}
+        onMouseEnter={handleMouseOn}
+        onMouseLeave={handleMouseOff}
+      >
+        {offer.isPremium ?
+          <div className="place-card__mark"> <span>{offer.isPremium}</span> </div> : null}
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
-            <img className="place-card__image" src={props.previewImage} width="260" height="200" alt="Place image"/>
+            <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image"/>
           </a>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
-              <b className="place-card__price-value">{props.price}</b>
+              <b className="place-card__price-value">{offer.price}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
             <button className="place-card__bookmark-button button" type="button">
@@ -41,18 +50,18 @@ export function OfferCard(props : OfferCardsProps){
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: `${props.rating * 20}%`}}></span>
+              <span style={{width: `${offer.rating * 20}%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{props.title}</a>
+            <a href="#">{offer.title}</a>
           </h2>
-          <p className="place-card__type">{props.type}</p>
+          <p className="place-card__type">{offer.type}</p>
         </div>
       </article>
     </Link>
   );
-}
+};
 
 export default OfferCard;

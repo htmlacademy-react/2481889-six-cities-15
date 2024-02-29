@@ -1,33 +1,18 @@
 import { useState } from 'react';
 import { offerType } from '../../types/offer';
+import { MainPageProps } from '../../pages/MainPage/MainPage';
+import { Nullable } from 'vitest';
 import OfferCard from '../OfferCard/OfferCard';
 
-type OfferListProps = {
-    offers: offerType[];
-}
+type OfferListProps = Pick<MainPageProps,'offers'>
 
 export function OfferList(props: OfferListProps){
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [activeCard, setActiveCard] = useState(props.offers[0].id);
-  const handleCardHover = (id:string) => {
-    setActiveCard(id);
-    // eslint-disable-next-line no-console
-    console.log(activeCard);
+  const [, setActiveCard] = useState<Nullable<offerType>>(null);
+  const handleCardHover = (offer? : offerType) => {
+    setActiveCard(offer || null);
   };
   const cards = props.offers.map((i) =>
-    (<OfferCard key={i.id}
-      id={i.id}
-      title={i.title}
-      type={i.type}
-      price={i.price}
-      previewImage={i.previewImage}
-      isFavorite={i.isFavorite}
-      isPremium={i.isPremium}
-      rating={i.rating}
-      onMouseOver={() => handleCardHover(i.id)}
-    // eslint-disable-next-line react/jsx-closing-bracket-location
-    />
-    ));
+    (<OfferCard key={i.id} offer={i} onMouseOver={() => handleCardHover(i)}/>));
   return (
     <>
       <form className="places__sorting" action="#" method="get">
