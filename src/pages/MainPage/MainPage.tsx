@@ -4,15 +4,16 @@ import { OfferList } from '../../components/OfferList/OfferList';
 import { offerType } from '../../types/offer';
 import { routes } from '../../constants';
 import { FC } from 'react';
-export type MainPageProps = {
-    offers:offerType[];
-  }
+
+export type MainPageProps = {offers:offerType[]}
+
 const cities = ['Paris', 'Collogne', 'Brussels','Hamburg', 'Amsterdam', 'Dusseldorf'].map((city) => (
   <li className="locations__item" key={city}>
     <a className="locations__item-link tabs__item" href="#">
       <span>{city}</span>
     </a>
   </li>));
+
 export const MainPage : FC<MainPageProps> = (props : MainPageProps) => (
   <div className="page page--gray page--main">
     <header className="header">

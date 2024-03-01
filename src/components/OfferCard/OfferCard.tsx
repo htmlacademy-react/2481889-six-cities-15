@@ -5,20 +5,16 @@ import { FC } from 'react';
 
 type OfferCardsoffer = {
     offer: offerType;
-    onMouseOver?:(offer?:offerType) => void;
+    onMouseOver:(offer:offerType|null) => void;
 }
 
 export const OfferCard : FC<OfferCardsoffer> = ({offer, onMouseOver}) =>{
   const handleMouseOn = () => {
-    if (onMouseOver) {
-      onMouseOver(offer);
-    }
+    onMouseOver(offer);
   };
 
   const handleMouseOff = () => {
-    if (onMouseOver) {
-      onMouseOver();
-    }
+    onMouseOver(null);
   };
   return(
     <Link to={routes.Offer.replace(':id', offer.id)} >

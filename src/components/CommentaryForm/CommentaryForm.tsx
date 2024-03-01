@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Stars } from '../Stars/Stars';
+
 export const CommentaryForm = () => {
+
   const [commentaryText, setCommentaryText] = useState('');
+
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentaryText(e.target.value);
   };

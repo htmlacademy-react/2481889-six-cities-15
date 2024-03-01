@@ -1,18 +1,22 @@
 import { useState } from 'react';
 import { offerType } from '../../types/offer';
 import { MainPageProps } from '../../pages/MainPage/MainPage';
-import { Nullable } from 'vitest';
 import OfferCard from '../OfferCard/OfferCard';
 
 type OfferListProps = Pick<MainPageProps,'offers'>
+type nullableOffer = offerType | null;
 
 export function OfferList(props: OfferListProps){
-  const [, setActiveCard] = useState<Nullable<offerType>>(null);
-  const handleCardHover = (offer? : offerType) => {
-    setActiveCard(offer || null);
+
+  const [, setActiveCard] = useState<nullableOffer>(null);
+
+  const handleCardHover = (offer : nullableOffer) => {
+    setActiveCard(offer);
   };
+
   const cards = props.offers.map((i) =>
     (<OfferCard key={i.id} offer={i} onMouseOver={() => handleCardHover(i)}/>));
+
   return (
     <>
       <form className="places__sorting" action="#" method="get">

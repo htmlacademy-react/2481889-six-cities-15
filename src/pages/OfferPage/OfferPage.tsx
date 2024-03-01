@@ -1,14 +1,19 @@
 /* eslint-disable react/jsx-closing-tag-location */
 import { Link, useParams } from 'react-router-dom';
 import { routes } from '../../constants';
-import { CommentaryForm } from '../../components/CommentaryForm/CommentaryForm';
 import { offers } from '../../mocks/offers';
 import { OfferGallery } from './OfferGallery/OfferGalery';
 import { reviews } from '../../mocks/reviews';
+import ReviewForm from '../../components/ReviewForm/ReviewForm';
+import Error404 from '../Error404/Error404';
 
 function OfferPage(): JSX.Element {
   const param = useParams();
   const offer = offers.find((i) => i.id === param.id, offers[0]) || offers[0];
+
+  if (!offer) {
+    return (<Error404/>);
+  }
   return (
     <div className="page">
       <header className="header">
@@ -116,47 +121,7 @@ function OfferPage(): JSX.Element {
                   {offer.description}
                 </div>
               </div>
-              <section className="offer__reviews reviews">
-                <h2 className="reviews__title">
-                    Reviews · <span className="reviews__amount">1</span>
-                </h2>
-                <ul className="reviews__list">
-                  {reviews.map((i) =>
-                    (<li className="reviews__item" key={i.id}>
-                      <div className="reviews__user user">
-                        <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                          <img
-                            className="reviews__avatar user__avatar"
-                            src="img/avatar-max.jpg"
-                            width={54}
-                            height={54}
-                            alt="Reviews avatar"
-                          />
-                        </div>
-                        <span className="reviews__user-name">Max</span>
-                      </div>
-                      <div className="reviews__info">
-                        <div className="reviews__rating rating">
-                          <div className="reviews__stars rating__stars">
-                            <span style={{ width: '80%' }} />
-                            <span className="visually-hidden">Rating</span>
-                          </div>
-                        </div>
-                        <p className="reviews__text">
-                        A quiet cozy and picturesque that hides behind a a river by
-                        the unique lightness of Amsterdam. The building is green and
-                        from 18th century.
-                        </p>
-                        <time className="reviews__time" dateTime="2019-04-24">
-                        April 2019
-                        </time>
-                      </div>
-                    </li>)
-                  )}
-
-                </ul>
-                <CommentaryForm/>
-              </section>
+              <ReviewForm reviews={reviews}/>
             </div>
           </div>
           <section className="offer__map map" />

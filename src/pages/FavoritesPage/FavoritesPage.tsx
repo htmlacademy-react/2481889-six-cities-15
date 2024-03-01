@@ -6,7 +6,7 @@ import { FC } from 'react';
 
 type favoritesProps = {offers:offerType[]}
 export const FavoritesPage : FC<favoritesProps> = ({offers} : favoritesProps) => {
-  const cards = offers.map((i) => (<OfferCard offer = {i} key = {i.id} />));
+  const cards = offers.map((i) => (<OfferCard onMouseOver={() => null} offer = {i} key = {i.id} />));
   return(
     <div className="page">
       <header className="header">
