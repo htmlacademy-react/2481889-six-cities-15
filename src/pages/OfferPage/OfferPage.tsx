@@ -9,7 +9,7 @@ import Error404 from '../Error404/Error404';
 
 function OfferPage(): JSX.Element {
   const param = useParams();
-  const offer = offers.find((i) => i.id === param.id, offers[0]) || offers[0];
+  const offer = offers.find((i) => i.id === param.id, offers[0]);
 
   if (!offer) {
     return (<Error404/>);
