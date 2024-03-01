@@ -1,20 +1,21 @@
 import { Link } from 'react-router-dom';
 import { routes } from '../../constants';
-import { offerType } from '../../types/offer';
+import { OfferType } from '../../types/offer';
 import { FC } from 'react';
+import { Nullable } from '../../types/nullable';
 
 type OfferCardsoffer = {
-    offer: offerType;
-    onMouseOver:(offer:offerType|null) => void;
+    offer: OfferType;
+    setActiveCard?:(offer:Nullable<OfferType>) => void;
 }
 
-export const OfferCard : FC<OfferCardsoffer> = ({offer, onMouseOver}) =>{
+export const OfferCard : FC<OfferCardsoffer> = ({offer, setActiveCard}) =>{
   const handleMouseOn = () => {
-    onMouseOver(offer);
+    setActiveCard?.(offer);
   };
 
   const handleMouseOff = () => {
-    onMouseOver(null);
+    setActiveCard?.(null);
   };
   return(
     <Link to={routes.Offer.replace(':id', offer.id)} >

@@ -1,6 +1,6 @@
-import { host } from './host';
+import { Host } from './host';
 
-export type offerType = {
+export type OfferType = {
     id: string;
     title: string;
     type: string;
@@ -25,7 +25,7 @@ export type offerType = {
     description: string;
     bedrooms: number;
     goods: string[];
-    host: host;
+    host: Host;
     images: string[];
     maxAdults: number;
 }

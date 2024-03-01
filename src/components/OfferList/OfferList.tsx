@@ -1,21 +1,16 @@
 import { useState } from 'react';
-import { offerType } from '../../types/offer';
-import { MainPageProps } from '../../pages/MainPage/MainPage';
+import { OfferType } from '../../types/offer';
 import OfferCard from '../OfferCard/OfferCard';
+import { Nullable } from '../../types/nullable';
 
-type OfferListProps = Pick<MainPageProps,'offers'>
-type nullableOffer = offerType | null;
+type OfferListProps = {offers:OfferType[]}
 
 export function OfferList(props: OfferListProps){
 
-  const [, setActiveCard] = useState<nullableOffer>(null);
-
-  const handleCardHover = (offer : nullableOffer) => {
-    setActiveCard(offer);
-  };
+  const [, setActiveCard] = useState<Nullable<OfferType>>(null);
 
   const cards = props.offers.map((i) =>
-    (<OfferCard key={i.id} offer={i} onMouseOver={() => handleCardHover(i)}/>));
+    (<OfferCard key={i.id} offer={i} setActiveCard={setActiveCard}/>));
 
   return (
     <>

@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import OfferCard from '../../components/OfferCard/OfferCard';
-import { offerType } from '../../types/offer';
+import { OfferType } from '../../types/offer';
 import { routes } from '../../constants';
 import { FC } from 'react';
 
-type favoritesProps = {offers:offerType[]}
+type favoritesProps = {offers:OfferType[]}
 export const FavoritesPage : FC<favoritesProps> = ({offers} : favoritesProps) => {
-  const cards = offers.map((i) => (<OfferCard onMouseOver={() => null} offer = {i} key = {i.id} />));
+  const cards = offers.map((i) => (<OfferCard offer = {i} key = {i.id} />));
   return(
     <div className="page">
       <header className="header">

@@ -6,11 +6,11 @@ import Error404 from '../../pages/Error404/Error404';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {AuthorizationStatus, routes} from '../../constants';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
-import {offerType} from '../../types/offer';
+import {OfferType} from '../../types/offer';
 import { offers } from '../../mocks/offers';
 
 type AppProps = {
-    offers : offerType[];
+    offers : OfferType[];
 }
 function App(props:AppProps): JSX.Element{
   return(

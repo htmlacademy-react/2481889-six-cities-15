@@ -1,11 +1,11 @@
 
 import { Link } from 'react-router-dom';
 import { OfferList } from '../../components/OfferList/OfferList';
-import { offerType } from '../../types/offer';
+import { OfferType } from '../../types/offer';
 import { routes } from '../../constants';
 import { FC } from 'react';
 
-export type MainPageProps = {offers:offerType[]}
+export type MainPageProps = {offers:OfferType[]}
 
 const cities = ['Paris', 'Collogne', 'Brussels','Hamburg', 'Amsterdam', 'Dusseldorf'].map((city) => (
   <li className="locations__item" key={city}>

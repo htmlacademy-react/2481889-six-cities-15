@@ -1,7 +1,7 @@
-import { offerType } from '../types/offer';
+import { OfferType } from '../types/offer';
 
 
-export const offers : offerType[] = [
+export const offers : OfferType[] = [
   {
     'id': 'd209939a-a88f-4d6c-ba75-25f372a38cee',
     'title': 'Домик в деревне',
