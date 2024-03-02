@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from '../src/components/App';
-import { EnumerateConstants } from './constants';
+import App from './components/App/App';
+import {offers} from './mocks/offers';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,6 +10,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App rentAmount={EnumerateConstants.rentAmount}/>
+    <App offers={offers} />
   </React.StrictMode>
 );
