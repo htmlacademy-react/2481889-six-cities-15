@@ -1,11 +1,14 @@
 
 import { Link } from 'react-router-dom';
 import { OfferList } from '../../components/OfferList/OfferList';
-import { OfferType } from '../../types/offer';
+import { Offer } from '../../types/offer';
 import { routes } from '../../constants';
 import { FC } from 'react';
+import Map from '../../components/Map/Map';
+import { offers } from '../../mocks/offers';
+import { Amsterdam } from '../../mocks/city';
 
-export type MainPageProps = {offers:OfferType[]}
+export type MainPageProps = {offers:Offer[]}
 
 const cities = ['Paris', 'Collogne', 'Brussels','Hamburg', 'Amsterdam', 'Dusseldorf'].map((city) => (
   <li className="locations__item" key={city}>
@@ -64,7 +67,7 @@ export const MainPage : FC<MainPageProps> = (props : MainPageProps) => (
             </div>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map city={Amsterdam} offers={offers} selectedOffer={null}/>
           </div>
         </div>
       </div>

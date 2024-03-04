@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import OfferCard from '../../components/OfferCard/OfferCard';
-import { OfferType } from '../../types/offer';
+import { Offer } from '../../types/offer';
 import { routes } from '../../constants';
 import { FC } from 'react';
 
-type favoritesProps = {offers:OfferType[]}
+type favoritesProps = {offers:Offer[]}
 export const FavoritesPage : FC<favoritesProps> = ({offers} : favoritesProps) => {
   const cards = offers.map((i) => (<OfferCard offer = {i} key = {i.id} />));
   return(

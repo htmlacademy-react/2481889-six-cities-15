@@ -1,6 +1,6 @@
 import { Host } from './host';
 
-export type OfferType = {
+export type Offer = {
     id: string;
     title: string;
     type: string;
