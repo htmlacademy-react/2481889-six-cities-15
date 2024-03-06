@@ -3,10 +3,10 @@ import { OfferList } from '../../components/OfferList/OfferList';
 import { Offer } from '../../types/offer';
 import { FC } from 'react';
 import Map from '../../components/Map/Map';
-import { offers } from '../../mocks/offers';
 import { Amsterdam } from '../../mocks/city';
 import { Layout } from '../../components/Layout/Layout';
 import { NavLink } from 'react-router-dom';
+import { SortForm } from '../../components/SortForm/SortForm';
 
 export type MainPageProps = {offers:Offer[]}
 
@@ -35,12 +35,11 @@ export const MainPage : FC<MainPageProps> = (props : MainPageProps) =>(
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">312 places to stay in Amsterdam</b>
-              <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={props.offers}/>
-              </div>
+              <SortForm/>
+              <OfferList type="cities" offers={props.offers}/>
             </section>
             <div className="cities__right-section">
-              <Map city={Amsterdam} offers={offers} selectedOffer={null}/>
+              <Map className='cities__map' city={Amsterdam} offers={props.offers} selectedOffer={null}/>
             </div>
           </div>
         </div>

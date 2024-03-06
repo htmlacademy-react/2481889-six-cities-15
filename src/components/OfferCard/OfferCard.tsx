@@ -7,9 +7,10 @@ import { Nullable } from '../../types/nullable';
 type OfferCardsoffer = {
     offer: Offer;
     setActiveCard?:(offer:Nullable<Offer>) => void;
+    className?:string;
 }
 
-export const OfferCard : FC<OfferCardsoffer> = ({offer, setActiveCard}) =>{
+export const OfferCard : FC<OfferCardsoffer> = ({offer, setActiveCard, className}) =>{
   const handleMouseOn = () => {
     setActiveCard?.(offer);
   };
@@ -20,14 +21,14 @@ export const OfferCard : FC<OfferCardsoffer> = ({offer, setActiveCard}) =>{
   return(
     <Link to={routes.Offer.replace(':id', offer.id)} >
       <article
-        className="cities__card place-card"
+        className={`${className}__card place-card`}
         key={offer.id}
         onMouseEnter={handleMouseOn}
         onMouseLeave={handleMouseOff}
       >
         {offer.isPremium ?
-          <div className="place-card__mark"> <span>{offer.isPremium}</span> </div> : null}
-        <div className="cities__image-wrapper place-card__image-wrapper">
+          <div className="place-card__mark"> <span>Premium</span> </div> : null}
+        <div className={`${className}__image-wrapper place-card__image-wrapper`}>
           <a href="#">
             <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image"/>
           </a>
