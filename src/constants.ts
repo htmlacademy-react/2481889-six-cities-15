@@ -1,3 +1,5 @@
+
+
 export const routes = {
   Login : '/login',
   Favorites : '/favorites',
@@ -13,4 +15,10 @@ export enum AuthorizationStatus {
 export const EnumerateConstants = {
   rentAmount:5
 } as const;
+
+export const URL_MARKER_DEFAULT =
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+
+export const URL_MARKER_CURRENT =
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
 

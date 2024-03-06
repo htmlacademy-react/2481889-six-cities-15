@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { OfferType } from '../../types/offer';
+import { Offer } from '../../types/offer';
 import OfferCard from '../OfferCard/OfferCard';
 import { Nullable } from '../../types/nullable';
 
-type OfferListProps = {offers:OfferType[]}
+type OfferListProps = {offers:Offer[]}
 
 export function OfferList(props: OfferListProps){
 
-  const [, setActiveCard] = useState<Nullable<OfferType>>(null);
+  const [, setActiveCard] = useState<Nullable<Offer>>(null);
 
   const cards = props.offers.map((i) =>
     (<OfferCard key={i.id} offer={i} setActiveCard={setActiveCard}/>));

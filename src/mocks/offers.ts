@@ -1,7 +1,7 @@
-import { OfferType } from '../types/offer';
+import { Offer } from '../types/offer';
 
 
-export const offers : OfferType[] = [
+export const offers : Offer[] = [
   {
     'id': 'd209939a-a88f-4d6c-ba75-25f372a38cee',
     'title': 'Домик в деревне',
@@ -9,7 +9,7 @@ export const offers : OfferType[] = [
     'price': 217,
     'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/7.jpg',
     'city': {
-      'name': 'Новгород',
+      'name': 'Амстердам',
       'location': {
         'latitude': 48.85661,
         'longitude': 2.351499,
@@ -17,8 +17,8 @@ export const offers : OfferType[] = [
       }
     },
     'location': {
-      'latitude': 48.84761,
-      'longitude': 2.356499,
+      'latitude': 52.3909553943508,
+      'longitude': 4.85309666406198,
       'zoom': 16
     },
     'isFavorite': false,
@@ -46,7 +46,7 @@ export const offers : OfferType[] = [
     'price': 774,
     'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/7.jpg',
     'city': {
-      'name': 'Саратов',
+      'name': 'Амстердам',
       'location': {
         'latitude': 48.85661,
         'longitude': 2.351499,
@@ -54,8 +54,8 @@ export const offers : OfferType[] = [
       }
     },
     'location': {
-      'latitude': 48.862610000000004,
-      'longitude': 2.369499,
+      'latitude': 52.3609553943508,
+      'longitude': 4.85309666406198,
       'zoom': 16
     },
     'isFavorite': false,
@@ -83,7 +83,7 @@ export const offers : OfferType[] = [
     'price': 774,
     'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/7.jpg',
     'city': {
-      'name': 'Вольск',
+      'name': 'Амстердам',
       'location': {
         'latitude': 48.85661,
         'longitude': 2.351499,
@@ -91,8 +91,8 @@ export const offers : OfferType[] = [
       }
     },
     'location': {
-      'latitude': 48.862610000000004,
-      'longitude': 2.369499,
+      'latitude': 52.3909553943508,
+      'longitude':  4.929309666406198,
       'zoom': 16
     },
     'isFavorite': false,
@@ -120,7 +120,7 @@ export const offers : OfferType[] = [
     'price': 215,
     'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/5.jpg',
     'city': {
-      'name': 'Paris',
+      'name': 'Амстердам',
       'location': {
         'latitude': 48.85661,
         'longitude': 2.351499,
@@ -128,8 +128,8 @@ export const offers : OfferType[] = [
       }
     },
     'location': {
-      'latitude': 48.861610000000006,
-      'longitude': 2.340499,
+      'latitude': 52.3809553943508,
+      'longitude': 4.939309666406198,
       'zoom': 16
     },
     'isFavorite': false,

@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { routes } from '../../constants';
-import { OfferType } from '../../types/offer';
+import { Offer } from '../../types/offer';
 import { FC } from 'react';
 import { Nullable } from '../../types/nullable';
 
 type OfferCardsoffer = {
-    offer: OfferType;
-    setActiveCard?:(offer:Nullable<OfferType>) => void;
+    offer: Offer;
+    setActiveCard?:(offer:Nullable<Offer>) => void;
 }
 
 export const OfferCard : FC<OfferCardsoffer> = ({offer, setActiveCard}) =>{

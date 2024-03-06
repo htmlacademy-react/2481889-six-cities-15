@@ -1,18 +1,49 @@
 import { useState } from 'react';
-import { Stars } from '../Stars/Stars';
+
+const stars = [
+  {value:'5', label: 'perfect'},
+  {value:'4', label: 'good'},
+  {value:'3', label: 'not bad'},
+  {value:'2', label: 'bad'},
+  {value:'1', label: 'terrible'},];
 
 export const CommentaryForm = () => {
 
   const [commentaryText, setCommentaryText] = useState('');
+  const [rating, setRating] = useState('0');
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentaryText(e.target.value);
+  };
+
+  const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRating(e.target.value);
   };
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        <Stars/>
+        {stars.map((star) => (
+          <>
+            <input className="form__rating-input visually-hidden"
+              key={star.value}
+              name="rating"
+              value={rating}
+              id={`${star.value}-stars`}
+              type="radio"
+              checked={rating === star.value}
+              onChange={handleRatingChange}
+            >
+            </input>
+            <label htmlFor={`${star.value}-stars`}
+              className="reviews__rating-label form__rating-label"
+              title={star.label}
+            >
+              <svg className="form__star-image" width="37" height="33">
+                <use xlinkHref="#icon-star"></use>
+              </svg>
+            </label>
+          </>))}
       </div>
       <textarea className="reviews__textarea form__textarea"
         id="review"
