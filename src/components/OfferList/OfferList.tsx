@@ -1,9 +1,11 @@
-import { useState } from 'react';
 import { Offer } from '../../types/offer';
 import OfferCard from '../OfferCard/OfferCard';
 import { Nullable } from '../../types/nullable';
 
-type OfferListProps = {offers:Offer[]; type:string};
+type OfferListProps = {offers:Offer[];
+   type:string;
+   setActiveCard?:(offer:Nullable<Offer>) => void;
+  };
 
 export function OfferList(props: OfferListProps){
   const className = (type:string)=>{
@@ -15,10 +17,9 @@ export function OfferList(props: OfferListProps){
     }
   };
 
-  const [, setActiveCard] = useState<Nullable<Offer>>(null);
 
   const cards = props.offers.map((i) =>
-    (<OfferCard key={i.id} offer={i} setActiveCard={setActiveCard} className={`${props.type}`}/>));
+    (<OfferCard key={i.id} offer={i} setActiveCard={props.setActiveCard} className={`${props.type}`}/>));
 
   return (
     <div className={className(props.type)}>
