@@ -28,7 +28,7 @@ export const ReviewList = (props:ReviewListProps)=> (
             <p className="reviews__text">
               {i.comment}
             </p>
-            <time className="reviews__time" dateTime="2019-04-24">{i.date}</time>
+            <time className="reviews__time" dateTime={i.date}>{i.date}</time>
           </div>
         </li>)
     )}
