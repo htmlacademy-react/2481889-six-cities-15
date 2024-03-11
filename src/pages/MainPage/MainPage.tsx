@@ -1,24 +1,20 @@
 
 import { OfferList } from '../../components/OfferList/OfferList';
 import { Offer } from '../../types/offer';
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import Map from '../../components/Map/Map';
-import { Amsterdam } from '../../mocks/city';
+import { Cities } from '../../mocks/city';
 import { Layout } from '../../components/Layout/Layout';
-import { NavLink } from 'react-router-dom';
 import { SortForm } from '../../components/SortForm/SortForm';
 import { Nullable } from '../../types/nullable';
+import { CitiesList } from '../../components/CitiesList/CitiesList';
+import { useAppSelector } from '../../hooks/use-app';
+import { City } from '../../types/city';
+const getOffersFromCity = (city:City, offers: Offer[]) => offers.filter((i) => i.city.name === city.name);
 
-export type MainPageProps = {offers:Offer[]}
-
-const cities = ['Paris', 'Collogne', 'Brussels','Hamburg', 'Amsterdam', 'Dusseldorf'].map((city) => (
-  <li className="locations__item" key={city}>
-    <NavLink className={({isActive}) => !isActive ? 'locations__item-link tabs__item' : 'locations__item-link tabs__item tabs__item--active'} to={`/${city}`}>
-      <span>{city}</span>
-    </NavLink>
-  </li>));
-
-export const MainPage : FC<MainPageProps> = (props : MainPageProps) => {
+export const MainPage = () => {
+  const city = useAppSelector((state) => state.city);
+  const offers = useAppSelector((state) => getOffersFromCity(city, state.offers));
   const [activeCard, setActiveCard] = useState<Nullable<Offer>>(null);
   return (
     <Layout>
@@ -28,7 +24,7 @@ export const MainPage : FC<MainPageProps> = (props : MainPageProps) => {
           <div className="tabs">
             <section className="locations container">
               <ul className="locations__list tabs__list">
-                {cities}
+                {<CitiesList cities={Cities}/>}
               </ul>
             </section>
           </div>
@@ -36,12 +32,12 @@ export const MainPage : FC<MainPageProps> = (props : MainPageProps) => {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">312 places to stay in Amsterdam</b>
+                <b className="places__found">{offers.length} places to stay in {city.name}</b>
                 <SortForm/>
-                <OfferList type="cities" offers={props.offers} setActiveCard={setActiveCard}/>
+                <OfferList type="cities" offers={offers} setActiveCard={setActiveCard}/>
               </section>
               <div className="cities__right-section">
-                <Map className='cities__map' city={Amsterdam} offers={props.offers} selectedOffer={activeCard}/>
+                <Map className='cities__map' city={city} offers={offers} selectedOffer={activeCard}/>
               </div>
             </div>
           </div>

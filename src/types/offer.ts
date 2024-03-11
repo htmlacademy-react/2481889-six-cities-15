@@ -1,3 +1,4 @@
+import { City } from './city';
 import { Host } from './host';
 
 export type Offer = {
@@ -6,14 +7,7 @@ export type Offer = {
     type: string;
     price: number;
     previewImage: string;
-    city: {
-        name: string;
-        location: {
-            latitude: number;
-            longitude: number;
-            zoom: number;
-        };
-    };
+    city: City;
     location: {
         latitude: number;
         longitude: number;
