@@ -2,42 +2,42 @@ import { City } from '../types/city';
 
 export const Cities: City[] = [
   {
-    name: 'Париж',
+    name: 'Paris',
     location: {
       latitude: 52.3702,
       longitude: 4.8951,
       zoom: 12,},
   },
   {
-    name: 'Кёльн',
+    name: 'Cologne',
     location: {
       latitude: 52.3702,
       longitude: 4.8951,
       zoom: 12,},
   },
   {
-    name: 'Брюссель',
+    name: 'Brussels',
     location: {
       latitude: 52.3702,
       longitude: 4.8951,
       zoom: 12,},
   },
   {
-    name: 'Амстердам',
+    name: 'Amsterdam',
     location: {
       latitude: 52.3702,
       longitude: 4.8951,
       zoom: 12,},
   },
   {
-    name: 'Гамбург',
+    name: 'Hamburg',
     location: {
       latitude: 52.3702,
       longitude: 4.8951,
       zoom: 12,},
   },
   {
-    name: 'Дюссельдорф',
+    name: 'Dusseldorf',
     location: {
       latitude: 52.3702,
       longitude: 4.8951,
