@@ -67,8 +67,13 @@ export const CITIES: City[] = [
       longitude: 4.8951,
       zoom: 12,},
   },
-
-
 ];
+
+export const Sorts = {
+  Popular : 'Popular',
+  PriceHighToLow : 'Price: high to low',
+  PriceLowToHigh : 'Price: low to high',
+  TopRatedFirst : 'Top rated first',
+};
 
 

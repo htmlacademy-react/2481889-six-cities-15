@@ -5,3 +5,4 @@ import { Offer } from '../types/offer';
 export const setCity = createAction('SET_CITY', (city:City) => ({
   payload: city,}));
 export const setOffers = createAction('SET_OFFERS', (offers:Offer[]) => ({payload: offers,}));
+export const setSort = createAction('SET_SORT', (sort:string) => ({payload: sort,}));
