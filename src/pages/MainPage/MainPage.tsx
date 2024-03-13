@@ -1,15 +1,18 @@
-
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { OfferList } from '../../components/OfferList/OfferList';
 import { Offer } from '../../types/offer';
 import { useState } from 'react';
 import Map from '../../components/Map/Map';
-import { Cities } from '../../mocks/city';
 import { Layout } from '../../components/Layout/Layout';
 import { SortForm } from '../../components/SortForm/SortForm';
 import { Nullable } from '../../types/nullable';
 import { CitiesList } from '../../components/CitiesList/CitiesList';
 import { useAppSelector } from '../../hooks/use-app';
 import { City } from '../../types/city';
+import { CITIES } from '../../constants';
 const getOffersFromCity = (city:City, offers: Offer[]) => offers.filter((i) => i.city.name === city.name);
 
 export const MainPage = () => {
@@ -24,7 +27,7 @@ export const MainPage = () => {
           <div className="tabs">
             <section className="locations container">
               <ul className="locations__list tabs__list">
-                {<CitiesList cities={Cities}/>}
+                {<CitiesList cities={CITIES}/>}
               </ul>
             </section>
           </div>
