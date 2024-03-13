@@ -6,19 +6,15 @@ import { reviews } from '../../mocks/reviews';
 import ReviewForm from '../../components/ReviewForm/ReviewForm';
 import Error404 from '../Error404/Error404';
 import { Layout } from '../../components/Layout/Layout';
-import { Amsterdam } from '../../mocks/city';
 import Map from '../../components/Map/Map';
 import { OfferList } from '../../components/OfferList/OfferList';
-import { useState } from 'react';
-
-import { Offer } from '../../types/offer';
-import { Nullable } from '../../types/nullable';
+import { Cities } from '../../mocks/city';
 
 function OfferPage(): JSX.Element {
   const param = useParams();
   const offer = offers.find((i) => i.id === param.id, offers[0]);
   const nearPlaces = offers.filter((i) => i.id !== param.id);
-  const [activeCard, setActiveCard] = useState<Nullable<Offer>>(null);
+
 
   if (!offer) {
     return (<Error404/>);
@@ -92,14 +88,14 @@ function OfferPage(): JSX.Element {
                 <ReviewForm reviews={reviews}/>
               </div>
             </div>
-            <Map className='offer__map' city={Amsterdam} offers={nearPlaces} selectedOffer={activeCard}/>
+            <Map className='offer__map' city={Cities[0]} offers={nearPlaces} selectedOffer={null}/>
           </section>
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">
                 Other places in the neighbourhood
               </h2>
-              <OfferList type="near-places" offers={nearPlaces} setActiveCard={setActiveCard}/>
+              <OfferList type="near-places" offers={nearPlaces}/>
             </section>
           </div>
         </main>
