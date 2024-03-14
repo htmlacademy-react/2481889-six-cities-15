@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import { Sorts } from '../../constants';
-import { setSort } from '../../actions/action';
+import { offersAction } from '../../slices/offers';
+
 
 export const SortForm = () => {
   const [open, setOpen] = useState(false);
   const sort = useAppSelector((state) => state.sort);
   const dispatch = useAppDispatch();
   function handleChangeSort(item: string) {
-    dispatch(setSort(item));
+    dispatch(offersAction.setSort(item));
     setOpen(false);
   }
   function handleClick() {
