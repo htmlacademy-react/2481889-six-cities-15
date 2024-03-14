@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import OfferCard from '../../components/OfferCard/OfferCard';
 import { Offer } from '../../types/offer';
-import { routes } from '../../constants';
+import { AppRoutes } from '../../constants';
 import { FC } from 'react';
 import { Layout } from '../../components/Layout/Layout';
 
@@ -46,7 +46,7 @@ export const FavoritesPage : FC<favoritesProps> = ({offers} : favoritesProps) =>
           </div>
         </main>
         <footer className="footer container">
-          <Link to={routes.Main}>
+          <Link to={AppRoutes.Main}>
             <a className="footer__logo-link">
               <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
             </a>

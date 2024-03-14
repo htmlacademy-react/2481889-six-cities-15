@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { routes } from '../../constants';
+import { AppRoutes } from '../../constants';
 import { Offer } from '../../types/offer';
 import { FC } from 'react';
 import { Nullable } from '../../types/nullable';
@@ -19,7 +19,7 @@ export const OfferCard : FC<OfferCardsoffer> = ({offer, setActiveCard, className
     setActiveCard?.(null);
   };
   return(
-    <Link to={routes.Offer.replace(':id', offer.id)} >
+    <Link to={AppRoutes.Offer.replace(':id', offer.id)} >
       <article
         className={`${className}__card place-card`}
         key={offer.id}

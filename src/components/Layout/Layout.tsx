@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { routes } from '../../constants';
+import { AppRoutes } from '../../constants';
 
 type LayoutProps = {
   children: JSX.Element;
@@ -11,7 +11,7 @@ export const Layout = ({children}: LayoutProps) => (
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Link to={routes.Main} className="header__logo-link header__logo-link--active">
+            <Link to={AppRoutes.Main} className="header__logo-link header__logo-link--active">
               <img
                 className="header__logo"
                 src="img/logo.svg"
@@ -26,7 +26,7 @@ export const Layout = ({children}: LayoutProps) => (
               <li className="header__nav-item user">
                 <Link
                   className="header__nav-link header__nav-link--profile"
-                  to={routes.Favorites}
+                  to={AppRoutes.Favorites}
                 >
                   <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                   <span className="header__user-name user__name">
@@ -36,7 +36,7 @@ export const Layout = ({children}: LayoutProps) => (
                 </Link>
               </li>
               <li className="header__nav-item">
-                <Link className="header__nav-link" to={routes.Login}>
+                <Link className="header__nav-link" to={AppRoutes.Login}>
                   <span className="header__signout">Sign out</span>
                 </Link>
               </li>

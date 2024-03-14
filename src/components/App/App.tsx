@@ -4,7 +4,7 @@ import FavoritesPage from '../../pages/FavoritesPage/FavoritesPage';
 import OfferPage from '../../pages/OfferPage/OfferPage';
 import Error404 from '../../pages/Error404/Error404';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {AuthorizationStatus, routes} from '../../constants';
+import {AuthorizationStatus, AppRoutes} from '../../constants';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import { offers } from '../../mocks/offers';
 
@@ -13,13 +13,13 @@ function App(): JSX.Element{
   return(
     <BrowserRouter>
       <Routes>
-        <Route path={routes.Main}>
+        <Route path={AppRoutes.Main}>
           <Route index element={<MainPage />} />
-          <Route path={routes.Login} element ={<LoginPage/>}/>
-          <Route path={routes.Favorites} element =
+          <Route path={AppRoutes.Login} element ={<LoginPage/>}/>
+          <Route path={AppRoutes.Favorites} element =
             {<PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><FavoritesPage offers={offers}/></PrivateRoute>}
           />
-          <Route path={routes.Offer} element = {<OfferPage/>}/>
+          <Route path={AppRoutes.Offer} element = {<OfferPage/>}/>
         </Route>
         <Route
           path="*"
