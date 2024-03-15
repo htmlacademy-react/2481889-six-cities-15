@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-closing-tag-location */
 import { useParams } from 'react-router-dom';
 import { offers } from '../../mocks/offers';
-import { OfferGallery } from './OfferGallery/OfferGalery';
 import { reviews } from '../../mocks/reviews';
 import ReviewForm from '../../components/ReviewForm/ReviewForm';
-import Error404 from '../Error404/Error404';
-import { Layout } from '../../components/Layout/Layout';
-import Map from '../../components/Map/Map';
-import { OfferList } from '../../components/OfferList/OfferList';
+import Error404 from '../error404/error404';
+import { Layout } from '../../components/layout/layout';
+import Map from '../../components/map/map';
+import { OfferList } from '../../components/offer-list/offer-list';
 import { Cities } from '../../mocks/city';
+import { OfferGallery } from './offer-gallery/OfferGalery';
 
 function OfferPage(): JSX.Element {
   const param = useParams();

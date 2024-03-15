@@ -6,8 +6,8 @@ import { useMemo } from 'react';
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export const useAppSelector: TypedUseSelectorHook<State> = useSelector;
-export const useActionCreators = <Action extends ActionCreatorsMapObject>(actions:Action) => {
+export const useActionCreators = <Action extends ActionCreatorsMapObject>(action:Action) => {
   const dispatch = useAppDispatch();
   //eslint-disable-next-line react-hooks/exhaustive-deps
-  return useMemo(() => bindActionCreators(actions, dispatch),[]);
+  return useMemo(() => bindActionCreators(action, dispatch),[]);
 };

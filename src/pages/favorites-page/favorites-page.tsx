@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import OfferCard from '../../components/OfferCard/OfferCard';
+import OfferCard from '../../components/offer-card/offer-card';
 import { Offer } from '../../types/offer';
 import { AppRoutes } from '../../constants';
 import { FC } from 'react';
-import { Layout } from '../../components/Layout/Layout';
+import { Layout } from '../../components/layout/layout';
 
 type favoritesProps = {offers:Offer[]}
 export const FavoritesPage : FC<favoritesProps> = ({offers} : favoritesProps) => {

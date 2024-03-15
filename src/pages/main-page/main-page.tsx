@@ -1,11 +1,11 @@
-import { OfferList } from '../../components/OfferList/OfferList';
+import { OfferList } from '../../components/offer-list/offer-list';
 import { Offer } from '../../types/offer';
 import { useState } from 'react';
-import Map from '../../components/Map/Map';
-import { Layout } from '../../components/Layout/Layout';
+import Map from '../../components/map/map';
+import { Layout } from '../../components/layout/layout';
 import { SortForm } from '../../components/SortForm/SortForm';
 import { Nullable } from '../../types/nullable';
-import { CitiesList } from '../../components/CitiesList/CitiesList';
+import { CitiesList } from '../../components/cities-list/cities-list';
 import { useAppSelector } from '../../hooks/use-app';
 import { CITIES} from '../../constants';
 import { offersSelectors } from '../../slices/offers';

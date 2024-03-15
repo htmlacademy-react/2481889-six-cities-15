@@ -1,5 +1,5 @@
 import { Offer } from '../../types/offer';
-import OfferCard from '../OfferCard/OfferCard';
+import OfferCard from '../offer-card/offer-card';
 import { Nullable } from '../../types/nullable';
 
 type OfferListProps = {offers:Offer[];

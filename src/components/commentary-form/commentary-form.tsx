@@ -8,9 +8,8 @@ const stars = [
   {value:'1', label: 'terrible'},];
 
 export const CommentaryForm = () => {
-
   const [commentaryText, setCommentaryText] = useState('');
-  const [rating, setRating] = useState('0');
+  const [rating, setRating] = useState('-1');
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentaryText(e.target.value);
@@ -19,6 +18,9 @@ export const CommentaryForm = () => {
   const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRating(e.target.value);
   };
+
+  const checkForm = commentaryText.length > 49 && commentaryText.length < 301
+                    && rating !== '-1';
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -55,9 +57,16 @@ export const CommentaryForm = () => {
       </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
-                      To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+                      To submit review please make sure to set
+          <span className="reviews__star">rating</span>
+          and describe your stay with at least
+          <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={false}>Submit</button>
+        <button className="reviews__submit form__submit button"
+          type="submit"
+          disabled={checkForm}
+        >Submit
+        </button>
       </div>
     </form>
   );
