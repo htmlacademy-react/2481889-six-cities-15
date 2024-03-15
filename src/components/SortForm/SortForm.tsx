@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useActionCreators, useAppSelector } from '../../hooks/use-app';
-import { Sorts } from '../../constants';
+import { SORTS } from '../../constants';
 import { offersAction, offersSelectors } from '../../slices/offers';
 import { Sort } from '../../types/sort';
 
@@ -25,7 +25,7 @@ export const SortForm = () => {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${open ? 'places__options--opened' : ''}`}>
-        {Object.values(Sorts).map((i) => (
+        {Object.values(SORTS).map((i) => (
           <li key={i.name}
             className={`places__option ${sort === i ? 'places__option--active' : ''}`}
             tabIndex={0}

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { CITIES, Sorts } from '../constants';
+import { CITIES, SORTS } from '../constants';
 import { offers } from '../mocks/offers';
 import { City } from '../types/city';
 import { Offer } from '../types/offer';
@@ -14,7 +14,7 @@ type offersState = {
 const initialState = {
   city: CITIES[0],
   offers: offers,
-  sort: Sorts.Popular
+  sort: SORTS.Popular
 };
 
 const offersSlice = createSlice({
