@@ -2,7 +2,7 @@
 import { useParams } from 'react-router-dom';
 import { offers } from '../../mocks/offers';
 import { reviews } from '../../mocks/reviews';
-import ReviewForm from '../../components/ReviewForm/ReviewForm';
+import ReviewForm from '../../components/review-form/review-form';
 import Error404 from '../error404/error404';
 import { Layout } from '../../components/layout/layout';
 import Map from '../../components/map/map';

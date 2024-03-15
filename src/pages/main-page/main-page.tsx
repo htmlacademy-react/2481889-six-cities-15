@@ -3,7 +3,7 @@ import { Offer } from '../../types/offer';
 import { useState } from 'react';
 import Map from '../../components/map/map';
 import { Layout } from '../../components/layout/layout';
-import { SortForm } from '../../components/SortForm/SortForm';
+import { SortForm } from '../../components/sort-form/sort-form';
 import { Nullable } from '../../types/nullable';
 import { CitiesList } from '../../components/cities-list/cities-list';
 import { useAppSelector } from '../../hooks/use-app';
@@ -32,7 +32,7 @@ export const MainPage = () => {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offers.length} places to stay in {city.name}</b>
+                <b className="places__found">{offers.filter((i) => i.city.name === city.name).length} places to stay in {city.name}</b>
                 <SortForm/>
                 <OfferList type="cities" offers={offers.filter((i) => i.city.name === city.name)
                   .sort(sort.func)} setActiveCard={setActiveCard}

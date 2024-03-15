@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Review } from '../../types/review';
-import {CommentaryForm} from '../CommentaryForm/CommentaryForm';
-import { ReviewList } from '../ReviewList/ReviewList';
+import {CommentaryForm} from '../commentary-form/commentary-form';
+import { ReviewList } from '../review-list/review-list';
 
 type ReviewFormProps = {reviews:Review[]}
 

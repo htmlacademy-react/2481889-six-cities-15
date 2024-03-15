@@ -1,11 +1,11 @@
-import MainPage from '../../pages/MainPage/MainPage';
-import LoginPage from '../../pages/LoginPage/LoginPage';
-import FavoritesPage from '../../pages/FavoritesPage/FavoritesPage';
-import OfferPage from '../../pages/OfferPage/OfferPage';
+import MainPage from '../../pages/main-page/main-page';
+import LoginPage from '../../pages/login-page/login-page';
+import FavoritesPage from '../../pages/favorites-page/favorites-page';
+import OfferPage from '../../pages/offer-page/offer-page';
 import Error404 from '../../pages/error404/error404';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {AuthorizationStatus, AppRoutes} from '../../constants';
-import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import PrivateRoute from '../private-route/private-route';
 import { offers } from '../../mocks/offers';
 
 
