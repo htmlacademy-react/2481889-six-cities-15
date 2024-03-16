@@ -1,4 +1,4 @@
-import { Layout } from '../../components/layout/layout';
+import { Layout } from '../../components/layout-component/layout-component';
 
 function Error404() {
   return (

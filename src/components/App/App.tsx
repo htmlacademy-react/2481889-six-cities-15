@@ -2,7 +2,7 @@ import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
-import Error404 from '../../pages/error404/error404';
+import Error404 from '../../pages/error/error';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {AuthorizationStatus, AppRoutes} from '../../constants';
 import PrivateRoute from '../private-route/private-route';

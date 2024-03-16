@@ -3,7 +3,7 @@ import OfferCard from '../../components/offer-card/offer-card';
 import { Offer } from '../../types/offer';
 import { AppRoutes } from '../../constants';
 import { FC } from 'react';
-import { Layout } from '../../components/layout/layout';
+import { Layout } from '../../components/layout-component/layout-component';
 
 type favoritesProps = {offers:Offer[]}
 export const FavoritesPage : FC<favoritesProps> = ({offers} : favoritesProps) => {

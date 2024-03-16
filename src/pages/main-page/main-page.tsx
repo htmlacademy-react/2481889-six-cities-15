@@ -1,8 +1,8 @@
 import { OfferList } from '../../components/offer-list/offer-list';
 import { Offer } from '../../types/offer';
 import { useState } from 'react';
-import Map from '../../components/map/map';
-import { Layout } from '../../components/layout/layout';
+import Map from '../../components/map-component/map-component';
+import { Layout } from '../../components/layout-component/layout-component';
 import { SortForm } from '../../components/sort-form/sort-form';
 import { Nullable } from '../../types/nullable';
 import { CitiesList } from '../../components/cities-list/cities-list';
