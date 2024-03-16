@@ -1,15 +1,17 @@
 import { useState } from 'react';
 
-const stars = [
+const STARS = [
   {value:'5', label: 'perfect'},
   {value:'4', label: 'good'},
   {value:'3', label: 'not bad'},
   {value:'2', label: 'bad'},
   {value:'1', label: 'terrible'},];
 
+const NOTCHECK = '-1';
+
 export const CommentaryForm = () => {
   const [commentaryText, setCommentaryText] = useState('');
-  const [rating, setRating] = useState('-1');
+  const [rating, setRating] = useState(NOTCHECK);
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentaryText(e.target.value);
@@ -25,7 +27,7 @@ export const CommentaryForm = () => {
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {stars.map((star) => (
+        {STARS.map((star) => (
           <>
             <input className="form__rating-input visually-hidden"
               key={star.value}
