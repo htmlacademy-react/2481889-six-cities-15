@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { offers } from '../../mocks/offers';
 import { reviews } from '../../mocks/reviews';
 import ReviewForm from '../../components/review-form/review-form';
-import Error404 from '../error/error';
+import Error404 from '../error-page/error-page';
 import { Layout } from '../../components/layout-component/layout-component';
 import Map from '../../components/map-component/map-component';
 import { OfferList } from '../../components/offer-list/offer-list';
