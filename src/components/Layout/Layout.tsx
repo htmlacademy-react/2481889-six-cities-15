@@ -6,7 +6,7 @@ type LayoutProps = {
 }
 
 export const Layout = ({children}: LayoutProps) => (
-  <div className='page page--gray'>
+  <div className='page  page--gray'>
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
