@@ -1,9 +1,9 @@
 import { Review } from '../../types/review';
 
-type ReviewListProps = {reviews?:Review[]}
+type ReviewListProps = {reviews:Review[]}
 export const ReviewList = (props:ReviewListProps)=> (
   <ul className="reviews__list">
-    {props.reviews?.map((i) =>
+    {props.reviews.map((i) =>
       (
         <li className="reviews__item" key={i.id}>
           <div className="reviews__user user">
