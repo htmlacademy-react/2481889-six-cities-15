@@ -23,3 +23,5 @@ export type Offer = {
     images: string[];
     maxAdults: number;
 }
+
+export type Offers = Offer[]

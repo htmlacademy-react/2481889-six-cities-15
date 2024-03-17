@@ -1,13 +1,17 @@
-import { Offer } from '../../types/offer';
+import { Offer, Offers } from '../../types/offer';
 import OfferCard from '../offer-card/offer-card';
 import { Nullable } from '../../types/nullable';
+import { useAppSelector } from '../../hooks/use-app';
+import { offersSelectors } from '../../slices/offers';
+import Spinner from '../spinner/spinner';
 
-type OfferListProps = {offers:Offer[];
+type OfferListProps = {offers:Offers;
    type:string;
    setActiveCard?:(offer:Nullable<Offer>) => void;
   };
 
 export function OfferList(props: OfferListProps){
+  const isOffersDataLoading = useAppSelector(offersSelectors.isOffersDataLoading);
   const className = (type:string)=>{
     switch(type){
       case 'cities':
@@ -23,7 +27,7 @@ export function OfferList(props: OfferListProps){
 
   return (
     <div className={className(props.type)}>
-      {cards}
+      {isOffersDataLoading ? <Spinner/> : cards}
     </div>
   );
 }

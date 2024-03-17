@@ -24,7 +24,10 @@ export const URL_MARKER_DEFAULT =
 export const URL_MARKER_CURRENT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
 
+export const TIMEOUT_SHOW_ERROR = 2000;
+export const BASE_URL = 'https://15.design.htmlacademy.pro/six-cities';
 
+export const TIME_OUT = 5000;
 export const CITIES: City[] = [
   {
     name: 'Paris',
@@ -90,4 +93,10 @@ export const SORTS: { [key: string]: Sort } = {
   },
 };
 
+
+export enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+}
 
