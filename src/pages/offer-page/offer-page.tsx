@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-closing-tag-location */
 import { useParams } from 'react-router-dom';
-import { reviews } from '../../mocks/reviews';
 import ReviewForm from '../../components/review-form/review-form';
 import Error404 from '../error-page/error-page';
 import { Layout } from '../../components/layout-component/layout-component';
@@ -85,7 +84,7 @@ function OfferPage(): JSX.Element {
                     {offer.description}
                   </div>
                 </div>
-                <ReviewForm reviews={reviews}/>
+                <ReviewForm/>
               </div>
             </div>
             <Map className='offer__map' city={CITIES[0]} offers={nearPlaces} selectedOffer={null}/>
