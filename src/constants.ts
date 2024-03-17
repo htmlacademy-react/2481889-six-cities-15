@@ -1,7 +1,8 @@
 import { City } from './types/city';
+import { Sort } from './types/sort';
 
 
-export const routes = {
+export const AppRoutes = {
   Login : '/login',
   Favorites : '/favorites',
   Offer : '/offer/:id',
@@ -67,8 +68,26 @@ export const CITIES: City[] = [
       longitude: 4.8951,
       zoom: 12,},
   },
-
-
 ];
+
+
+export const SORTS: { [key: string]: Sort } = {
+  Popular: {
+    name: 'Popular',
+    func: () => 0 // Функция сортировки для Popular (в данном случае не изменяет порядок)
+  },
+  PriceHighToLow: {
+    name: 'Price: high to low',
+    func: (a, b) => b.price - a.price // Функция сортировки для сортировки по цене от большей к меньшей
+  },
+  PriceLowToHigh: {
+    name: 'Price: low to high',
+    func: (a, b) => a.price - b.price // Функция сортировки для сортировки по цене от меньшей к большей
+  },
+  TopRatedFirst: {
+    name: 'Top rated first',
+    func: (a, b) => b.rating - a.rating // Функция сортировки для сортировки по рейтингу от высшего к низшему
+  },
+};
 
 
