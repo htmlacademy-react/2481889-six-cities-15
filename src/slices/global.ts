@@ -17,7 +17,7 @@ export const globalSlice = createSlice({
   reducers: {
     setError: (state, action:PayloadAction<ErrorMessage>) => {
       state.error = action.payload;
-    }
+    },
   },
   selectors: {
     error : (state: GlobalState) => state.error

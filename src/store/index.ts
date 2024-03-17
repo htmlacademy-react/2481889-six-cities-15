@@ -3,6 +3,7 @@ import { offersSlice } from '../slices/offers';
 import { createAPI } from '../services/api';
 import { authSlice } from '../slices/auth';
 import { globalSlice } from '../slices/global';
+import { redirect } from '../middlewares/redirect';
 
 const api = createAPI();
 
@@ -17,6 +18,6 @@ export const store = configureStore({
       serializableCheck: false,
       thunk: {
         extraArgument: api,
-      }
-    })
+      },
+    }).concat(redirect),
 });
