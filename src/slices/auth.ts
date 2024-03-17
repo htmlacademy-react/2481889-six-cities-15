@@ -17,6 +17,11 @@ export const authSlice = createSlice({
       state.authorizationStatus = action.payload;
     },
   },
+  selectors: {
+    authorizationStatus: (state) => state.authorizationStatus
+  }
 });
+
+export const authSelectors = authSlice.selectors;
 
 export const { setAuthorizationStatus } = authSlice.actions;

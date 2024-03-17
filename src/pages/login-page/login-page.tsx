@@ -1,4 +1,26 @@
+import { useRef, FormEvent } from 'react';
+//import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/use-app';
+import { loginAction } from '../../store/api-actions';
+
 function LoginPage(): JSX.Element {
+
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
+  const dispatch = useAppDispatch();
+  //const navigate = useNavigate();
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      dispatch(loginAction({
+        login: loginRef.current.value,
+        password: passwordRef.current.value
+      }));
+    }
+  };
   return (
     <div className="page page--gray page--login">
       <header className="header">
@@ -7,7 +29,7 @@ function LoginPage(): JSX.Element {
             <div className="header__left">
               <a
                 className="header__logo-link"
-                href="main.html"
+                // href="main.html"
               >
                 <img
                   alt="6 cities logo"
@@ -31,6 +53,7 @@ function LoginPage(): JSX.Element {
               action="#"
               className="login__form form"
               method="post"
+              onSubmit={handleSubmit}
             >
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">
@@ -42,6 +65,7 @@ function LoginPage(): JSX.Element {
                   placeholder="Email"
                   required
                   type="email"
+                  ref={loginRef}
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -54,6 +78,7 @@ function LoginPage(): JSX.Element {
                   placeholder="Password"
                   required
                   type="password"
+                  ref = {passwordRef}
                 />
               </div>
               <button
