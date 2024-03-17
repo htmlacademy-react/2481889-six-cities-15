@@ -22,7 +22,7 @@ export const clearErrorAction = createAsyncThunk(
   },
 );
 
-export const redirectToRoute = createAction<string>('redirectToRoute');
+export const redirectToRoute = createAction<AppRoutes>('redirectToRoute');
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;

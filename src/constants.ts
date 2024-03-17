@@ -2,12 +2,12 @@ import { City } from './types/city';
 import { Sort } from './types/sort';
 
 
-export const AppRoutes = {
-  Login : '/login',
-  Favorites : '/favorites',
-  Offer : '/offer/:id',
-  Main : '/'
-} as const;
+export enum AppRoutes {
+  Login = '/login',
+  Favorites = '/favorites',
+  Offer = '/offer/:id',
+  Main = '/'
+}
 
 export enum AuthorizationStatus {
     Auth = 'AUTH',

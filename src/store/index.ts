@@ -1,18 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { offersSlice } from '../slices/offers';
 import { createAPI } from '../services/api';
-import { authSlice } from '../slices/auth';
-import { globalSlice } from '../slices/global';
 import { redirect } from '../middlewares/redirect';
+import { rootReducer } from './root-reducer';
 
 const api = createAPI();
 
 export const store = configureStore({
-  reducer: {
-    [offersSlice.name]: offersSlice.reducer,
-    [authSlice.name]: authSlice.reducer,
-    [globalSlice.name]: globalSlice.reducer
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
