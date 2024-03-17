@@ -1,20 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { CITIES, SORTS } from '../constants';
-import { offers } from '../mocks/offers';
 import { City } from '../types/city';
-import { Offer } from '../types/offer';
+import { Offers } from '../types/offer';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Sort } from '../types/sort';
 
-type offersState = {
+export type OffersState = {
     city: City;
-    offers: Offer[];
+    offers: Offers;
     sort: Sort;
+    isOffersDataLoading: boolean;
 }
-const initialState = {
+const initialState : OffersState = {
   city: CITIES[0],
-  offers: offers,
-  sort: SORTS.Popular
+  offers: [],
+  sort: SORTS.Popular,
+  isOffersDataLoading: false,
 };
 
 const offersSlice = createSlice({
@@ -24,17 +25,21 @@ const offersSlice = createSlice({
     setCity: (state, action:PayloadAction<City>) => {
       state.city = action.payload;
     },
-    setOffers: (state, action:PayloadAction<Offer[]>) => {
+    setOffers: (state, action:PayloadAction<Offers>) => {
       state.offers = action.payload;
     },
     setSort: (state, action:PayloadAction<Sort>) => {
       state.sort = action.payload;
+    },
+    setIsOffersDataLoading: (state, action:PayloadAction<boolean>) => {
+      state.isOffersDataLoading = action.payload;
     }
   },
   selectors: {
-    city: (state:offersState) => state.city,
-    offers: (state:offersState) => state.offers,
-    sort: (state:offersState) => state.sort
+    city: (state:OffersState) => state.city,
+    offers: (state:OffersState) => state.offers,
+    sort: (state:OffersState) => state.sort,
+    isOffersDataLoading: (state:OffersState) => state.isOffersDataLoading,
   }
 });
 

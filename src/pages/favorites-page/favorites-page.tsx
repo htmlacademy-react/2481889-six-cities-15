@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import OfferCard from '../../components/offer-card/offer-card';
-import { Offer } from '../../types/offer';
 import { AppRoutes } from '../../constants';
-import { FC } from 'react';
 import { Layout } from '../../components/layout-component/layout-component';
+import { offersSelectors } from '../../slices/offers';
+import { useAppSelector } from '../../hooks/use-app';
 
-type favoritesProps = {offers:Offer[]}
-export const FavoritesPage : FC<favoritesProps> = ({offers} : favoritesProps) => {
+export const FavoritesPage = () => {
+  const offers = useAppSelector(offersSelectors.offers);
   const cards = offers.map((i) => (<OfferCard offer = {i} key = {i.id} />));
   return(
     <Layout>

@@ -6,7 +6,6 @@ import Error404 from '../../pages/error-page/error-page';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {AuthorizationStatus, AppRoutes} from '../../constants';
 import PrivateRoute from '../private-route/private-route';
-import { offers } from '../../mocks/offers';
 
 
 function App(): JSX.Element{
@@ -17,7 +16,11 @@ function App(): JSX.Element{
           <Route index element={<MainPage />} />
           <Route path={AppRoutes.Login} element ={<LoginPage/>}/>
           <Route path={AppRoutes.Favorites} element =
-            {<PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><FavoritesPage offers={offers}/></PrivateRoute>}
+            {
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <FavoritesPage />
+              </PrivateRoute>
+            }
           />
           <Route path={AppRoutes.Offer} element = {<OfferPage/>}/>
         </Route>

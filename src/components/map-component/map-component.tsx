@@ -4,12 +4,12 @@ import useMap from '../../hooks/use-map';
 import {City} from '../../types/city';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../constants';
 import 'leaflet/dist/leaflet.css';
-import { Offer } from '../../types/offer';
+import { Offer, Offers } from '../../types/offer';
 import { Nullable } from '../../types/nullable';
 
 type MapProps = {
   city: City;
-  offers: Offer[];
+  offers: Offers;
   selectedOffer: Nullable<Offer>;
   className: string;
 };
