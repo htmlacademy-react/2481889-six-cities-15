@@ -1,15 +1,16 @@
 import {AxiosInstance} from 'axios';
-import {createAsyncThunk} from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk} from '@reduxjs/toolkit';
 import {saveToken, dropToken} from '../services/token';
 import { AppDispatch, State } from '../types/store';
 import { offersAction } from '../slices/offers';
-import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../constants';
+import { APIRoute, AppRoutes, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../constants';
 import { AuthData } from '../types/auth-data';
 import { Offers } from '../types/offer';
 import { UserData } from '../types/user-data';
 import { setAuthorizationStatus } from '../slices/auth';
 import { store } from '.';
 import { setError } from '../slices/global';
+
 
 export const clearErrorAction = createAsyncThunk(
   'game/clearError',
@@ -21,6 +22,7 @@ export const clearErrorAction = createAsyncThunk(
   },
 );
 
+export const redirectToRoute = createAction<AppRoutes>('redirectToRoute');
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
@@ -34,6 +36,7 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     dispatch(offersAction.setOffers(data));
   },
 );
+
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -61,6 +64,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+    dispatch(redirectToRoute(AppRoutes.Main));
   },
 );
 
@@ -74,5 +78,8 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     await api.delete(APIRoute.Logout);
     dropToken();
     dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
+    dispatch(redirectToRoute(AppRoutes.Login));
   },
 );
+
+
