@@ -21,7 +21,7 @@ export const CommentaryForm = () => {
     setRating(e.target.value);
   };
 
-  const checkForm = commentaryText.length > 49 && commentaryText.length < 301
+  const CHECKFORM = commentaryText.length > 49 && commentaryText.length < 301
                     && rating !== '-1';
   return (
     <form className="reviews__form form" action="#" method="post">
@@ -66,7 +66,7 @@ export const CommentaryForm = () => {
         </p>
         <button className="reviews__submit form__submit button"
           type="submit"
-          disabled={checkForm}
+          disabled={CHECKFORM}
         >Submit
         </button>
       </div>

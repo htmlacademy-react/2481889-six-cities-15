@@ -9,7 +9,6 @@ function useMap(
 ): Nullable<Map> {
   const [map, setMap] = useState<Nullable<Map>>(null);
   const isRenderedRef = useRef<boolean>(false);
-
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
@@ -34,6 +33,11 @@ function useMap(
       isRenderedRef.current = true;
     }
   }, [mapRef, city]);
+  useEffect(() => {
+    if (map) {
+      map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
+    }
+  }, [map, city]);
 
   return map;
 }

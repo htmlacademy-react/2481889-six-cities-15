@@ -4,15 +4,12 @@ import { rootReducer } from '../store/root-reducer';
 
 type Reducer = ReturnType<typeof rootReducer>;
 
-export const redirect: Middleware<unknown, Reducer> =
+export const redirect: Middleware<PayloadAction, Reducer> =
   () =>
     (next) =>
-      (action: unknown) => {
-        if (typeof action === 'object' && action !== null && 'type' in action) {
-          const typedAction = action as PayloadAction<string>; // Приведение типа к PayloadAction<string>
-          if (typedAction.type === 'redirectToRoute') {
-            browserHistory.push(typedAction.payload);
-          }
+      (action: PayloadAction<string>) => {
+        if (action.type === 'redirectToRoute') {
+          browserHistory.push(action.payload);
         }
 
         return next(action);

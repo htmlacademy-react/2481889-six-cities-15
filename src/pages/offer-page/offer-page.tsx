@@ -1,21 +1,31 @@
 /* eslint-disable react/jsx-closing-tag-location */
 import { useParams } from 'react-router-dom';
-import { reviews } from '../../mocks/reviews';
 import ReviewForm from '../../components/review-form/review-form';
 import Error404 from '../error-page/error-page';
 import { Layout } from '../../components/layout-component/layout-component';
 import Map from '../../components/map-component/map-component';
 import { OfferList } from '../../components/offer-list/offer-list';
 import { OfferGallery } from './offer-gallery/OfferGalery';
-import { CITIES } from '../../constants';
-import { offersSelectors } from '../../slices/offers';
 import { useAppSelector } from '../../hooks/use-app';
+import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
+import { offerSelectors } from '../../slices/offer';
+import { useEffect } from 'react';
+import { store } from '../../store';
 
 function OfferPage(): JSX.Element {
   const param = useParams();
-  const offers = useAppSelector(offersSelectors.offers);
-  const offer = offers.find((i) => i.id === param.id, offers[0]);
-  const nearPlaces = offers.filter((i) => i.id !== param.id);
+  const offerId = param.id;
+  const offer = useAppSelector(offerSelectors.offer);
+  const nearPlaces = useAppSelector(offerSelectors.nearPlaces);
+  const reviews = useAppSelector(offerSelectors.reviews);
+  useEffect(() => {
+    if (param.id) {
+      store.dispatch(fetchOfferAction(param.id));
+      store.dispatch(fetchNearPlacesAction(param.id));
+      store.dispatch(fetchReviewsAction(param.id));
+    }
+  }, [offerId]);
+
   if (!offer) {
     return (<Error404/>);
   }
@@ -88,7 +98,7 @@ function OfferPage(): JSX.Element {
                 <ReviewForm reviews={reviews}/>
               </div>
             </div>
-            <Map className='offer__map' city={CITIES[0]} offers={nearPlaces} selectedOffer={null}/>
+            <Map className='offer__map' city={offer.city} offers={nearPlaces} selectedOffer={null}/>
           </section>
           <div className="container">
             <section className="near-places places">

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { CITIES, SORTS } from '../constants';
 import { City } from '../types/city';
 import { Offers } from '../types/offer';
