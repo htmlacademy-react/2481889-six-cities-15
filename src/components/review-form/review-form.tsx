@@ -6,7 +6,7 @@ import { useAppSelector } from '../../hooks/use-app';
 import { authSelectors } from '../../slices/auth';
 import { AuthorizationStatus } from '../../constants';
 
-type ReviewFormProps = {reviews:Review[]}
+type ReviewFormProps = {reviews:Review[]; offerId : string}
 const ReviewForm : FC<ReviewFormProps> = (props : ReviewFormProps) => {
   const authorizationStatus = useAppSelector(authSelectors.authorizationStatus);
   return (
@@ -16,7 +16,7 @@ const ReviewForm : FC<ReviewFormProps> = (props : ReviewFormProps) => {
       </h2>
       <ReviewList reviews={props.reviews} />
       {authorizationStatus === AuthorizationStatus.Auth ?
-        <CommentaryForm/> :
+        <CommentaryForm offerId={props.offerId}/> :
         <p>Войдите прежде, чем написать комментарий</p>}
     </section>
   );

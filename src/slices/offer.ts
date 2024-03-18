@@ -36,16 +36,17 @@ export const offerSlice = createSlice({
     },
     setIsOfferNotFound: (state, action:PayloadAction<boolean>) => {
       state.isOfferNotFound = action.payload;
-    }
+    },
   },
   selectors: {
     offer: (state: OfferState) => state.offer,
     nearPlaces: (state: OfferState) => state.nearPlaces,
     reviews: (state: OfferState) => state.reviews,
     isOfferDataLoading: (state: OfferState) => state.isOfferDataLoading,
-    isOfferNotFound: (state: OfferState) => state.isOfferNotFound
+    isOfferNotFound: (state: OfferState) => state.isOfferNotFound,
   }});
 
-export const { setOffer, setNearPlaces, setReviews, setIsOfferDataLoading, setIsOfferNotFound } = offerSlice.actions;
+export const { setOffer, setNearPlaces, setReviews, setIsOfferDataLoading,
+  setIsOfferNotFound } = offerSlice.actions;
 
 export const offerSelectors = offerSlice.selectors;
