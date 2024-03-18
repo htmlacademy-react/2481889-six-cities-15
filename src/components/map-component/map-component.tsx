@@ -43,7 +43,7 @@ function Map(props: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            selectedOffer !== null && offer.title === selectedOffer.title
+            selectedOffer !== null && offer.id === selectedOffer.id
               ? currentCustomIcon
               : defaultCustomIcon
           )
@@ -55,6 +55,10 @@ function Map(props: MapProps): JSX.Element {
       };
     }
   }, [map, offers, selectedOffer]);
+
+  useEffect(() => {
+    map?.setView([city.location.latitude, city.location.longitude], city.location.zoom);
+  }, [map, city]);
 
   return <section style={{height: '500px'}} className={`${props.className}  map`} ref={mapRef}></section>;
 }

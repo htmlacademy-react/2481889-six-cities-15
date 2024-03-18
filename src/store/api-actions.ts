@@ -5,11 +5,13 @@ import { AppDispatch, State } from '../types/store';
 import { offersAction } from '../slices/offers';
 import { APIRoute, AppRoutes, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../constants';
 import { AuthData } from '../types/auth-data';
-import { Offers } from '../types/offer';
+import { Offer, OfferData, Offers } from '../types/offer';
 import { UserData } from '../types/user-data';
 import { setAuthorizationStatus } from '../slices/auth';
 import { store } from '.';
 import { setError } from '../slices/global';
+import { setIsOfferDataLoading, setIsOfferNotFound, setNearPlaces, setOffer, setReviews } from '../slices/offer';
+import { Reviews } from '../types/review';
 
 
 export const clearErrorAction = createAsyncThunk(
@@ -34,6 +36,48 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     const {data} = await api.get<Offers>(APIRoute.Offers);
     dispatch(offersAction.setIsOffersDataLoading(false));
     dispatch(offersAction.setOffers(data));
+  },
+);
+
+export const fetchOfferAction = createAsyncThunk<void, OfferData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchOffer',
+  async (id, {dispatch, extra: api}) => {
+    dispatch(setIsOfferDataLoading(true));
+    const {data} = await api.get<Offer>(APIRoute.Offer.replace(':id', id));
+    if(!data) {
+      dispatch(setIsOfferNotFound(true));
+    } else{
+      dispatch(setIsOfferDataLoading(false));
+      dispatch(setOffer(data));
+    }
+  },
+);
+
+export const fetchNearPlacesAction = createAsyncThunk<void, OfferData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchOffer',
+  async (id, {dispatch, extra: api}) => {
+    const {data} = await api.get<Offers>(APIRoute.NearPlaces.replace(':id', id));
+    dispatch(setNearPlaces(data));
+  },
+);
+
+export const fetchReviewsAction = createAsyncThunk<void, OfferData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchOffer',
+  async (id, {dispatch, extra: api}) => {
+    const {data} = await api.get<Reviews>(APIRoute.Reviews.replace(':id', id));
+    dispatch(setReviews(data));
   },
 );
 
