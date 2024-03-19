@@ -92,12 +92,12 @@ export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
           and describe your stay with at least
           <b className="reviews__text-amount">50 characters</b>.
         </p>
+        <ErrorMessage/>
         <button className="reviews__submit form__submit button"
           type="submit"
           disabled={!CHECKFORM}
         >Submit
         </button>
-        <ErrorMessage/>
       </div>
     </form>
   );

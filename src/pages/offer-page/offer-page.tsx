@@ -3,7 +3,7 @@ import ReviewForm from '../../components/review-form/review-form';
 import { Layout } from '../../components/layout-component/layout-component';
 import Map from '../../components/map-component/map-component';
 import { OfferList } from '../../components/offer-list/offer-list';
-import { OfferGallery } from './offer-gallery/OfferGalery';
+import { OfferGallery } from './offer-gallery/offer-gallery';
 import { useAppSelector } from '../../hooks/use-app';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
 import { offerSelectors } from '../../slices/offer';

@@ -136,9 +136,13 @@ export const postReviewAction = createAsyncThunk<void, ReviewData, {
 }>(
   'postReview',
   async ({comment, rating, id}, {dispatch, extra: api}) => {
-    await api.post<UserData>(APIRoute.Reviews.replace(':id',id)
-      , {comment, rating});
-    dispatch(fetchReviewsAction(id));
+    try{
+      await api.post<UserData>(APIRoute.Reviews.replace(':id',id)
+        , {comment, rating});
+      dispatch(fetchReviewsAction(id));
+    } catch (err) {
+      dispatch(setError('Error in post review'));
+    }
   },
 );
 

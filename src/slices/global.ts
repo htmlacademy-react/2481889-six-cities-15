@@ -1,10 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Nullable } from '../types/nullable';
 
-type ErrorMessage = Nullable<string>;
 
 export type GlobalState = {
-    error: Nullable<ErrorMessage>;
+    error: Nullable<string>;
 }
 
 const initialState: GlobalState = {
@@ -15,7 +14,7 @@ export const globalSlice = createSlice({
   initialState,
   name: 'global',
   reducers: {
-    setError: (state, action:PayloadAction<ErrorMessage>) => {
+    setError: (state, action:PayloadAction<Nullable<string>>) => {
       state.error = action.payload;
     },
   },

@@ -46,6 +46,7 @@ export const offerSlice = createSlice({
     isOfferNotFound: (state: OfferState) => state.isOfferNotFound,
   }});
 
+
 export const { setOffer, setNearPlaces, setReviews, setIsOfferDataLoading,
   setIsOfferNotFound } = offerSlice.actions;
 
