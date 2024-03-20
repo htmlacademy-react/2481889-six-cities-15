@@ -24,4 +24,6 @@ export type Offer = {
     maxAdults: number;
 }
 
+export type OfferData = string
+
 export type Offers = Offer[]

@@ -9,7 +9,6 @@ function useMap(
 ): Nullable<Map> {
   const [map, setMap] = useState<Nullable<Map>>(null);
   const isRenderedRef = useRef<boolean>(false);
-
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {

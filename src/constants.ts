@@ -6,7 +6,8 @@ export enum AppRoutes {
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer/:id',
-  Main = '/'
+  Main = '/',
+  NotFound = '/notfound',
 }
 
 export enum AuthorizationStatus {
@@ -32,23 +33,26 @@ export const CITIES: City[] = [
   {
     name: 'Paris',
     location: {
-      latitude: 52.3702,
-      longitude: 4.8951,
-      zoom: 12,},
+      latitude: 48.85661,
+      longitude: 2.351499,
+      zoom: 13
+    },
   },
   {
     name: 'Cologne',
     location: {
-      latitude: 52.3702,
-      longitude: 4.8951,
-      zoom: 12,},
+      latitude: 50.938361,
+      longitude: 6.959974,
+      zoom: 13
+    }
   },
   {
     name: 'Brussels',
     location: {
-      latitude: 52.3702,
-      longitude: 4.8951,
-      zoom: 12,},
+      latitude: 50.846557,
+      longitude: 4.351697,
+      zoom: 13
+    }
   },
   {
     name: 'Amsterdam',
@@ -60,17 +64,19 @@ export const CITIES: City[] = [
   {
     name: 'Hamburg',
     location: {
-      latitude: 52.3702,
-      longitude: 4.8951,
-      zoom: 12,},
+      latitude: 53.550341,
+      longitude: 10.000654,
+      zoom: 13
+    }
   },
   {
     name: 'Dusseldorf',
     location: {
-      latitude: 52.3702,
-      longitude: 4.8951,
-      zoom: 12,},
-  },
+      latitude: 51.225402,
+      longitude: 6.776314,
+      zoom: 13
+    }
+  }
 ];
 
 
@@ -98,5 +104,8 @@ export enum APIRoute {
   Offers = '/offers',
   Login = '/login',
   Logout = '/logout',
+  Offer = 'offers/:id',
+  Reviews = 'comments/:id',
+  NearPlaces = 'offers/:id/nearby',
 }
 

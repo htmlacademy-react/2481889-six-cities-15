@@ -1,14 +1,17 @@
 import { useRef, FormEvent } from 'react';
-import { useAppDispatch } from '../../hooks/use-app';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import { loginAction } from '../../store/api-actions';
+import { Navigate } from 'react-router-dom';
+import { authSelectors } from '../../slices/auth';
+import { AppRoutes, AuthorizationStatus } from '../../constants';
 
 function LoginPage(): JSX.Element {
 
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const authStatus = useAppSelector(authSelectors.authorizationStatus);
 
   const dispatch = useAppDispatch();
-  //const navigate = useNavigate();
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -22,13 +25,13 @@ function LoginPage(): JSX.Element {
   };
   return (
     <div className="page page--gray page--login">
+      {authStatus === AuthorizationStatus.Auth && <Navigate to={AppRoutes.Main} />}
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
               <a
                 className="header__logo-link"
-                // href="main.html"
               >
                 <img
                   alt="6 cities logo"
@@ -46,7 +49,7 @@ function LoginPage(): JSX.Element {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">
-                Sign in
+              Sign in
             </h1>
             <form
               action="#"
@@ -56,7 +59,7 @@ function LoginPage(): JSX.Element {
             >
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">
-                    E-mail
+                  E-mail
                 </label>
                 <input
                   className="login__input form__input"
@@ -69,7 +72,7 @@ function LoginPage(): JSX.Element {
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">
-                    Password
+                  Password
                 </label>
                 <input
                   className="login__input form__input"
@@ -77,14 +80,14 @@ function LoginPage(): JSX.Element {
                   placeholder="Password"
                   required
                   type="password"
-                  ref = {passwordRef}
+                  ref={passwordRef}
                 />
               </div>
               <button
                 className="login__submit form__submit button"
                 type="submit"
               >
-                  Sign in
+                Sign in
               </button>
             </form>
           </section>
@@ -95,7 +98,7 @@ function LoginPage(): JSX.Element {
                 href="#"
               >
                 <span>
-                    Amsterdam
+                  Amsterdam
                 </span>
               </a>
             </div>

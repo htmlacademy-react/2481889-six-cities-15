@@ -1,30 +1,43 @@
-/* eslint-disable react/jsx-closing-tag-location */
-import { useParams } from 'react-router-dom';
-import { reviews } from '../../mocks/reviews';
+import { Navigate, useParams } from 'react-router-dom';
 import ReviewForm from '../../components/review-form/review-form';
-import Error404 from '../error-page/error-page';
 import { Layout } from '../../components/layout-component/layout-component';
 import Map from '../../components/map-component/map-component';
 import { OfferList } from '../../components/offer-list/offer-list';
-import { OfferGallery } from './offer-gallery/OfferGalery';
-import { CITIES } from '../../constants';
-import { offersSelectors } from '../../slices/offers';
+import { OfferGallery } from './offer-gallery/offer-gallery';
 import { useAppSelector } from '../../hooks/use-app';
+import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
+import { offerSelectors } from '../../slices/offer';
+import { useEffect } from 'react';
+import { store } from '../../store';
+import Spinner from '../../components/spinner/spinner';
+import { AppRoutes } from '../../constants';
 
 function OfferPage(): JSX.Element {
   const param = useParams();
-  const offers = useAppSelector(offersSelectors.offers);
-  const offer = offers.find((i) => i.id === param.id, offers[0]);
-  const nearPlaces = offers.filter((i) => i.id !== param.id);
-  if (!offer) {
-    return (<Error404/>);
-  }
+  const offerId = param.id;
+  const offer = useAppSelector(offerSelectors.offer);
+  const nearPlaces = useAppSelector(offerSelectors.nearPlaces);
+  const reviews = useAppSelector(offerSelectors.reviews);
+  const isOfferDataLoading = useAppSelector(offerSelectors.isOfferDataLoading);
+  const isOfferNotFound = useAppSelector(offerSelectors.isOfferNotFound);
+  useEffect(() => {
+    if (offerId) {
+      store.dispatch(fetchOfferAction(offerId));
+      store.dispatch(fetchNearPlacesAction(offerId));
+      store.dispatch(fetchReviewsAction(offerId));
+    }
+  }, [offerId]);
   return (
     <Layout>
       <div className="page">
+        {isOfferDataLoading && !isOfferNotFound && <Spinner/>}
+
+        {isOfferNotFound && <Navigate to = {AppRoutes.NotFound}/>}
+
+        {!isOfferDataLoading && offer &&
         <main className="page__main page__main--offer">
           <section className="offer">
-            <OfferGallery photos={[offer.previewImage, ...offer.images]}/>
+            <OfferGallery photos={offer.images}/>
             <div className="offer__container container">
               <div className="offer__wrapper">
                 {offer.isPremium ? <div className="offer__mark"><span>Premium</span></div> : null}
@@ -85,20 +98,21 @@ function OfferPage(): JSX.Element {
                     {offer.description}
                   </div>
                 </div>
-                <ReviewForm reviews={reviews}/>
+                {reviews && <ReviewForm offerId={offer.id} reviews={reviews}/>}
               </div>
             </div>
-            <Map className='offer__map' city={CITIES[0]} offers={nearPlaces} selectedOffer={null}/>
           </section>
           <div className="container">
+            {nearPlaces &&
             <section className="near-places places">
+              <Map className='offer__map' city={offer.city} offers={[offer, ...nearPlaces]} selectedOffer={offer}/>
               <h2 className="near-places__title">
                 Other places in the neighbourhood
               </h2>
               <OfferList type="near-places" offers={nearPlaces}/>
-            </section>
+            </section>}
           </div>
-        </main>
+        </main>}
       </div>
     </Layout>
   );

@@ -1,38 +1,66 @@
-import { useState } from 'react';
+import { FormEvent, Fragment, useState } from 'react';
+import { postReviewAction } from '../../store/api-actions';
+import ErrorMessage from '../error-message/error-message';
+import { useAppDispatch } from '../../hooks/use-app';
 
+type CommentaryFormProps = {offerId: string}
 const STARS = [
-  {value:'5', label: 'perfect'},
-  {value:'4', label: 'good'},
-  {value:'3', label: 'not bad'},
-  {value:'2', label: 'bad'},
-  {value:'1', label: 'terrible'},];
+  {value:5, label: 'perfect'},
+  {value:4, label: 'good'},
+  {value:3, label: 'not bad'},
+  {value:2, label: 'bad'},
+  {value:1, label: 'terrible'},];
 
-const NOTCHECK = '-1';
+const NOTCHECK = -1;
 
-export const CommentaryForm = () => {
+export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
   const [commentaryText, setCommentaryText] = useState('');
   const [rating, setRating] = useState(NOTCHECK);
+
+  const dispatch = useAppDispatch();
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentaryText(e.target.value);
   };
 
   const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRating(e.target.value);
+    setRating(parseInt(e.target.value, 10));
   };
 
-  const checkForm = commentaryText.length > 49 && commentaryText.length < 301
-                    && rating !== '-1';
+  const CHECKFORM = commentaryText.length > 49 && commentaryText.length < 301
+                    && rating !== NOTCHECK;
+  const resetForm = () => {
+    setCommentaryText('');
+    setRating(NOTCHECK);
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (offerId && CHECKFORM) {
+      dispatch(
+        postReviewAction({
+          id: offerId,
+          comment: commentaryText,
+          rating: rating,
+        })
+      );
+
+      resetForm();
+    }
+  };
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form"
+      action="#"
+      method="post"
+      onSubmit={handleSubmit}
+    >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {STARS.map((star) => (
-          <>
+          <Fragment key={star.value}>
             <input className="form__rating-input visually-hidden"
-              key={star.value}
               name="rating"
-              value={rating}
+              value={star.value}
               id={`${star.value}-stars`}
               type="radio"
               checked={rating === star.value}
@@ -47,7 +75,7 @@ export const CommentaryForm = () => {
                 <use xlinkHref="#icon-star"></use>
               </svg>
             </label>
-          </>))}
+          </Fragment>))}
       </div>
       <textarea className="reviews__textarea form__textarea"
         id="review"
@@ -64,9 +92,10 @@ export const CommentaryForm = () => {
           and describe your stay with at least
           <b className="reviews__text-amount">50 characters</b>.
         </p>
+        <ErrorMessage/>
         <button className="reviews__submit form__submit button"
           type="submit"
-          disabled={checkForm}
+          disabled={!CHECKFORM}
         >Submit
         </button>
       </div>
