@@ -1,6 +1,7 @@
-import { FormEvent, Fragment, useState } from 'react';
+import { FormEvent, Fragment, useCallback, useState } from 'react';
 import { postReviewAction } from '../../store/api-actions';
 import { useAppDispatch } from '../../hooks/use-app';
+
 
 type CommentaryFormProps = {offerId: string}
 
@@ -18,13 +19,13 @@ export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
 
   const dispatch = useAppDispatch();
 
-  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInput = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentaryText(e.target.value);
-  };
+  },[]);
 
-  const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRatingChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setRating(parseInt(e.target.value, 10));
-  };
+  },[]);
 
   const CHECKFORM = commentaryText.length > 49 && commentaryText.length < 301
                     && rating !== NOTCHECK;
