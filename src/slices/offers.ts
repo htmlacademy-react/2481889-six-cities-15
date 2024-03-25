@@ -3,6 +3,7 @@ import { City } from '../types/city';
 import { Offers } from '../types/offer';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Sort } from '../types/sort';
+import { fetchOffersAction } from '../store/api-actions';
 
 export type OffersState = {
     city: City;
@@ -24,25 +25,32 @@ const offersSlice = createSlice({
     setCity: (state, action:PayloadAction<City>) => {
       state.city = action.payload;
     },
-    setOffers: (state, action:PayloadAction<Offers>) => {
-      state.offers = action.payload;
+    setIsOffersDataLoading: (state, action:PayloadAction<boolean>) => {
+      state.isOffersDataLoading = action.payload;
     },
     setSort: (state, action:PayloadAction<Sort>) => {
       state.sort = action.payload;
     },
-    setIsOffersDataLoading: (state, action:PayloadAction<boolean>) => {
-      state.isOffersDataLoading = action.payload;
-    }
+
+  },
+  extraReducers(builder) {
+    builder.addCase(fetchOffersAction.fulfilled, (state, action) =>{
+      state.isOffersDataLoading = false;
+      state.offers = action.payload;
+    });
+    builder.addCase(fetchOffersAction.pending, (state) =>{
+      state.isOffersDataLoading = true;
+    });
   },
   selectors: {
     city: (state:OffersState) => state.city,
-    offers: (state:OffersState) => state.offers,
+    offers: (state:OffersState) => state.offers.filter((offer) => offer.city.name === state.city.name),
     sort: (state:OffersState) => state.sort,
     isOffersDataLoading: (state:OffersState) => state.isOffersDataLoading,
   }
 });
 
-const offersAction = offersSlice.actions;
+const offersAction = {fetchOffersAction,...offersSlice.actions};
 const offersSelectors = offersSlice.selectors;
 
 export {offersAction, offersSlice, offersSelectors};

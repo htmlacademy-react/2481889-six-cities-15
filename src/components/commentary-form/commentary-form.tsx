@@ -1,19 +1,18 @@
 import { FormEvent, Fragment, useState } from 'react';
 import { postReviewAction } from '../../store/api-actions';
-import ErrorMessage from '../error-message/error-message';
 import { useAppDispatch } from '../../hooks/use-app';
 
 type CommentaryFormProps = {offerId: string}
-const STARS = [
-  {value:5, label: 'perfect'},
-  {value:4, label: 'good'},
-  {value:3, label: 'not bad'},
-  {value:2, label: 'bad'},
-  {value:1, label: 'terrible'},];
-
-const NOTCHECK = -1;
 
 export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
+  const STARS = [
+    {value:5, label: 'perfect'},
+    {value:4, label: 'good'},
+    {value:3, label: 'not bad'},
+    {value:2, label: 'bad'},
+    {value:1, label: 'terrible'},];
+
+  const NOTCHECK = -1;
   const [commentaryText, setCommentaryText] = useState('');
   const [rating, setRating] = useState(NOTCHECK);
 
@@ -92,7 +91,6 @@ export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
           and describe your stay with at least
           <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <ErrorMessage/>
         <button className="reviews__submit form__submit button"
           type="submit"
           disabled={!CHECKFORM}

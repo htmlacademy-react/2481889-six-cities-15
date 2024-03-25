@@ -1,4 +1,5 @@
-import { FC } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+import { FC, memo } from 'react';
 import { Review } from '../../types/review';
 import {CommentaryForm} from '../commentary-form/commentary-form';
 import { ReviewList } from '../review-list/review-list';
@@ -22,4 +23,4 @@ const ReviewForm : FC<ReviewFormProps> = (props : ReviewFormProps) => {
   );
 };
 
-export default ReviewForm;
+export default memo(ReviewForm);

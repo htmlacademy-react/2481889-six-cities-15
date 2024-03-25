@@ -1,19 +1,22 @@
+/* eslint-disable react-refresh/only-export-components */
 import { Offer, Offers } from '../../types/offer';
 import OfferCard from '../offer-card/offer-card';
 import { Nullable } from '../../types/nullable';
 import { useAppSelector } from '../../hooks/use-app';
 import { offersSelectors } from '../../slices/offers';
 import Spinner from '../spinner/spinner';
+import { memo, useMemo } from 'react';
 
-type OfferListProps = {offers:Offers;
+type OfferListProps = {
+  offers:Offers;
    type:string;
    setActiveCard?:(offer:Nullable<Offer>) => void;
   };
 
-export function OfferList(props: OfferListProps){
+function OfferList({offers, type, setActiveCard}: OfferListProps){
   const isOffersDataLoading = useAppSelector(offersSelectors.isOffersDataLoading);
-  const className = (type:string)=>{
-    switch(type){
+  const className = (typeOffer : string)=>{
+    switch(typeOffer){
       case 'cities':
         return 'cities__places-list places__list tabs__content';
       case 'near-places':
@@ -22,12 +25,14 @@ export function OfferList(props: OfferListProps){
   };
 
 
-  const cards = props.offers.map((i) =>
-    (<OfferCard key={i.id} offer={i} setActiveCard={props.setActiveCard} className={`${props.type}`}/>));
+  const cards = useMemo(() => offers.map((i) =>
+    (<OfferCard key={i.id} offer={i} setActiveCard={setActiveCard} className={`${type}`}/>)), [offers, setActiveCard, type]);
 
   return (
-    <div className={className(props.type)}>
+    <div className={className(type)}>
       {isOffersDataLoading ? <Spinner/> : cards}
     </div>
   );
 }
+
+export default memo(OfferList);

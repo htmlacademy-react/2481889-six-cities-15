@@ -109,3 +109,9 @@ export enum APIRoute {
   NearPlaces = 'offers/:id/nearby',
 }
 
+export enum AppData {
+  Offers = 'offers',
+  Auth = 'auth',
+  Global = 'global',
+  Offer = 'offer'
+}

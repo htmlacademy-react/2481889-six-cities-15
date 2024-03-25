@@ -1,9 +1,9 @@
 import { Navigate, useParams } from 'react-router-dom';
 import ReviewForm from '../../components/review-form/review-form';
-import { Layout } from '../../components/layout-component/layout-component';
+import Layout from '../../components/layout-component/layout-component';
 import Map from '../../components/map-component/map-component';
-import { OfferList } from '../../components/offer-list/offer-list';
-import { OfferGallery } from './offer-gallery/offer-gallery';
+import OfferList from '../../components/offer-list/offer-list';
+import OfferGallery from './offer-gallery/offer-gallery';
 import { useAppSelector } from '../../hooks/use-app';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
 import { offerSelectors } from '../../slices/offer';
@@ -28,13 +28,14 @@ function OfferPage(): JSX.Element {
     }
   }, [offerId]);
   return (
-    <Layout>
-      <div className="page">
-        {isOfferDataLoading && !isOfferNotFound && <Spinner/>}
 
-        {isOfferNotFound && <Navigate to = {AppRoutes.NotFound}/>}
+    <div className="page">
+      <Layout/>
+      {isOfferDataLoading && !isOfferNotFound && <Spinner/>}
 
-        {!isOfferDataLoading && offer &&
+      {isOfferNotFound && <Navigate to = {AppRoutes.NotFound}/>}
+
+      {!isOfferDataLoading && offer &&
         <main className="page__main page__main--offer">
           <section className="offer">
             <OfferGallery photos={offer.images}/>
@@ -113,8 +114,8 @@ function OfferPage(): JSX.Element {
             </section>}
           </div>
         </main>}
-      </div>
-    </Layout>
+    </div>
+
   );
 }
 

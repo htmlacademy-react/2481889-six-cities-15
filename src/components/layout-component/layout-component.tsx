@@ -1,17 +1,15 @@
+/* eslint-disable react-refresh/only-export-components */
 import { Link } from 'react-router-dom';
 import { AppRoutes, AuthorizationStatus } from '../../constants';
-import { store } from '../../store';
 import { logoutAction } from '../../store/api-actions';
-import { useAppSelector } from '../../hooks/use-app';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import { authSelectors } from '../../slices/auth';
+import { memo } from 'react';
 
-type LayoutProps = {
-  children: JSX.Element;
-}
-
-export const Layout = ({children}: LayoutProps) =>{
+const Layout = () =>{
   const authStatus = useAppSelector(authSelectors.authorizationStatus);
   const email = useAppSelector(authSelectors.email);
+  const dispatch = useAppDispatch();
   return (
     <div className='page  page--gray'>
       <header className="header">
@@ -48,7 +46,7 @@ export const Layout = ({children}: LayoutProps) =>{
                   <Link className="header__nav-link"
                     to={AppRoutes.Login}
                     onClick={() => {
-                      store.dispatch(logoutAction());
+                      dispatch(logoutAction());
                     }}
                   >
                     <span className="header__signout">Sign out</span>
@@ -69,9 +67,7 @@ export const Layout = ({children}: LayoutProps) =>{
           </div>
         </div>
       </header>
-      <main>
-        {children}
-      </main>
     </div>
   );
 };
+export default memo(Layout);
