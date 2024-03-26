@@ -1,4 +1,4 @@
-import { CITIES, SORTS } from '../constants';
+import { AppData, CITIES, SORTS } from '../constants';
 import { City } from '../types/city';
 import { Offers } from '../types/offer';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
@@ -20,7 +20,7 @@ const initialState : OffersState = {
 
 const offersSlice = createSlice({
   initialState,
-  name: 'offers',
+  name: AppData.Offers,
   reducers: {
     setCity: (state, action:PayloadAction<City>) => {
       state.city = action.payload;

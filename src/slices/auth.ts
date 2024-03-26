@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AuthorizationStatus } from '../constants';
+import { AppData, AuthorizationStatus } from '../constants';
 import { Nullable } from '../types/nullable';
 import { checkAuthAction, loginAction, logoutAction } from '../store/api-actions';
 
@@ -14,7 +14,7 @@ const initialState: AuthState = {
 };
 
 export const authSlice = createSlice({
-  name: 'auth',
+  name: AppData.Auth,
   initialState,
   reducers: {
     setAuthorizationStatus: (state, action: PayloadAction<AuthorizationStatus>) => {

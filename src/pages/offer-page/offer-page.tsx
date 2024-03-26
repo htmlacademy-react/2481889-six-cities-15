@@ -11,14 +11,18 @@ import { useEffect } from 'react';
 import { store } from '../../store';
 import Spinner from '../../components/spinner/spinner';
 import { AppRoutes } from '../../constants';
+import { nearPlacesSelectors } from '../../slices/near-places';
+import { reviewsSelectors } from '../../slices/reviews';
 
 function OfferPage(): JSX.Element {
   const param = useParams();
   const offerId = param.id;
   const offer = useAppSelector(offerSelectors.offer);
-  const nearPlaces = useAppSelector(offerSelectors.nearPlaces);
-  const reviews = useAppSelector(offerSelectors.reviews);
+  const nearPlaces = useAppSelector(nearPlacesSelectors.nearPlaces);
+  const reviews = useAppSelector(reviewsSelectors.reviews);
   const isOfferDataLoading = useAppSelector(offerSelectors.isOfferDataLoading);
+  const isNearPlacesLoading = useAppSelector(nearPlacesSelectors.isNearPlacesDataLoading);
+  const isReviewsLoading = useAppSelector(reviewsSelectors.isReviewsDataLoading);
   const isOfferNotFound = useAppSelector(offerSelectors.isOfferNotFound);
   useEffect(() => {
     if (offerId) {
@@ -99,12 +103,14 @@ function OfferPage(): JSX.Element {
                     {offer.description}
                   </div>
                 </div>
-                {reviews && <ReviewForm offerId={offer.id} reviews={reviews}/>}
+                {isReviewsLoading && <Spinner />}
+                {!isReviewsLoading && <ReviewForm offerId={offer.id} reviews={reviews}/>}
               </div>
             </div>
           </section>
           <div className="container">
-            {nearPlaces &&
+            {isNearPlacesLoading && <Spinner />}
+            {!isNearPlacesLoading &&
             <section className="near-places places">
               <Map className='offer__map' city={offer.city} offers={[offer, ...nearPlaces]} selectedOffer={offer}/>
               <h2 className="near-places__title">

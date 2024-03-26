@@ -112,6 +112,7 @@ export enum APIRoute {
 export enum AppData {
   Offers = 'offers',
   Auth = 'auth',
-  Global = 'global',
-  Offer = 'offer'
+  Offer = 'offer',
+  Reviews = 'reviews',
+  NearPlaces = 'nearPlaces',
 }
