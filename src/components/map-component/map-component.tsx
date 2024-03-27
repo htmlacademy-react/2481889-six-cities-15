@@ -1,4 +1,4 @@
-/* eslint-disable react-refresh/only-export-components */
+
 import {useRef, useEffect, memo} from 'react';
 import {Icon, Marker, layerGroup} from 'leaflet';
 import useMap from '../../hooks/use-map';
@@ -64,4 +64,5 @@ function Map(props: MapProps): JSX.Element {
   return <section style={{height: '500px'}} className={`${props.className}  map`} ref={mapRef}></section>;
 }
 
-export default memo(Map);
+const MemorizedMap = memo(Map);
+export default MemorizedMap;

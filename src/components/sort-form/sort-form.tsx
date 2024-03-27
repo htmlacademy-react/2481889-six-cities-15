@@ -1,4 +1,4 @@
-/* eslint-disable react-refresh/only-export-components */
+
 import { memo, useState } from 'react';
 import { useActionCreators, useAppSelector } from '../../hooks/use-app';
 import { SORTS } from '../../constants';
@@ -40,4 +40,5 @@ const SortForm = () => {
   );
 };
 
-export default memo(SortForm);
+const MemorizedSortForm = memo(SortForm);
+export default MemorizedSortForm;

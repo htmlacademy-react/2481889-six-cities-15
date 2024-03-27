@@ -1,11 +1,11 @@
-/* eslint-disable react-refresh/only-export-components */
+
 import classNames from 'classnames';
 import { useActionCreators, useAppSelector } from '../../hooks/use-app';
 import { offersAction, offersSelectors } from '../../slices/offers';
 import { City } from '../../types/city';
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '../../constants';
-import React from 'react';
+import { memo } from 'react';
 
 type CitiesListProps = {cities: City[]}
 
@@ -28,4 +28,5 @@ const CitiesList = (props: CitiesListProps) => {
     ));
 };
 
-export default React.memo(CitiesList);
+const MemorizedCitesList = memo(CitiesList);
+export default MemorizedCitesList;

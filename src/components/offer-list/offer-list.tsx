@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import { Offer, Offers } from '../../types/offer';
 import OfferCard from '../offer-card/offer-card';
 import { Nullable } from '../../types/nullable';
@@ -34,5 +33,5 @@ function OfferList({offers, type, setActiveCard}: OfferListProps){
     </div>
   );
 }
-
-export default memo(OfferList);
+const MemorizedOfferList = memo(OfferList);
+export default MemorizedOfferList;

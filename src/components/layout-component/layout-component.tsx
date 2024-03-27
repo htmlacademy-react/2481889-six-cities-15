@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import { Link } from 'react-router-dom';
 import { AppRoutes, AuthorizationStatus } from '../../constants';
 import { logoutAction } from '../../store/api-actions';
@@ -70,4 +69,6 @@ const Layout = () =>{
     </div>
   );
 };
-export default memo(Layout);
+
+const MemorizedLayout = memo(Layout);
+export default MemorizedLayout;

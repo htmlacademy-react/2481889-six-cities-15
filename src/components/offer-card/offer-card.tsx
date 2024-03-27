@@ -1,8 +1,7 @@
-/* eslint-disable react-refresh/only-export-components */
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '../../constants';
 import { Offer } from '../../types/offer';
-import { FC, memo, useCallback } from 'react';
+import { FC, memo} from 'react';
 import { Nullable } from '../../types/nullable';
 
 type OfferCardsOffer = {
@@ -13,13 +12,13 @@ type OfferCardsOffer = {
 
 export const OfferCard : FC<OfferCardsOffer> = ({offer, setActiveCard, className}) =>{
 
-  const handleMouseOn = useCallback(() => {
+  const handleMouseOn = () => {
     setActiveCard?.(offer);
-  }, [offer, setActiveCard]);
+  };
 
-  const handleMouseOff = useCallback(() => {
+  const handleMouseOff = () => {
     setActiveCard?.(null);
-  }, [setActiveCard]);
+  };
   return(
 
     <article
@@ -67,5 +66,5 @@ export const OfferCard : FC<OfferCardsOffer> = ({offer, setActiveCard, className
     </article>
   );
 };
-
-export default memo(OfferCard);
+const MemorizedOfferCard = memo(OfferCard);
+export default MemorizedOfferCard;
