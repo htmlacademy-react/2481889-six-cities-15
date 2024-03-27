@@ -20,10 +20,10 @@ export const EnumerateConstants = {
 } as const;
 
 export const URL_MARKER_DEFAULT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+  'img/pin.svg';
 
 export const URL_MARKER_CURRENT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+  'img/pin-active.svg';
 
 export const TIMEOUT_SHOW_ERROR = 2000;
 export const BASE_URL = 'https://15.design.htmlacademy.pro/six-cities';
@@ -109,3 +109,10 @@ export enum APIRoute {
   NearPlaces = 'offers/:id/nearby',
 }
 
+export enum AppData {
+  Offers = 'offers',
+  Auth = 'auth',
+  Offer = 'offer',
+  Reviews = 'reviews',
+  NearPlaces = 'nearPlaces',
+}

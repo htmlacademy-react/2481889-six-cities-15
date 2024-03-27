@@ -1,15 +1,11 @@
 import { useRef, FormEvent } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
+import { useAppDispatch } from '../../hooks/use-app';
 import { loginAction } from '../../store/api-actions';
-import { Navigate } from 'react-router-dom';
-import { authSelectors } from '../../slices/auth';
-import { AppRoutes, AuthorizationStatus } from '../../constants';
 
 function LoginPage(): JSX.Element {
 
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-  const authStatus = useAppSelector(authSelectors.authorizationStatus);
 
   const dispatch = useAppDispatch();
 
@@ -25,7 +21,6 @@ function LoginPage(): JSX.Element {
   };
   return (
     <div className="page page--gray page--login">
-      {authStatus === AuthorizationStatus.Auth && <Navigate to={AppRoutes.Main} />}
       <header className="header">
         <div className="container">
           <div className="header__wrapper">

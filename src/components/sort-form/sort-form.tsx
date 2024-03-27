@@ -1,10 +1,11 @@
-import { useState } from 'react';
+
+import { memo, useState } from 'react';
 import { useActionCreators, useAppSelector } from '../../hooks/use-app';
 import { SORTS } from '../../constants';
 import { offersAction, offersSelectors } from '../../slices/offers';
 import { Sort } from '../../types/sort';
 
-export const SortForm = () => {
+const SortForm = () => {
   const [open, setOpen] = useState(false);
   const sort = useAppSelector(offersSelectors.sort);
   const {setSort} = useActionCreators(offersAction);
@@ -38,3 +39,6 @@ export const SortForm = () => {
     </form>
   );
 };
+
+const MemorizedSortForm = memo(SortForm);
+export default MemorizedSortForm;
