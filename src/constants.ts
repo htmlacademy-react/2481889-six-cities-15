@@ -107,6 +107,7 @@ export enum APIRoute {
   Offer = 'offers/:id',
   Reviews = 'comments/:id',
   NearPlaces = 'offers/:id/nearby',
+  Favorite = '/favorite',
 }
 
 export enum AppData {
@@ -115,4 +116,5 @@ export enum AppData {
   Offer = 'offer',
   Reviews = 'reviews',
   NearPlaces = 'nearPlaces',
+  Favorites = 'favorites',
 }

@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
 import OfferCard from '../../components/offer-card/offer-card';
-import { AppRoutes } from '../../constants';
+import { AppRoutes, CITIES } from '../../constants';
 import Layout from '../../components/layout-component/layout-component';
-import { offersSelectors } from '../../slices/offers';
 import { useAppSelector } from '../../hooks/use-app';
+import { favoritesSelectors } from '../../slices/favorites';
 
 export const FavoritesPage = () => {
-  const offers = useAppSelector(offersSelectors.offers);
-  const cards = offers.map((i) => (<OfferCard offer = {i} key = {i.id} />));
+  const favorites = useAppSelector(favoritesSelectors.favorites);
   return(
 
     <div className="page">
@@ -17,6 +16,21 @@ export const FavoritesPage = () => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
+              {CITIES.map((i) => (
+                <li className="favorites__locations-items" key={i.name}>
+                  <div className="favorites__locations locations locations--current">
+                    <div className="locations__item">
+                      <a className="locations__item-link" href="#">
+                        <span>{i.name}</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div className="favorites__places">
+                    {favorites[i.name]?.map((fav) =>
+                      <OfferCard key={fav.id} offer={fav} className='favorites'/>)}
+                  </div>
+                </li>
+              ))}
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
@@ -26,7 +40,6 @@ export const FavoritesPage = () => {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {cards}
                 </div>
               </li>
 
@@ -39,7 +52,7 @@ export const FavoritesPage = () => {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {cards}
+
                 </div>
               </li>
             </ul>

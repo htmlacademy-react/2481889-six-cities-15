@@ -58,7 +58,7 @@ export const fetchReviewsAction = createAsyncThunk<Reviews, OfferData, {
   'data/fetchReviews',
   async (id, { extra: api}) => {
     const {data} = await api.get<Reviews>(APIRoute.Reviews.replace(':id', id));
-    return data.slice(0,10);
+    return data;
   },
 );
 
@@ -118,3 +118,14 @@ export const postReviewAction = createAsyncThunk<void, ReviewData, {
   },
 );
 
+export const fetchFavoritesAction = createAsyncThunk<Offers, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFavorites',
+  async (_arg, { extra: api}) => {
+    const {data} = await api.get<Offers>(APIRoute.Favorite);
+    return data;
+  },
+);
