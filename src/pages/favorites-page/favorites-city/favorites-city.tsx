@@ -3,6 +3,7 @@ import OfferCard from '../../../components/offer-card/offer-card';
 import { CITIES } from '../../../constants';
 import { useAppSelector } from '../../../hooks/use-app';
 import { favoritesSelectors } from '../../../slices/favorites';
+import { Link } from 'react-router-dom';
 
 const FavoritesCity = () => {
   const favoritesByCity = useAppSelector(favoritesSelectors.favoritesByCity);
@@ -19,9 +20,9 @@ const FavoritesCity = () => {
                   <li className="favorites__locations-items" key={i.name}>
                     <div className="favorites__locations locations locations--current">
                       <div className="locations__item">
-                        <a className="locations__item-link" href="#">
+                        <Link to ={`/${i.name}`}className="locations__item-link" >
                           <span>{i.name}</span>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                     <div className="favorites__places">
