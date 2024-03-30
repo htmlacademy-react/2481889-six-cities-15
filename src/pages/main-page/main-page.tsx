@@ -23,7 +23,7 @@ export const MainPage = () => {
         navigate('/');
       }
     }
-  }, [cityName, setCity]);
+  }, [cityName, navigate, setCity]);
   const isOffersDataLoading = useAppSelector(offersSelectors.isOffersDataLoading);
   const offers = useAppSelector(offersSelectors.offers);
   return(
