@@ -8,7 +8,7 @@ import { favoritesSelectors } from '../../slices/favorites';
 
 const Layout = () =>{
   const authStatus = useAppSelector(authSelectors.authorizationStatus);
-  const email = useAppSelector(authSelectors.email);
+  const user = useAppSelector(authSelectors.user);
   const favoritesAmount = useAppSelector(favoritesSelectors.favoritesAmount);
   const dispatch = useAppDispatch();
   return (
@@ -38,7 +38,7 @@ const Layout = () =>{
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper"/>
                     <span className="header__user-name user__name">
-                      {email}
+                      {user?.email}
                     </span>
                     <span className="header__favorite-count">{favoritesAmount}</span>
                   </Link>

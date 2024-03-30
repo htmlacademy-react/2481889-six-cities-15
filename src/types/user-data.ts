@@ -1,5 +1,7 @@
 export type UserData = {
-    id: number;
-    email: string;
-    token: string;
+  name: string;
+  avatarUrl: 'https://url-to-image/image.png';
+  isPro: false;
+  email: 'Oliver.conner@gmail.com';
+  token: 'T2xpdmVyLmNvbm5lckBnbWFpbC5jb20=';
   }

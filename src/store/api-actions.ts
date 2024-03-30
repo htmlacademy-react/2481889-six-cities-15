@@ -6,7 +6,7 @@ import { APIRoute, AppRoutes } from '../constants';
 import { AuthData } from '../types/auth-data';
 import { Offer, OfferData, Offers } from '../types/offer';
 import { UserData } from '../types/user-data';
-import { setEmail } from '../slices/auth';
+import { setUser } from '../slices/auth';
 import { Reviews } from '../types/review';
 import { ReviewData } from '../types/review-action';
 import { toast } from 'react-toastify';
@@ -70,8 +70,9 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'user/checkAuth',
-  async (_arg, { extra: api}) => {
-    await api.get(APIRoute.Login);
+  async (_arg, {dispatch, extra: api}) => {
+    const {data: user} = await api.get<UserData>(APIRoute.Login);
+    dispatch(setUser(user));
   },
 );
 
@@ -82,9 +83,9 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
-    saveToken(token);
-    dispatch(setEmail(email));
+    const {data: user} = await api.post<UserData>(APIRoute.Login, {email, password});
+    saveToken(user.token);
+    dispatch(setUser(user));
     dispatch(redirectToRoute(AppRoutes.Main));
   },
 );
