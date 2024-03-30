@@ -1,9 +1,9 @@
 import { Review } from '../../types/review';
 
 type ReviewListProps = {reviews:Review[]}
-export const ReviewList = (props:ReviewListProps)=> (
+export const ReviewList = ({reviews}:ReviewListProps)=> (
   <ul className="reviews__list">
-    {props.reviews.map((i) =>
+    {reviews.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((i) =>
       (
         <li className="reviews__item" key={i.id}>
           <div className="reviews__user user">
