@@ -10,6 +10,7 @@ import { setEmail } from '../slices/auth';
 import { Reviews } from '../types/review';
 import { ReviewData } from '../types/review-action';
 import { toast } from 'react-toastify';
+import { FavoriteData } from '../types/favorite-data';
 
 
 export const redirectToRoute = createAction<AppRoutes>('redirectToRoute');
@@ -113,10 +114,11 @@ export const postReviewAction = createAsyncThunk<void, ReviewData, {
         , {comment, rating});
       dispatch(fetchReviewsAction(id));
     } catch (err) {
-      toast.warn('Ошибка');
+      toast.warn('Ошибка при создании комментария');
     }
   },
 );
+
 
 export const fetchFavoritesAction = createAsyncThunk<Offers, undefined, {
   dispatch: AppDispatch;
@@ -127,5 +129,21 @@ export const fetchFavoritesAction = createAsyncThunk<Offers, undefined, {
   async (_arg, { extra: api}) => {
     const {data} = await api.get<Offers>(APIRoute.Favorite);
     return data;
+  },
+);
+
+export const postFavoriteAction = createAsyncThunk<void, FavoriteData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'postFavorite',
+  async ({id, newBool}, {dispatch, extra: api}) => {
+    try{
+      await api.post<UserData>(`${APIRoute.Favorite}/${id}/${Number(newBool)}`);
+      dispatch(fetchFavoritesAction());
+    } catch (err) {
+      toast.warn('Ошибка в смене флага избранного');
+    }
   },
 );

@@ -13,6 +13,7 @@ import Spinner from '../../components/spinner/spinner';
 import { AppRoutes } from '../../constants';
 import { nearPlacesSelectors } from '../../slices/near-places';
 import { reviewsSelectors } from '../../slices/reviews';
+import FavoriteButton from '../../components/favorite-button/favorite-button';
 
 function OfferPage(): JSX.Element {
   const param = useParams();
@@ -50,12 +51,7 @@ function OfferPage(): JSX.Element {
                   <h1 className="offer__name">
                     {offer.title}
                   </h1>
-                  <button className="offer__bookmark-button button" type="button">
-                    <svg className="offer__bookmark-icon" width={31} height={33}>
-                      <use xlinkHref="#icon-bookmark" />
-                    </svg>
-                    <span className="visually-hidden">To bookmarks</span>
-                  </button>
+                  <FavoriteButton offer={offer} type='offer' width={31} height={33}/>
                 </div>
                 <div className="offer__rating rating">
                   <div className="offer__stars rating__stars">
