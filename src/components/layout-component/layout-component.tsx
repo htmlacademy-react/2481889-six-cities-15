@@ -4,10 +4,12 @@ import { logoutAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import { authSelectors } from '../../slices/auth';
 import { memo } from 'react';
+import { favoritesSelectors } from '../../slices/favorites';
 
 const Layout = () =>{
   const authStatus = useAppSelector(authSelectors.authorizationStatus);
   const email = useAppSelector(authSelectors.email);
+  const favoritesAmount = useAppSelector(favoritesSelectors.favoritesAmount);
   const dispatch = useAppDispatch();
   return (
     <div className='page  page--gray'>
@@ -38,7 +40,7 @@ const Layout = () =>{
                     <span className="header__user-name user__name">
                       {email}
                     </span>
-                    <span className="header__favorite-count">3</span>
+                    <span className="header__favorite-count">{favoritesAmount}</span>
                   </Link>
                 </li>
                 <li className="header__nav-item">

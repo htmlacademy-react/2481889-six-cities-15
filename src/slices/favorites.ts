@@ -34,7 +34,8 @@ export const favoritesSlice = createSlice({
       });
   },
   selectors: {
-    favorites: (state: FavoritesType) => Object.groupBy(state.favorites, (favorite) => favorite.city.name),
+    favoritesAmount: (state: FavoritesType) => state.favorites.length,
+    favoritesByCity: (state: FavoritesType) => Object.groupBy(state.favorites, (favorite) => favorite.city.name),
     isFavoritesDataLoading: (state: FavoritesType) => state.isFavoritesDataLoading,
   },
 });

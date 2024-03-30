@@ -1,6 +1,8 @@
 import { useRef, FormEvent } from 'react';
 import { useAppDispatch } from '../../hooks/use-app';
 import { loginAction } from '../../store/api-actions';
+import { Link } from 'react-router-dom';
+import { AppRoutes } from '../../constants';
 
 function LoginPage(): JSX.Element {
 
@@ -25,17 +27,17 @@ function LoginPage(): JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a
-                className="header__logo-link"
+              <Link to={AppRoutes.Main}
+                className="header__logo-link header__logo-link--active"
               >
                 <img
-                  alt="6 cities logo"
                   className="header__logo"
-                  height="41"
                   src="img/logo.svg"
-                  width="81"
+                  alt="6 cities logo"
+                  width={81}
+                  height={41}
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
