@@ -2,12 +2,28 @@ import Layout from '../../components/layout-component/layout-component';
 import CitiesList from '../../components/cities-list/cities-list';
 import { CITIES} from '../../constants';
 import OffersCity from './offers/offers-city';
-import { useAppSelector } from '../../hooks/use-app';
-import { offersSelectors } from '../../slices/offers';
+import { useActionCreators, useAppSelector } from '../../hooks/use-app';
+import { offersAction, offersSelectors } from '../../slices/offers';
 import Spinner from '../../components/spinner/spinner';
 import NoOffers from './no-offers/no-offers';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const MainPage = () => {
+  const params = useParams();
+  const navigate = useNavigate();
+  const cityName = params.cityName;
+  const {setCity} = useActionCreators(offersAction);
+  useEffect(() => {
+    if(cityName){
+      const city = CITIES.find((i) => i.name === cityName);
+      if(typeof city !== 'undefined') {
+        setCity(city);
+      } else {
+        navigate('/');
+      }
+    }
+  }, [cityName, setCity]);
   const isOffersDataLoading = useAppSelector(offersSelectors.isOffersDataLoading);
   const offers = useAppSelector(offersSelectors.offers);
   return(

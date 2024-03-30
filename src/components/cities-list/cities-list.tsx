@@ -1,29 +1,27 @@
 
 import classNames from 'classnames';
-import { useActionCreators, useAppSelector } from '../../hooks/use-app';
-import { offersAction, offersSelectors } from '../../slices/offers';
+import { useAppSelector } from '../../hooks/use-app';
+import { offersSelectors } from '../../slices/offers';
 import { City } from '../../types/city';
-import { Link } from 'react-router-dom';
-import { AppRoutes } from '../../constants';
+import { NavLink } from 'react-router-dom';
 import { memo } from 'react';
 
 type CitiesListProps = {cities: City[]}
 
 const CitiesList = (props: CitiesListProps) => {
-  const {setCity} = useActionCreators(offersAction);
   const city = useAppSelector(offersSelectors.city);
 
   return (
     props.cities.map((c) => (
       <li className="locations__item" key={c.name}>
-        <Link
+        <NavLink
           className={classNames('locations__item-link', 'tabs__item',
             {'tabs__item--active': c.name === city.name})}
-          onClick={() => setCity(c)}
-          to={AppRoutes.Main}
+          to={`/${c.name}`}
+
         >
           <span>{c.name}</span>
-        </Link>
+        </NavLink>
       </li>)
     ));
 };

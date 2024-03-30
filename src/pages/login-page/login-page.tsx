@@ -2,12 +2,13 @@ import { useRef, FormEvent } from 'react';
 import { useAppDispatch } from '../../hooks/use-app';
 import { loginAction } from '../../store/api-actions';
 import { Link } from 'react-router-dom';
-import { AppRoutes } from '../../constants';
+import { AppRoutes, CITIES } from '../../constants';
 
 function LoginPage(): JSX.Element {
 
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const randomCity = CITIES[Math.floor(Math.random() * CITIES.length)];
 
   const dispatch = useAppDispatch();
 
@@ -90,14 +91,11 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a
-                className="locations__item-link"
-                href="#"
-              >
+              <Link to={`/${randomCity.name}`} className="locations__item-link">
                 <span>
-                  Amsterdam
+                  {randomCity.name}
                 </span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>
