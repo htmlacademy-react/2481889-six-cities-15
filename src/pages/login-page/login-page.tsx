@@ -1,4 +1,4 @@
-import { FormEvent, useState, useMemo, useEffect } from 'react';
+import { FormEvent, useMemo, useRef } from 'react';
 import { useAppDispatch } from '../../hooks/use-app';
 import { loginAction } from '../../store/api-actions';
 import { Link } from 'react-router-dom';
@@ -6,29 +6,20 @@ import { AppRoutes, CITIES } from '../../constants';
 
 function LoginPage(): JSX.Element {
   const randomCity = useMemo(() =>CITIES[Math.floor(Math.random() * CITIES.length)],[]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  useEffect(()=> () => {
-    setEmail('');
-    setPassword('');
-  },[]);
-  const handleInputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-  const handleInputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch();
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (email !== '' && password !== '') {
+    if (loginRef.current !== null && passwordRef.current !== null) {
       dispatch(loginAction({
-        login: email,
-        password: password
+        login: loginRef.current.value,
+        password: passwordRef.current.value
       }));
     }
+
   };
   return (
     <div className="page page--gray page--login">
@@ -73,8 +64,7 @@ function LoginPage(): JSX.Element {
                   placeholder="Email"
                   required
                   type="email"
-                  value={email}
-                  onChange={handleInputEmail}
+                  ref= {loginRef}
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -87,8 +77,7 @@ function LoginPage(): JSX.Element {
                   placeholder="Password"
                   required
                   type="password"
-                  value={password}
-                  onChange={handleInputPassword}
+                  ref={passwordRef}
                 />
               </div>
               <button

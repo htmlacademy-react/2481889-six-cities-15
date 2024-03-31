@@ -2,19 +2,13 @@ import { FormEvent, Fragment } from 'react';
 import { postReviewAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import { reviewsSelectors, setCommentaryText, setRating } from '../../slices/reviews';
-import { NOTCHECK } from '../../constants';
+import { NOTCHECK, STARS } from '../../constants';
 
 
 type CommentaryFormProps = {offerId: string}
 
 export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
   const dispatch = useAppDispatch();
-  const STARS = [
-    {value:5, label: 'perfect'},
-    {value:4, label: 'good'},
-    {value:3, label: 'not bad'},
-    {value:2, label: 'badly'},
-    {value:1, label: 'terribly'},];
 
   const blockForm = useAppSelector(reviewsSelectors.blockForm);
   const commentaryText = useAppSelector(reviewsSelectors.commentaryText);

@@ -18,7 +18,7 @@ const FavoriteButton = ({offer, type, width, height}: FavoriteButtonProps) => {
   const navigate = useNavigate();
   const [isFavorite, setIsFavorite] = useState(offer.isFavorite);
   const authStatus = useAppSelector(authSelectors.authorizationStatus);
-  const handleTogle = () => {
+  const handleToggle = () => {
     if(authStatus !== AuthorizationStatus.Auth){
       navigate(AppRoutes.Login);
     }
@@ -35,7 +35,7 @@ const FavoriteButton = ({offer, type, width, height}: FavoriteButtonProps) => {
     <button className={`${type}__bookmark-button
       ${isFavorite && `${type}__bookmark-button--active`} button`}
     type="button"
-    onClick={handleTogle}
+    onClick={handleToggle}
     >
       <svg className={`${type}__bookmark-icon`} width={width} height={height}>
         <use xlinkHref="#icon-bookmark"></use>

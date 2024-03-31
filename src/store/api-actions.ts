@@ -65,6 +65,17 @@ export const fetchReviewsAction = createAsyncThunk<Reviews, OfferData, {
   },
 );
 
+export const fetchFavoritesAction = createAsyncThunk<Offers, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFavorites',
+  async (_arg, { extra: api}) => {
+    const {data} = await api.get<Offers>(APIRoute.Favorite);
+    return data;
+  },
+);
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -74,6 +85,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   'user/checkAuth',
   async (_arg, {dispatch, extra: api}) => {
     const {data: user} = await api.get<UserData>(APIRoute.Login);
+    dispatch(fetchFavoritesAction());
     dispatch(setUser(user));
   },
 );
@@ -118,18 +130,6 @@ export const postReviewAction = createAsyncThunk<Review, ReviewData, {
   },
 );
 
-
-export const fetchFavoritesAction = createAsyncThunk<Offers, undefined, {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-}>(
-  'data/fetchFavorites',
-  async (_arg, { extra: api}) => {
-    const {data} = await api.get<Offers>(APIRoute.Favorite);
-    return data;
-  },
-);
 
 export const postFavoriteAction = createAsyncThunk<void, FavoriteData, {
   dispatch: AppDispatch;

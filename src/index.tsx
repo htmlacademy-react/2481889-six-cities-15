@@ -9,13 +9,12 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-import {checkAuthAction, fetchFavoritesAction, fetchOffersAction} from './store/api-actions';
+import {checkAuthAction, fetchOffersAction} from './store/api-actions';
 import { ToastContainer } from 'react-toastify';
 
 
 store.dispatch(checkAuthAction());
 store.dispatch(fetchOffersAction());
-store.dispatch(fetchFavoritesAction());
 
 root.render(
   <React.StrictMode>

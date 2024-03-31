@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AppRoutes, AuthorizationStatus } from '../../constants';
 import { logoutAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
@@ -32,7 +32,7 @@ const Layout = () =>{
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
 
-                  <Link
+                  <NavLink
                     className="header__nav-link header__nav-link--profile"
                     to={AppRoutes.Favorites}
                   >
@@ -41,7 +41,7 @@ const Layout = () =>{
                       {user?.email}
                     </span>
                     <span className="header__favorite-count">{favoritesAmount}</span>
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="header__nav-item">
                   <button className="header__nav-link"
@@ -56,11 +56,11 @@ const Layout = () =>{
               {authStatus === AuthorizationStatus.NoAuth &&
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <Link className="header__nav-link"
+                  <NavLink className="header__nav-link header__nav-link--profile"
                     to={AppRoutes.Login}
                   >
                     <span className="header__login">Sign in</span>
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>}
             </nav>

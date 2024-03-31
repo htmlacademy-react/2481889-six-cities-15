@@ -55,7 +55,7 @@ function OfferPage(): JSX.Element {
                 </div>
                 <div className="offer__rating rating">
                   <div className="offer__stars rating__stars">
-                    <span style={{width: `${offer.rating * 20}%`}} />
+                    <span style={{width: `${Math.round(offer.rating) * 20}%`}} />
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="offer__rating-value rating__value">{offer.rating}</span>
@@ -83,7 +83,7 @@ function OfferPage(): JSX.Element {
                 <div className="offer__host">
                   <h2 className="offer__host-title">Meet the host</h2>
                   <div className="offer__host-user user">
-                    <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+                    <div className={`offer__avatar-wrapper ${offer.host.isPro && 'offer__avatar-wrapper--pro'} user__avatar-wrapper`}>
                       <img
                         className="offer__avatar user__avatar"
                         src={offer.host.avatarUrl}
@@ -93,7 +93,8 @@ function OfferPage(): JSX.Element {
                       />
                     </div>
                     <span className="offer__user-name">{offer.host.name}</span>
-                    <span className="offer__user-status">{offer.host.isPro}</span>
+                    {offer.host.isPro &&
+                    <span className="offer__user-status">Pro</span>}
                   </div>
                   <div className="offer__description">
                     {offer.description}
