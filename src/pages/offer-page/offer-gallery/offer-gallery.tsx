@@ -2,11 +2,11 @@
 import { memo } from 'react';
 
 type OfferGalleryProps = {photos:string[]}
-function OfferGallery(props:OfferGalleryProps){
+function OfferGallery({photos}:OfferGalleryProps){
   return(
     <div className="offer__gallery-container container">
       <div className="offer__gallery">
-        {props.photos.map((i) =>
+        {photos.slice(0,6).map((i) =>
           (
             <div key={i} className="offer__image-wrapper">
               <img
@@ -19,5 +19,5 @@ function OfferGallery(props:OfferGalleryProps){
 
   );
 }
-
-export default memo(OfferGallery);
+const MemorizedOfferGallery = memo(OfferGallery);
+export default MemorizedOfferGallery;

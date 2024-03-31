@@ -13,6 +13,7 @@ import Spinner from '../../components/spinner/spinner';
 import { AppRoutes } from '../../constants';
 import { nearPlacesSelectors } from '../../slices/near-places';
 import { reviewsSelectors } from '../../slices/reviews';
+import FavoriteButton from '../../components/favorite-button/favorite-button';
 
 function OfferPage(): JSX.Element {
   const param = useParams();
@@ -50,16 +51,11 @@ function OfferPage(): JSX.Element {
                   <h1 className="offer__name">
                     {offer.title}
                   </h1>
-                  <button className="offer__bookmark-button button" type="button">
-                    <svg className="offer__bookmark-icon" width={31} height={33}>
-                      <use xlinkHref="#icon-bookmark" />
-                    </svg>
-                    <span className="visually-hidden">To bookmarks</span>
-                  </button>
+                  <FavoriteButton offer={offer} type='offer' width={31} height={33}/>
                 </div>
                 <div className="offer__rating rating">
                   <div className="offer__stars rating__stars">
-                    <span style={{width: `${offer.rating * 20}%`}} />
+                    <span style={{width: `${Math.round(offer.rating) * 20}%`}} />
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="offer__rating-value rating__value">{offer.rating}</span>
@@ -87,7 +83,7 @@ function OfferPage(): JSX.Element {
                 <div className="offer__host">
                   <h2 className="offer__host-title">Meet the host</h2>
                   <div className="offer__host-user user">
-                    <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+                    <div className={`offer__avatar-wrapper ${offer.host.isPro && 'offer__avatar-wrapper--pro'} user__avatar-wrapper`}>
                       <img
                         className="offer__avatar user__avatar"
                         src={offer.host.avatarUrl}
@@ -97,7 +93,8 @@ function OfferPage(): JSX.Element {
                       />
                     </div>
                     <span className="offer__user-name">{offer.host.name}</span>
-                    <span className="offer__user-status">{offer.host.isPro}</span>
+                    {offer.host.isPro &&
+                    <span className="offer__user-status">Pro</span>}
                   </div>
                   <div className="offer__description">
                     {offer.description}

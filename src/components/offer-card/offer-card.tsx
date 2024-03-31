@@ -3,6 +3,7 @@ import { AppRoutes } from '../../constants';
 import { Offer } from '../../types/offer';
 import { FC, memo} from 'react';
 import { Nullable } from '../../types/nullable';
+import FavoriteButton from '../favorite-button/favorite-button';
 
 type OfferCardsOffer = {
     offer: Offer;
@@ -43,17 +44,12 @@ export const OfferCard : FC<OfferCardsOffer> = ({offer, setActiveCard, className
             <b className="place-card__price-value">€{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <FavoriteButton offer={offer} type='place-card' height={19} width={18} />
         </div>
         <Link to={AppRoutes.Offer.replace(':id', offer.id)} >
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: `${offer.rating * 20}%`}}></span>
+              <span style={{width: `${(Math.round(offer.rating) * 100 / 5)}%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>

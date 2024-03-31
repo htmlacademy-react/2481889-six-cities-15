@@ -6,10 +6,13 @@ import { APIRoute, AppRoutes } from '../constants';
 import { AuthData } from '../types/auth-data';
 import { Offer, OfferData, Offers } from '../types/offer';
 import { UserData } from '../types/user-data';
-import { setEmail } from '../slices/auth';
-import { Reviews } from '../types/review';
+import { setUser } from '../slices/auth';
+import { Review, Reviews } from '../types/review';
 import { ReviewData } from '../types/review-action';
 import { toast } from 'react-toastify';
+import { FavoriteData } from '../types/favorite-data';
+import { setFavoriteOffers } from '../slices/offers';
+import { setFavorites } from '../slices/favorites';
 
 
 export const redirectToRoute = createAction<AppRoutes>('redirectToRoute');
@@ -58,10 +61,21 @@ export const fetchReviewsAction = createAsyncThunk<Reviews, OfferData, {
   'data/fetchReviews',
   async (id, { extra: api}) => {
     const {data} = await api.get<Reviews>(APIRoute.Reviews.replace(':id', id));
-    return data.slice(0,10);
+    return data.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   },
 );
 
+export const fetchFavoritesAction = createAsyncThunk<Offers, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFavorites',
+  async (_arg, { extra: api}) => {
+    const {data} = await api.get<Offers>(APIRoute.Favorite);
+    return data;
+  },
+);
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -69,8 +83,10 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'user/checkAuth',
-  async (_arg, { extra: api}) => {
-    await api.get(APIRoute.Login);
+  async (_arg, {dispatch, extra: api}) => {
+    const {data: user} = await api.get<UserData>(APIRoute.Login);
+    dispatch(fetchFavoritesAction());
+    dispatch(setUser(user));
   },
 );
 
@@ -81,9 +97,9 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
-    saveToken(token);
-    dispatch(setEmail(email));
+    const {data: user} = await api.post<UserData>(APIRoute.Login, {email, password});
+    saveToken(user.token);
+    dispatch(setUser(user));
     dispatch(redirectToRoute(AppRoutes.Main));
   },
 );
@@ -94,27 +110,40 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'user/logout',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, { extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
-    dispatch(redirectToRoute(AppRoutes.Login));
+    //dispatch(redirectToRoute(AppRoutes.Login));
   },
 );
 
-export const postReviewAction = createAsyncThunk<void, ReviewData, {
+export const postReviewAction = createAsyncThunk<Review, ReviewData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'postReview',
-  async ({comment, rating, id}, {dispatch, extra: api}) => {
-    try{
-      await api.post<UserData>(APIRoute.Reviews.replace(':id',id)
-        , {comment, rating});
-      dispatch(fetchReviewsAction(id));
-    } catch (err) {
-      toast.warn('Ошибка');
-    }
+  async ({comment, rating, id}, {extra: api}) => {
+    const {data} = await api.post<Review>(APIRoute.Reviews.replace(':id',id)
+      , {comment, rating});
+    return data;
   },
 );
 
+
+export const postFavoriteAction = createAsyncThunk<void, FavoriteData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'postFavorite',
+  async ({offer, newBool}, {dispatch, extra: api}) => {
+    try{
+      await api.post<UserData>(`${APIRoute.Favorite}/${offer.id}/${Number(newBool)}`);
+      dispatch(setFavoriteOffers({offer,newBool}));
+      dispatch(setFavorites({offer,newBool}));
+    } catch (err) {
+      toast.warn('Ошибка в смене флага избранного');
+    }
+  },
+);

@@ -2,15 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppData, AuthorizationStatus } from '../constants';
 import { Nullable } from '../types/nullable';
 import { checkAuthAction, loginAction, logoutAction } from '../store/api-actions';
+import { UserData } from '../types/user-data';
 
 type AuthState = {
     authorizationStatus: AuthorizationStatus;
-    email: Nullable<string>;
+    user: Nullable<UserData>;
 }
 
 const initialState: AuthState = {
   authorizationStatus: AuthorizationStatus.Unknown,
-  email: null,
+  user: null,
 };
 
 export const authSlice = createSlice({
@@ -20,8 +21,8 @@ export const authSlice = createSlice({
     setAuthorizationStatus: (state, action: PayloadAction<AuthorizationStatus>) => {
       state.authorizationStatus = action.payload;
     },
-    setEmail: (state, action: PayloadAction<Nullable<string>>) => {
-      state.email = action.payload;
+    setUser: (state, action: PayloadAction<Nullable<UserData>>) => {
+      state.user = action.payload;
     },
   },
   extraReducers(builder) {
@@ -44,10 +45,11 @@ export const authSlice = createSlice({
   },
   selectors: {
     authorizationStatus: (state) => state.authorizationStatus,
-    email: (state) => state.email
+    user: (state) => state.user
   },
 });
 
+
 export const authSelectors = authSlice.selectors;
 
-export const { setAuthorizationStatus, setEmail } = authSlice.actions;
+export const { setAuthorizationStatus, setUser } = authSlice.actions;

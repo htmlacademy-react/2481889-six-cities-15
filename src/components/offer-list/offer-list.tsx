@@ -1,9 +1,6 @@
 import { Offer, Offers } from '../../types/offer';
 import OfferCard from '../offer-card/offer-card';
 import { Nullable } from '../../types/nullable';
-import { useAppSelector } from '../../hooks/use-app';
-import { offersSelectors } from '../../slices/offers';
-import Spinner from '../spinner/spinner';
 import { memo, useMemo } from 'react';
 
 type OfferListProps = {
@@ -13,7 +10,6 @@ type OfferListProps = {
   };
 
 function OfferList({offers, type, setActiveCard}: OfferListProps){
-  const isOffersDataLoading = useAppSelector(offersSelectors.isOffersDataLoading);
   const className = (typeOffer : string)=>{
     switch(typeOffer){
       case 'cities':
@@ -29,7 +25,7 @@ function OfferList({offers, type, setActiveCard}: OfferListProps){
 
   return (
     <div className={className(type)}>
-      {isOffersDataLoading ? <Spinner/> : cards}
+      {cards}
     </div>
   );
 }

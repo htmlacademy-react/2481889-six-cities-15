@@ -85,13 +85,13 @@ export const SORTS: { [key: string]: Sort } = {
     name: 'Popular',
     func: () => 0 // Функция сортировки для Popular (в данном случае не изменяет порядок)
   },
-  PriceHighToLow: {
-    name: 'Price: high to low',
-    func: (a, b) => b.price - a.price // Функция сортировки для сортировки по цене от большей к меньшей
-  },
   PriceLowToHigh: {
     name: 'Price: low to high',
     func: (a, b) => a.price - b.price // Функция сортировки для сортировки по цене от меньшей к большей
+  },
+  PriceHighToLow: {
+    name: 'Price: high to low',
+    func: (a, b) => b.price - a.price // Функция сортировки для сортировки по цене от большей к меньшей
   },
   TopRatedFirst: {
     name: 'Top rated first',
@@ -107,6 +107,7 @@ export enum APIRoute {
   Offer = 'offers/:id',
   Reviews = 'comments/:id',
   NearPlaces = 'offers/:id/nearby',
+  Favorite = '/favorite',
 }
 
 export enum AppData {
@@ -115,4 +116,14 @@ export enum AppData {
   Offer = 'offer',
   Reviews = 'reviews',
   NearPlaces = 'nearPlaces',
+  Favorites = 'favorites',
 }
+
+export const NOTCHECK = -1;
+
+export const STARS = [
+  {value:5, label: 'perfect'},
+  {value:4, label: 'good'},
+  {value:3, label: 'not bad'},
+  {value:2, label: 'badly'},
+  {value:1, label: 'terribly'},];

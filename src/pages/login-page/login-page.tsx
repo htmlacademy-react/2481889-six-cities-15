@@ -1,12 +1,13 @@
-import { useRef, FormEvent } from 'react';
+import { FormEvent, useMemo, useRef } from 'react';
 import { useAppDispatch } from '../../hooks/use-app';
 import { loginAction } from '../../store/api-actions';
+import { Link } from 'react-router-dom';
+import { AppRoutes, CITIES } from '../../constants';
 
 function LoginPage(): JSX.Element {
-
+  const randomCity = useMemo(() =>CITIES[Math.floor(Math.random() * CITIES.length)],[]);
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const dispatch = useAppDispatch();
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
@@ -18,6 +19,7 @@ function LoginPage(): JSX.Element {
         password: passwordRef.current.value
       }));
     }
+
   };
   return (
     <div className="page page--gray page--login">
@@ -25,17 +27,17 @@ function LoginPage(): JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a
-                className="header__logo-link"
+              <Link to={AppRoutes.Main}
+                className="header__logo-link header__logo-link--active"
               >
                 <img
-                  alt="6 cities logo"
                   className="header__logo"
-                  height="41"
                   src="img/logo.svg"
-                  width="81"
+                  alt="6 cities logo"
+                  width={81}
+                  height={41}
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -62,7 +64,7 @@ function LoginPage(): JSX.Element {
                   placeholder="Email"
                   required
                   type="email"
-                  ref={loginRef}
+                  ref= {loginRef}
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -88,14 +90,11 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a
-                className="locations__item-link"
-                href="#"
-              >
+              <Link to={`/${randomCity.name}`} className="locations__item-link">
                 <span>
-                  Amsterdam
+                  {randomCity.name}
                 </span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>
