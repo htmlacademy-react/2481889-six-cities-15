@@ -17,7 +17,7 @@ export const MainPage = () => {
   useEffect(() => {
     if(cityName){
       const city = CITIES.find((i) => i.name === cityName);
-      if(typeof city !== 'undefined') {
+      if(city) {
         dispatch(setCity(city));
       } else {
         navigate('/');
@@ -27,7 +27,7 @@ export const MainPage = () => {
   const isOffersDataLoading = useAppSelector(offersSelectors.isOffersDataLoading);
   const offers = useAppSelector(offersSelectors.offers);
   return(
-    <div className="page page--gray page--main">
+    <div className={`page page--gray page--main ${offers.length === 0 && 'page__main--index-empty'}`}>
       <Layout/>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>

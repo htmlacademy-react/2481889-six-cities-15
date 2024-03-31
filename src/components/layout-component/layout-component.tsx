@@ -44,14 +44,13 @@ const Layout = () =>{
                   </Link>
                 </li>
                 <li className="header__nav-item">
-                  <Link className="header__nav-link"
-                    to={AppRoutes.Login}
+                  <button className="header__nav-link"
                     onClick={() => {
                       dispatch(logoutAction());
                     }}
                   >
                     <span className="header__signout">Sign out</span>
-                  </Link>
+                  </button>
                 </li>
               </ul>}
               {authStatus === AuthorizationStatus.NoAuth &&

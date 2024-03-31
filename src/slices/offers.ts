@@ -53,7 +53,7 @@ const offersSlice = createSlice({
   },
   selectors: {
     city: (state:OffersState) => state.city,
-    offers: (state:OffersState) => state.offers.filter((offer) => offer.city.name === state.city.name),
+    offers: (state:OffersState) => state.offers.filter((offer) => offer.city.name === state.city.name).sort(state.sort.func),
     sort: (state:OffersState) => state.sort,
     isOffersDataLoading: (state:OffersState) => state.isOffersDataLoading,
   }

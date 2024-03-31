@@ -11,7 +11,7 @@ export const FavoritesPage = () => {
   const isFavoritesDataLoading = useAppSelector(favoritesSelectors.isFavoritesDataLoading);
   return(
 
-    <div className="page">
+    <div className={`page ${!isFavoritesDataLoading && 'page--favorites-empty'}`}>
       <Layout/>
       {!isFavoritesDataLoading && favoritesAmount === 0 && <NoFavorites/>}
       {!isFavoritesDataLoading && favoritesAmount !== 0 && <FavoritesCity/>}

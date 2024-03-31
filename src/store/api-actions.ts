@@ -61,7 +61,7 @@ export const fetchReviewsAction = createAsyncThunk<Reviews, OfferData, {
   'data/fetchReviews',
   async (id, { extra: api}) => {
     const {data} = await api.get<Reviews>(APIRoute.Reviews.replace(':id', id));
-    return data;
+    return data.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   },
 );
 
@@ -98,10 +98,10 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'user/logout',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, { extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
-    dispatch(redirectToRoute(AppRoutes.Login));
+    //dispatch(redirectToRoute(AppRoutes.Login));
   },
 );
 

@@ -1,8 +1,14 @@
+import { useMemo } from 'react';
 import { Review } from '../../types/review';
 
 type ReviewListProps = {reviews:Review[]}
+const formatDate = (date: Date): string => {
+  const options : Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' } as const;
+  return new Intl.DateTimeFormat('en-US', options).format(date);
+};
+
 export const ReviewList = ({reviews}:ReviewListProps)=> {
-  const sortedReviews = [...reviews].sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0,10);
+  const sortedReviews = useMemo(() => [...reviews].sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0,10), [reviews]);
   return (
     <ul className="reviews__list">
       {sortedReviews.map((i) =>
@@ -30,7 +36,7 @@ export const ReviewList = ({reviews}:ReviewListProps)=> {
               <p className="reviews__text">
                 {i.comment}
               </p>
-              <time className="reviews__time" dateTime={i.date.toString()}>{i.date.toString()}</time>
+              <time className="reviews__time" dateTime={i.date.toString()}>{formatDate(new Date(i.date))}</time>
             </div>
           </li>)
       )}

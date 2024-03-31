@@ -23,12 +23,6 @@ const initialState: ReviewsState = {
 export const reviewsSlice = createSlice({
   initialState, name: AppData.Reviews,
   reducers: {
-    setIsReviewsDataLoading: (state, action:PayloadAction<boolean>) => {
-      state.isReviewsDataLoading = action.payload;
-    },
-    setBlockForm: (state, action:PayloadAction<boolean>) => {
-      state.blockForm = action.payload;
-    },
     setCommentaryText: (state, action:PayloadAction<string>) => {
       state.commentaryText = action.payload;
     },
@@ -74,6 +68,5 @@ export const reviewsSlice = createSlice({
 
 export const reviewsSelectors = reviewsSlice.selectors;
 
-export const { setIsReviewsDataLoading,
-  setBlockForm, setCommentaryText, setRating} = reviewsSlice.actions;
+export const { setCommentaryText, setRating} = reviewsSlice.actions;
 

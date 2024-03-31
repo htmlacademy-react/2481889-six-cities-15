@@ -1,17 +1,14 @@
-import { useRef, FormEvent, useState, useMemo, useEffect } from 'react';
+import { FormEvent, useState, useMemo, useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/use-app';
 import { loginAction } from '../../store/api-actions';
 import { Link } from 'react-router-dom';
 import { AppRoutes, CITIES } from '../../constants';
 
 function LoginPage(): JSX.Element {
-  const loginRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
-  const empty = useMemo(()=>'', []);
   const randomCity = useMemo(() =>CITIES[Math.floor(Math.random() * CITIES.length)],[]);
-  const [email, setEmail] = useState(empty);
-  const [password, setPassword] = useState(empty);
-  useEffect(()=> {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  useEffect(()=> () => {
     setEmail('');
     setPassword('');
   },[]);
@@ -26,10 +23,10 @@ function LoginPage(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginRef.current !== null && passwordRef.current !== null) {
+    if (email !== '' && password !== '') {
       dispatch(loginAction({
-        login: loginRef.current.value,
-        password: passwordRef.current.value
+        login: email,
+        password: password
       }));
     }
   };
@@ -76,7 +73,6 @@ function LoginPage(): JSX.Element {
                   placeholder="Email"
                   required
                   type="email"
-                  ref={loginRef}
                   value={email}
                   onChange={handleInputEmail}
                 />
@@ -91,7 +87,6 @@ function LoginPage(): JSX.Element {
                   placeholder="Password"
                   required
                   type="password"
-                  ref={passwordRef}
                   value={password}
                   onChange={handleInputPassword}
                 />
