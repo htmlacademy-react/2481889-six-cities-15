@@ -11,6 +11,7 @@ import browserHistory from '../../browser-history';
 import { getToken } from '../../services/token';
 import { checkAuthAction } from '../../store/api-actions';
 import { useEffect } from 'react';
+import { CitiesWrapper } from '../cities-wrapper/cities-wrapper';
 
 
 function App(): JSX.Element{
@@ -27,7 +28,14 @@ function App(): JSX.Element{
         <Route element = {<Navigate to={`/${CITIES[0].name}`}/>}
           index path={AppRoutes.Main}
         />
-        <Route path={`${AppRoutes.Main}/:cityName`} element = {<MainPage/>}/>
+        <Route
+          path=":city"
+          element={(
+            <CitiesWrapper cities={CITIES.map((i) => i.name)}>
+              <MainPage />
+            </CitiesWrapper>
+          )}
+        />
         <Route path={AppRoutes.Login} element =
           {
             <PrivateRoute onlyUnAuth>
@@ -44,7 +52,7 @@ function App(): JSX.Element{
         />
         <Route path={AppRoutes.Offer} element = {<OfferPage/>}/>
         <Route
-          path="*"
+          path={AppRoutes.NotFound}
           element={<Error404/>}
         />
       </Routes>

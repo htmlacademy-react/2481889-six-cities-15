@@ -1,38 +1,35 @@
-import { FormEvent, Fragment, useCallback, useState } from 'react';
+import { FormEvent, Fragment } from 'react';
 import { postReviewAction } from '../../store/api-actions';
-import { useAppDispatch } from '../../hooks/use-app';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
+import { reviewsSelectors, setCommentaryText, setRating } from '../../slices/reviews';
+import { NOTCHECK } from '../../constants';
 
 
 type CommentaryFormProps = {offerId: string}
 
 export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
+  const dispatch = useAppDispatch();
   const STARS = [
     {value:5, label: 'perfect'},
     {value:4, label: 'good'},
     {value:3, label: 'not bad'},
-    {value:2, label: 'bad'},
-    {value:1, label: 'terrible'},];
+    {value:2, label: 'badly'},
+    {value:1, label: 'terribly'},];
 
-  const NOTCHECK = -1;
-  const [commentaryText, setCommentaryText] = useState('');
-  const [rating, setRating] = useState(NOTCHECK);
+  const blockForm = useAppSelector(reviewsSelectors.blockForm);
+  const commentaryText = useAppSelector(reviewsSelectors.commentaryText);
+  const rating = useAppSelector(reviewsSelectors.rating);
 
-  const dispatch = useAppDispatch();
+  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch(setCommentaryText(e.target.value));
+  };
 
-  const handleInput = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentaryText(e.target.value);
-  },[]);
-
-  const handleRatingChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setRating(parseInt(e.target.value, 10));
-  },[]);
+  const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setRating(parseInt(e.target.value, 10)));
+  };
 
   const CHECKFORM = commentaryText.length > 49 && commentaryText.length < 301
                     && rating !== NOTCHECK;
-  const resetForm = () => {
-    setCommentaryText('');
-    setRating(NOTCHECK);
-  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,7 +42,6 @@ export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
         })
       );
 
-      resetForm();
     }
   };
   return (
@@ -65,6 +61,7 @@ export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
               type="radio"
               checked={rating === star.value}
               onChange={handleRatingChange}
+              disabled={blockForm}
             >
             </input>
             <label htmlFor={`${star.value}-stars`}
@@ -83,6 +80,7 @@ export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={handleInput}
         value={commentaryText}
+        disabled={blockForm}
       >
       </textarea>
       <div className="reviews__button-wrapper">

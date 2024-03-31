@@ -14,7 +14,7 @@ const ReviewForm : FC<ReviewFormProps> = (props : ReviewFormProps) => {
       <h2 className="reviews__title">
         Reviews · <span className="reviews__amount">{props.reviews.length}</span>
       </h2>
-      <ReviewList reviews={props.reviews.slice(0,10)} />
+      <ReviewList reviews={props.reviews} />
       {authorizationStatus === AuthorizationStatus.Auth ?
         <CommentaryForm offerId={props.offerId}/> :
         <p>Войдите прежде, чем написать комментарий</p>}

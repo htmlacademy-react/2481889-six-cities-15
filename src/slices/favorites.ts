@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit/react';
-import { Offers } from '../types/offer';
+import { Offer, Offers } from '../types/offer';
 import { AppData } from '../constants';
 import { fetchFavoritesAction } from '../store/api-actions';
 
@@ -18,6 +18,13 @@ export const favoritesSlice = createSlice({
   reducers: {
     setIsFavoritesDataLoading: (state, action: PayloadAction<boolean>) => {
       state.isFavoritesDataLoading = action.payload;
+    },
+    setFavorites: (state, action: PayloadAction<{offer: Offer; newBool: boolean}>) => {
+      if(action.payload.newBool){
+        state.favorites.push(action.payload.offer);
+      } else{
+        state.favorites = state.favorites.filter((offer) => offer.id !== action.payload.offer.id);
+      }
     },
   },
   extraReducers(builder) {
@@ -39,5 +46,5 @@ export const favoritesSlice = createSlice({
     isFavoritesDataLoading: (state: FavoritesType) => state.isFavoritesDataLoading,
   },
 });
-
+export const {setFavorites, setIsFavoritesDataLoading} = favoritesSlice.actions;
 export const favoritesSelectors = favoritesSlice.selectors;

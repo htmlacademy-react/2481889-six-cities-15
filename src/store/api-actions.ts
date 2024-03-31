@@ -7,10 +7,12 @@ import { AuthData } from '../types/auth-data';
 import { Offer, OfferData, Offers } from '../types/offer';
 import { UserData } from '../types/user-data';
 import { setUser } from '../slices/auth';
-import { Reviews } from '../types/review';
+import { Review, Reviews } from '../types/review';
 import { ReviewData } from '../types/review-action';
 import { toast } from 'react-toastify';
 import { FavoriteData } from '../types/favorite-data';
+import { setFavoriteOffers } from '../slices/offers';
+import { setFavorites } from '../slices/favorites';
 
 
 export const redirectToRoute = createAction<AppRoutes>('redirectToRoute');
@@ -103,20 +105,16 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const postReviewAction = createAsyncThunk<void, ReviewData, {
+export const postReviewAction = createAsyncThunk<Review, ReviewData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'postReview',
-  async ({comment, rating, id}, {dispatch, extra: api}) => {
-    try{
-      await api.post<UserData>(APIRoute.Reviews.replace(':id',id)
-        , {comment, rating});
-      dispatch(fetchReviewsAction(id));
-    } catch (err) {
-      toast.warn('Ошибка при создании комментария');
-    }
+  async ({comment, rating, id}, {extra: api}) => {
+    const {data} = await api.post<Review>(APIRoute.Reviews.replace(':id',id)
+      , {comment, rating});
+    return data;
   },
 );
 
@@ -139,10 +137,11 @@ export const postFavoriteAction = createAsyncThunk<void, FavoriteData, {
   extra: AxiosInstance;
 }>(
   'postFavorite',
-  async ({id, newBool}, {dispatch, extra: api}) => {
+  async ({offer, newBool}, {dispatch, extra: api}) => {
     try{
-      await api.post<UserData>(`${APIRoute.Favorite}/${id}/${Number(newBool)}`);
-      dispatch(fetchFavoritesAction());
+      await api.post<UserData>(`${APIRoute.Favorite}/${offer.id}/${Number(newBool)}`);
+      dispatch(setFavoriteOffers({offer,newBool}));
+      dispatch(setFavorites({offer,newBool}));
     } catch (err) {
       toast.warn('Ошибка в смене флага избранного');
     }

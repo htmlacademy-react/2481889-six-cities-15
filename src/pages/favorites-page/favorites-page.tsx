@@ -3,7 +3,6 @@ import { AppRoutes } from '../../constants';
 import Layout from '../../components/layout-component/layout-component';
 import { useAppSelector } from '../../hooks/use-app';
 import { favoritesSelectors } from '../../slices/favorites';
-import Spinner from '../../components/spinner/spinner';
 import FavoritesCity from './favorites-city/favorites-city';
 import NoFavorites from './no-favorites/no-favorites';
 
@@ -14,7 +13,6 @@ export const FavoritesPage = () => {
 
     <div className="page">
       <Layout/>
-      {isFavoritesDataLoading && <Spinner/>}
       {!isFavoritesDataLoading && favoritesAmount === 0 && <NoFavorites/>}
       {!isFavoritesDataLoading && favoritesAmount !== 0 && <FavoritesCity/>}
       <footer className="footer container">

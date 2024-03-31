@@ -1,16 +1,16 @@
 
 import { memo, useState } from 'react';
-import { useActionCreators, useAppSelector } from '../../hooks/use-app';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import { SORTS } from '../../constants';
-import { offersAction, offersSelectors } from '../../slices/offers';
+import { offersSelectors, setSort } from '../../slices/offers';
 import { Sort } from '../../types/sort';
 
 const SortForm = () => {
   const [open, setOpen] = useState(false);
   const sort = useAppSelector(offersSelectors.sort);
-  const {setSort} = useActionCreators(offersAction);
+  const dispatch = useAppDispatch();
   function handleChangeSort(item: Sort) {
-    setSort(item);
+    dispatch(setSort(item));
     setOpen(false);
   }
   function handleClick() {

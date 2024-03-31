@@ -1,16 +1,23 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit/react';
-import { fetchReviewsAction } from '../store/api-actions';
+import { fetchReviewsAction, postReviewAction } from '../store/api-actions';
 import { Reviews } from '../types/review';
-import { AppData } from '../constants';
+import { AppData, NOTCHECK } from '../constants';
+import { toast } from 'react-toastify';
 
 export type ReviewsState = {
     reviews: Reviews;
     isReviewsDataLoading: boolean;
+    blockForm: boolean;
+    commentaryText:string;
+    rating:number;
 }
 
 const initialState: ReviewsState = {
   reviews: [],
   isReviewsDataLoading: true,
+  blockForm: false,
+  commentaryText: '',
+  rating: NOTCHECK,
 };
 
 export const reviewsSlice = createSlice({
@@ -19,20 +26,47 @@ export const reviewsSlice = createSlice({
     setIsReviewsDataLoading: (state, action:PayloadAction<boolean>) => {
       state.isReviewsDataLoading = action.payload;
     },
+    setBlockForm: (state, action:PayloadAction<boolean>) => {
+      state.blockForm = action.payload;
+    },
+    setCommentaryText: (state, action:PayloadAction<string>) => {
+      state.commentaryText = action.payload;
+    },
+    setRating: (state, action:PayloadAction<number>) => {
+      state.rating = action.payload;
+    },
   },
   extraReducers(builder) {
     builder.
       addCase(fetchReviewsAction.fulfilled, (state, action) => {
         state.isReviewsDataLoading = false;
         state.reviews = action.payload;
+        state.rating = NOTCHECK;
+        state.commentaryText = '';
       }).
       addCase(fetchReviewsAction.pending, (state) => {
         state.isReviewsDataLoading = true;
+      }).
+      addCase(postReviewAction.pending, (state) => {
+        state.blockForm = true;
+      }).
+      addCase(postReviewAction.fulfilled, (state, action) => {
+        state.blockForm = false;
+        state.reviews.push(action.payload);
+        state.rating = NOTCHECK;
+        state.commentaryText = '';
+      }).
+      addCase(postReviewAction.rejected, (state) => {
+        toast.warn('Ошибка при отправке комментария');
+        state.blockForm = false;
       });
   },
   selectors: {
     reviews: (state: ReviewsState) => state.reviews,
     isReviewsDataLoading: (state: ReviewsState) => state.isReviewsDataLoading,
+    blockForm: (state: ReviewsState) => state.blockForm,
+    commentaryText: (state: ReviewsState) => state.commentaryText,
+    rating: (state: ReviewsState) => state.rating,
   },
 
 },
@@ -40,5 +74,6 @@ export const reviewsSlice = createSlice({
 
 export const reviewsSelectors = reviewsSlice.selectors;
 
-export const { setIsReviewsDataLoading } = reviewsSlice.actions;
+export const { setIsReviewsDataLoading,
+  setBlockForm, setCommentaryText, setRating} = reviewsSlice.actions;
 

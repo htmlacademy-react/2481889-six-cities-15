@@ -1,15 +1,26 @@
-import { useRef, FormEvent } from 'react';
+import { useRef, FormEvent, useState, useMemo, useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/use-app';
 import { loginAction } from '../../store/api-actions';
 import { Link } from 'react-router-dom';
 import { AppRoutes, CITIES } from '../../constants';
 
 function LoginPage(): JSX.Element {
-
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-  const randomCity = CITIES[Math.floor(Math.random() * CITIES.length)];
-
+  const empty = useMemo(()=>'', []);
+  const randomCity = useMemo(() =>CITIES[Math.floor(Math.random() * CITIES.length)],[]);
+  const [email, setEmail] = useState(empty);
+  const [password, setPassword] = useState(empty);
+  useEffect(()=> {
+    setEmail('');
+    setPassword('');
+  },[]);
+  const handleInputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+  const handleInputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
   const dispatch = useAppDispatch();
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
@@ -66,6 +77,8 @@ function LoginPage(): JSX.Element {
                   required
                   type="email"
                   ref={loginRef}
+                  value={email}
+                  onChange={handleInputEmail}
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -79,6 +92,8 @@ function LoginPage(): JSX.Element {
                   required
                   type="password"
                   ref={passwordRef}
+                  value={password}
+                  onChange={handleInputPassword}
                 />
               </div>
               <button

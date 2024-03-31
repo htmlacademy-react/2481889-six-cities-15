@@ -1,4 +1,6 @@
+import { Offer } from './offer';
+
 export type FavoriteData = {
-    id: string;
+    offer: Offer;
     newBool: boolean;
 }

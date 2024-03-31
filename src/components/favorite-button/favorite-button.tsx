@@ -23,7 +23,7 @@ const FavoriteButton = ({offer, type, width, height}: FavoriteButtonProps) => {
       navigate(AppRoutes.Login);
     }
     const data : FavoriteData = {
-      id: offer.id,
+      offer: offer,
       newBool:!isFavorite
     };
     setIsFavorite(!isFavorite);
