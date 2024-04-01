@@ -61,7 +61,7 @@ export const fetchReviewsAction = createAsyncThunk<Reviews, OfferData, {
   'data/fetchReviews',
   async (id, { extra: api}) => {
     const {data} = await api.get<Reviews>(APIRoute.Reviews.replace(':id', id));
-    return data;
+    return data.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   },
 );
 
