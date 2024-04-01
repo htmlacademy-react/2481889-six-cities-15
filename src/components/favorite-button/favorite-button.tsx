@@ -17,7 +17,7 @@ const FavoriteButton = ({offer, type, width, height}: FavoriteButtonProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [isFavorite, setIsFavorite] = useState(offer.isFavorite);
-  const authStatus = useAppSelector(authSelectors.authorizationStatus);
+  const authStatus = useAppSelector(authSelectors.getAuthorizationStatus);
   const handleToggle = () => {
     if(authStatus !== AuthorizationStatus.Auth){
       navigate(AppRoutes.Login);

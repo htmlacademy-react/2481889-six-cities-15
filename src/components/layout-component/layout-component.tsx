@@ -7,9 +7,9 @@ import { memo } from 'react';
 import { favoritesSelectors } from '../../slices/favorites';
 
 const Layout = () =>{
-  const authStatus = useAppSelector(authSelectors.authorizationStatus);
-  const user = useAppSelector(authSelectors.user);
-  const favoritesAmount = useAppSelector(favoritesSelectors.favoritesAmount);
+  const authStatus = useAppSelector(authSelectors.getAuthorizationStatus);
+  const user = useAppSelector(authSelectors.getUser);
+  const favoritesAmount = useAppSelector(favoritesSelectors.getFavoritesAmount);
   const dispatch = useAppDispatch();
   return (
     <div className='page  page--gray'>

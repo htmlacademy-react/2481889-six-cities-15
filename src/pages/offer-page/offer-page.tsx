@@ -18,13 +18,13 @@ import FavoriteButton from '../../components/favorite-button/favorite-button';
 function OfferPage(): JSX.Element {
   const param = useParams();
   const offerId = param.id;
-  const offer = useAppSelector(offerSelectors.offer);
-  const nearPlaces = useAppSelector(nearPlacesSelectors.nearPlaces);
-  const reviews = useAppSelector(reviewsSelectors.reviews);
-  const isOfferDataLoading = useAppSelector(offerSelectors.isOfferDataLoading);
-  const isNearPlacesLoading = useAppSelector(nearPlacesSelectors.isNearPlacesDataLoading);
-  const isReviewsLoading = useAppSelector(reviewsSelectors.isReviewsDataLoading);
-  const isOfferNotFound = useAppSelector(offerSelectors.isOfferNotFound);
+  const offer = useAppSelector(offerSelectors.getOffer);
+  const nearPlaces = useAppSelector(nearPlacesSelectors.getNearPlaces);
+  const reviews = useAppSelector(reviewsSelectors.getReviews);
+  const isOfferDataLoading = useAppSelector(offerSelectors.getIsOfferDataLoading);
+  const isNearPlacesLoading = useAppSelector(nearPlacesSelectors.getIsNearPlacesDataLoading);
+  const isReviewsLoading = useAppSelector(reviewsSelectors.getIsReviewsDataLoading);
+  const isOfferNotFound = useAppSelector(offerSelectors.getIsOfferNotFound);
   useEffect(() => {
     if (offerId) {
       store.dispatch(fetchOfferAction(offerId));

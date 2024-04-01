@@ -14,7 +14,7 @@ type FromState = {
 
 function PrivateRoute({onlyUnAuth, children}: PrivateRouteProps): JSX.Element {
   const location : Location<FromState> = useLocation() as Location<FromState>;
-  const authorizationStatus = useAppSelector(authSelectors.authorizationStatus);
+  const authorizationStatus = useAppSelector(authSelectors.getAuthorizationStatus);
   if (onlyUnAuth && authorizationStatus === AuthorizationStatus.Auth){
     const from = location.state?.from || {pathname: AppRoutes.Main};
     return <Navigate to={from}/>;

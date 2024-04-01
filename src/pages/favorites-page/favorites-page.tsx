@@ -7,8 +7,8 @@ import FavoritesCity from './favorites-city/favorites-city';
 import NoFavorites from './no-favorites/no-favorites';
 
 export const FavoritesPage = () => {
-  const favoritesAmount = useAppSelector(favoritesSelectors.favoritesAmount);
-  const isFavoritesDataLoading = useAppSelector(favoritesSelectors.isFavoritesDataLoading);
+  const favoritesAmount = useAppSelector(favoritesSelectors.getFavoritesAmount);
+  const isFavoritesDataLoading = useAppSelector(favoritesSelectors.getIsFavoritesDataLoading);
   return(
 
     <div className={`page ${!isFavoritesDataLoading && 'page--favorites-empty'}`}>

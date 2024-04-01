@@ -11,7 +11,7 @@ export type OffersState = {
     sort: Sort;
     isOffersDataLoading: boolean;
 }
-const initialState : OffersState = {
+export const initialState : OffersState = {
   city: CITIES[0],
   offers: [],
   sort: SORTS.Popular,
@@ -52,10 +52,10 @@ const offersSlice = createSlice({
     });
   },
   selectors: {
-    city: (state:OffersState) => state.city,
-    offers: (state:OffersState) => state.offers.filter((offer) => offer.city.name === state.city.name).sort(state.sort.func),
-    sort: (state:OffersState) => state.sort,
-    isOffersDataLoading: (state:OffersState) => state.isOffersDataLoading,
+    getCity: (state:OffersState) => state.city,
+    getOffers: (state:OffersState) => state.offers.filter((offer) => offer.city.name === state.city.name).sort(state.sort.func),
+    getSort: (state:OffersState) => state.sort,
+    getIsOffersDataLoading: (state:OffersState) => state.isOffersDataLoading,
   }
 });
 export const {setFavoriteOffers, setCity, setIsOffersDataLoading, setSort} = offersSlice.actions;

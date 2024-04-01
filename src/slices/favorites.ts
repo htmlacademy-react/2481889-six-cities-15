@@ -3,12 +3,13 @@ import { Offer, Offers } from '../types/offer';
 import { AppData } from '../constants';
 import { fetchFavoritesAction } from '../store/api-actions';
 
+
 export type FavoritesType = {
     favorites: Offers;
     isFavoritesDataLoading: boolean;
 }
 
-const initialState: FavoritesType = {
+export const initialState: FavoritesType = {
   favorites: [],
   isFavoritesDataLoading: true,
 };
@@ -41,9 +42,9 @@ export const favoritesSlice = createSlice({
       });
   },
   selectors: {
-    favoritesAmount: (state: FavoritesType) => state.favorites.length,
-    favoritesByCity: (state: FavoritesType) => Object.groupBy(state.favorites, (favorite) => favorite.city.name),
-    isFavoritesDataLoading: (state: FavoritesType) => state.isFavoritesDataLoading,
+    getFavoritesAmount: (state: FavoritesType) => state.favorites.length,
+    getFavoritesByCity: (state: FavoritesType) => Object.groupBy(state.favorites, (favorite) => favorite.city.name),
+    getIsFavoritesDataLoading: (state: FavoritesType) => state.isFavoritesDataLoading,
   },
 });
 export const {setFavorites, setIsFavoritesDataLoading} = favoritesSlice.actions;

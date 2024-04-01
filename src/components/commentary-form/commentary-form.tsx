@@ -10,9 +10,9 @@ type CommentaryFormProps = {offerId: string}
 export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
   const dispatch = useAppDispatch();
 
-  const blockForm = useAppSelector(reviewsSelectors.blockForm);
-  const commentaryText = useAppSelector(reviewsSelectors.commentaryText);
-  const rating = useAppSelector(reviewsSelectors.rating);
+  const blockForm = useAppSelector(reviewsSelectors.getBlockForm);
+  const commentaryText = useAppSelector(reviewsSelectors.getCommentaryText);
+  const rating = useAppSelector(reviewsSelectors.getRating);
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(setCommentaryText(e.target.value));

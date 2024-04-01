@@ -8,8 +8,8 @@ import { memo, useState } from 'react';
 import { Offer } from '../../../types/offer';
 
 const OffersCity = () => {
-  const city = useAppSelector(offersSelectors.city);
-  const offers = useAppSelector(offersSelectors.offers);
+  const city = useAppSelector(offersSelectors.getCity);
+  const offers = useAppSelector(offersSelectors.getOffers);
   const [activeCard, setActiveCard] = useState<Nullable<Offer>>(null);
   return(
     <div className="cities__places-container container">

@@ -8,7 +8,7 @@ export type NearPlacesState = {
     isNearPlacesDataLoading: boolean;
 }
 
-const initialState: NearPlacesState = {
+export const initialState: NearPlacesState = {
   nearPlaces: [],
   isNearPlacesDataLoading: true,
 };
@@ -31,8 +31,8 @@ export const nearPlacesSlice = createSlice({
       });
   },
   selectors: {
-    nearPlaces: (state:NearPlacesState) => state.nearPlaces,
-    isNearPlacesDataLoading: (state:NearPlacesState) => state.isNearPlacesDataLoading,
+    getNearPlaces: (state:NearPlacesState) => state.nearPlaces,
+    getIsNearPlacesDataLoading: (state:NearPlacesState) => state.isNearPlacesDataLoading,
   },
 
 },

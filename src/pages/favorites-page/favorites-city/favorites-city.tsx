@@ -6,7 +6,7 @@ import { favoritesSelectors } from '../../../slices/favorites';
 import { Link } from 'react-router-dom';
 
 const FavoritesCity = () => {
-  const favoritesByCity = useAppSelector(favoritesSelectors.favoritesByCity);
+  const favoritesByCity = useAppSelector(favoritesSelectors.getFavoritesByCity);
   return(
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">

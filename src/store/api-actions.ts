@@ -61,7 +61,7 @@ export const fetchReviewsAction = createAsyncThunk<Reviews, OfferData, {
   'data/fetchReviews',
   async (id, { extra: api}) => {
     const {data} = await api.get<Reviews>(APIRoute.Reviews.replace(':id', id));
-    return data.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return data;
   },
 );
 
@@ -113,7 +113,6 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   async (_arg, { extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
-    //dispatch(redirectToRoute(AppRoutes.Login));
   },
 );
 

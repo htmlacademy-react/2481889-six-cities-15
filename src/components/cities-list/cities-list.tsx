@@ -9,7 +9,7 @@ import { memo } from 'react';
 type CitiesListProps = {cities: City[]}
 
 const CitiesList = (props: CitiesListProps) => {
-  const city = useAppSelector(offersSelectors.city);
+  const city = useAppSelector(offersSelectors.getCity);
 
   return (
     props.cities.map((c) => (

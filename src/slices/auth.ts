@@ -9,7 +9,7 @@ type AuthState = {
     user: Nullable<UserData>;
 }
 
-const initialState: AuthState = {
+export const initialState: AuthState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   user: null,
 };
@@ -44,8 +44,8 @@ export const authSlice = createSlice({
       });
   },
   selectors: {
-    authorizationStatus: (state) => state.authorizationStatus,
-    user: (state) => state.user
+    getAuthorizationStatus: (state) => state.authorizationStatus,
+    getUser: (state) => state.user
   },
 });
 

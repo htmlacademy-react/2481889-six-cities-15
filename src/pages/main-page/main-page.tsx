@@ -24,8 +24,8 @@ export const MainPage = () => {
       }
     }
   }, [cityName, dispatch, navigate]);
-  const isOffersDataLoading = useAppSelector(offersSelectors.isOffersDataLoading);
-  const offers = useAppSelector(offersSelectors.offers);
+  const isOffersDataLoading = useAppSelector(offersSelectors.getIsOffersDataLoading);
+  const offers = useAppSelector(offersSelectors.getOffers);
   return(
     <div className={`page page--gray page--main ${offers.length === 0 && 'page__main--index-empty'}`}>
       <Layout/>

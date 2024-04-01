@@ -4,7 +4,7 @@ import { offersSelectors } from '../../../slices/offers';
 
 
 const NoOffers = () => {
-  const city = useAppSelector(offersSelectors.city);
+  const city = useAppSelector(offersSelectors.getCity);
   return(
     <div className="cities">
       <div className="cities__places-container cities__places-container--empty container">

@@ -7,7 +7,7 @@ import { Sort } from '../../types/sort';
 
 const SortForm = () => {
   const [open, setOpen] = useState(false);
-  const sort = useAppSelector(offersSelectors.sort);
+  const sort = useAppSelector(offersSelectors.getSort);
   const dispatch = useAppDispatch();
   function handleChangeSort(item: Sort) {
     dispatch(setSort(item));
