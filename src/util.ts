@@ -4,6 +4,7 @@ import {internet, random, datatype} from 'faker';
 import { UserData } from './types/user-data';
 import { Review } from './types/review';
 import { AuthData } from './types/auth-data';
+import { Action } from '@reduxjs/toolkit/react';
 
 export const makeMockOffer = () :Offer => ({
   id: datatype.uuid(),
@@ -61,4 +62,4 @@ export const makeMockAuthData = () :AuthData =>
     }
   );
 
-  export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
+export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
