@@ -3,7 +3,7 @@ import { Review } from '../../types/review';
 import {CommentaryForm} from '../commentary-form/commentary-form';
 import { ReviewList } from '../review-list/review-list';
 import { useAppSelector } from '../../hooks/use-app';
-import { authSelectors } from '../../slices/auth';
+import { authSelectors } from '../../slices/auth/auth';
 import { AuthorizationStatus } from '../../constants';
 
 type ReviewFormProps = {reviews:Review[]; offerId : string}

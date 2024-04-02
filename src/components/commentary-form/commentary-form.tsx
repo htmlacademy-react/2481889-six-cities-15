@@ -1,7 +1,7 @@
 import { FormEvent, Fragment } from 'react';
 import { postReviewAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
-import { reviewsSelectors, setCommentaryText, setRating } from '../../slices/reviews';
+import { reviewsSelectors, setCommentaryText, setRating } from '../../slices/reviews/reviews';
 import { NOTCHECK, STARS } from '../../constants';
 
 

@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Nullable } from '../types/nullable';
-import { Offer} from '../types/offer';
-import { fetchOfferAction } from '../store/api-actions';
-import { AppData } from '../constants';
+import { Nullable } from '../../types/nullable';
+import { Offer} from '../../types/offer';
+import { fetchOfferAction } from '../../store/api-actions';
+import { AppData } from '../../constants';
 
 export type OfferState ={
     offer: Nullable<Offer>;

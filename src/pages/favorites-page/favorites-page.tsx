@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { AppRoutes } from '../../constants';
 import Layout from '../../components/layout-component/layout-component';
 import { useAppSelector } from '../../hooks/use-app';
-import { favoritesSelectors } from '../../slices/favorites';
+import { favoritesSelectors } from '../../slices/favorites/favorites';
 import FavoritesCity from './favorites-city/favorites-city';
 import NoFavorites from './no-favorites/no-favorites';
 

@@ -1,9 +1,9 @@
-import { AppData, CITIES, SORTS } from '../constants';
-import { City } from '../types/city';
-import { Offer, Offers } from '../types/offer';
+import { AppData, CITIES, SORTS } from '../../constants';
+import { City } from '../../types/city';
+import { Offer, Offers } from '../../types/offer';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Sort } from '../types/sort';
-import { fetchOffersAction } from '../store/api-actions';
+import { Sort } from '../../types/sort';
+import { fetchOffersAction } from '../../store/api-actions';
 
 export type OffersState = {
     city: City;

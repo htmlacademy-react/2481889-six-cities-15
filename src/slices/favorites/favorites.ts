@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit/react';
-import { Offer, Offers } from '../types/offer';
-import { AppData } from '../constants';
-import { fetchFavoritesAction } from '../store/api-actions';
+import { Offer, Offers } from '../../types/offer';
+import { AppData } from '../../constants';
+import { fetchFavoritesAction } from '../../store/api-actions';
 
 
 export type FavoritesType = {

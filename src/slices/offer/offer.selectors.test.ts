@@ -1,4 +1,4 @@
-import { AppData } from '../constants';
+import { AppData } from '../../constants';
 import { initialState, offerSelectors } from './offer';
 
 describe('Offer selectors', () => {

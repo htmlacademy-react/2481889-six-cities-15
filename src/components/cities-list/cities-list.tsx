@@ -1,7 +1,7 @@
 
 import classNames from 'classnames';
 import { useAppSelector } from '../../hooks/use-app';
-import { offersSelectors } from '../../slices/offers';
+import { offersSelectors } from '../../slices/offers/offers';
 import { City } from '../../types/city';
 import { Link } from 'react-router-dom';
 import { memo } from 'react';

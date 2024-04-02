@@ -6,13 +6,12 @@ import { APIRoute, AppRoutes } from '../constants';
 import { AuthData } from '../types/auth-data';
 import { Offer, OfferData, Offers } from '../types/offer';
 import { UserData } from '../types/user-data';
-import { setUser } from '../slices/auth';
 import { Review, Reviews } from '../types/review';
-import { ReviewData } from '../types/review-action';
+import { ReviewData } from '../types/review-data';
 import { toast } from 'react-toastify';
 import { FavoriteData } from '../types/favorite-data';
-import { setFavoriteOffers } from '../slices/offers';
-import { setFavorites } from '../slices/favorites';
+import { setFavoriteOffers } from '../slices/offers/offers';
+import { setFavorites } from '../slices/favorites/favorites';
 
 
 export const redirectToRoute = createAction<AppRoutes>('redirectToRoute');
@@ -61,7 +60,7 @@ export const fetchReviewsAction = createAsyncThunk<Reviews, OfferData, {
   'data/fetchReviews',
   async (id, { extra: api}) => {
     const {data} = await api.get<Reviews>(APIRoute.Reviews.replace(':id', id));
-    return data.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return data;
   },
 );
 
@@ -77,7 +76,7 @@ export const fetchFavoritesAction = createAsyncThunk<Offers, undefined, {
   },
 );
 
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<UserData, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -86,11 +85,11 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     const {data: user} = await api.get<UserData>(APIRoute.Login);
     dispatch(fetchFavoritesAction());
-    dispatch(setUser(user));
+    return user;
   },
 );
 
-export const loginAction = createAsyncThunk<void, AuthData, {
+export const loginAction = createAsyncThunk<UserData, AuthData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -99,8 +98,8 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   async ({login: email, password}, {dispatch, extra: api}) => {
     const {data: user} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(user.token);
-    dispatch(setUser(user));
     dispatch(redirectToRoute(AppRoutes.Main));
+    return user;
   },
 );
 

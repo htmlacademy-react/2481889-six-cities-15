@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useAppSelector } from '../../../hooks/use-app';
-import { offersSelectors } from '../../../slices/offers';
+import { offersSelectors } from '../../../slices/offers/offers';
 
 
 const NoOffers = () => {

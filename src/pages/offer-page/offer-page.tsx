@@ -6,13 +6,13 @@ import OfferList from '../../components/offer-list/offer-list';
 import OfferGallery from './offer-gallery/offer-gallery';
 import { useAppSelector } from '../../hooks/use-app';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
-import { offerSelectors } from '../../slices/offer';
+import { offerSelectors } from '../../slices/offer/offer';
 import { useEffect } from 'react';
 import { store } from '../../store';
 import Spinner from '../../components/spinner/spinner';
 import { AppRoutes } from '../../constants';
-import { nearPlacesSelectors } from '../../slices/near-places';
-import { reviewsSelectors } from '../../slices/reviews';
+import { nearPlacesSelectors } from '../../slices/near-places/near-places';
+import { reviewsSelectors } from '../../slices/reviews/reviews';
 import FavoriteButton from '../../components/favorite-button/favorite-button';
 
 function OfferPage(): JSX.Element {

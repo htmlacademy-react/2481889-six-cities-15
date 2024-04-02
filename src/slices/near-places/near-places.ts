@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit/react';
-import { Offers } from '../types/offer';
-import { fetchNearPlacesAction } from '../store/api-actions';
-import { AppData } from '../constants';
+import { Offers } from '../../types/offer';
+import { fetchNearPlacesAction } from '../../store/api-actions';
+import { AppData } from '../../constants';
 
 export type NearPlacesState = {
     nearPlaces: Offers;

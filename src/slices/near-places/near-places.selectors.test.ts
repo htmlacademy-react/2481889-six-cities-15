@@ -1,4 +1,4 @@
-import { AppData } from '../constants';
+import { AppData } from '../../constants';
 import { initialState, nearPlacesSelectors } from './near-places';
 
 describe('Near Places selectors', () => {

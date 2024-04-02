@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 import { Offer } from '../../types/offer';
-import { authSelectors } from '../../slices/auth';
+import { authSelectors } from '../../slices/auth/auth';
 import { AppRoutes, AuthorizationStatus } from '../../constants';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';

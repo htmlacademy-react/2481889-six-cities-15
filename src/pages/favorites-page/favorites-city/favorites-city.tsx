@@ -2,7 +2,7 @@ import { memo } from 'react';
 import OfferCard from '../../../components/offer-card/offer-card';
 import { CITIES } from '../../../constants';
 import { useAppSelector } from '../../../hooks/use-app';
-import { favoritesSelectors } from '../../../slices/favorites';
+import { favoritesSelectors } from '../../../slices/favorites/favorites';
 import { Link } from 'react-router-dom';
 
 const FavoritesCity = () => {

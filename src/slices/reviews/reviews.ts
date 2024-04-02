@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit/react';
-import { fetchReviewsAction, postReviewAction } from '../store/api-actions';
-import { Reviews } from '../types/review';
-import { AppData, NOTCHECK } from '../constants';
+import { fetchReviewsAction, postReviewAction } from '../../store/api-actions';
+import { Reviews } from '../../types/review';
+import { AppData, NOTCHECK } from '../../constants';
 import { toast } from 'react-toastify';
 
 export type ReviewsState = {

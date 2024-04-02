@@ -2,7 +2,7 @@
 import { memo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import { SORTS } from '../../constants';
-import { offersSelectors, setSort } from '../../slices/offers';
+import { offersSelectors, setSort } from '../../slices/offers/offers';
 import { Sort } from '../../types/sort';
 
 const SortForm = () => {

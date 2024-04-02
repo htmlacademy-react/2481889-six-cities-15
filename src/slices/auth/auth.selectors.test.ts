@@ -1,4 +1,4 @@
-import { AppData } from '../constants';
+import { AppData } from '../../constants';
 import { initialState, authSelectors } from './auth';
 
 describe('Auth selectors', () => {

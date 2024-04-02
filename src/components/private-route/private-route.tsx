@@ -1,7 +1,7 @@
 import {Location, Navigate, useLocation} from 'react-router-dom';
 import {AppRoutes, AuthorizationStatus} from '../../constants';
 import { useAppSelector } from '../../hooks/use-app';
-import { authSelectors } from '../../slices/auth';
+import { authSelectors } from '../../slices/auth/auth';
 
 type PrivateRouteProps = {
   onlyUnAuth?: boolean;

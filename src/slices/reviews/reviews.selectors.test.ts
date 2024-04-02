@@ -1,4 +1,4 @@
-import { AppData } from '../constants';
+import { AppData } from '../../constants';
 import { initialState, reviewsSelectors } from './reviews';
 
 describe('Reviews selectors', () => {
@@ -18,7 +18,7 @@ describe('Reviews selectors', () => {
   });
 
   it('getBlockForm selector should return the correct block form value', () => {
-    const blockForm = state[AppData.Reviews];
+    const blockForm = state[AppData.Reviews].blockForm;
     const result = reviewsSelectors.getBlockForm(state);
     expect(result).toEqual(blockForm);
   });

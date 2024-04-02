@@ -2,9 +2,9 @@ import { Link, NavLink } from 'react-router-dom';
 import { AppRoutes, AuthorizationStatus } from '../../constants';
 import { logoutAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
-import { authSelectors } from '../../slices/auth';
+import { authSelectors } from '../../slices/auth/auth';
 import { memo } from 'react';
-import { favoritesSelectors } from '../../slices/favorites';
+import { favoritesSelectors } from '../../slices/favorites/favorites';
 
 const Layout = () =>{
   const authStatus = useAppSelector(authSelectors.getAuthorizationStatus);

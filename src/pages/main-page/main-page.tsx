@@ -3,7 +3,7 @@ import CitiesList from '../../components/cities-list/cities-list';
 import { CITIES} from '../../constants';
 import OffersCity from './offers/offers-city';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
-import { offersSelectors, setCity } from '../../slices/offers';
+import { offersSelectors, setCity } from '../../slices/offers/offers';
 import Spinner from '../../components/spinner/spinner';
 import NoOffers from './no-offers/no-offers';
 import { useNavigate, useParams } from 'react-router-dom';
