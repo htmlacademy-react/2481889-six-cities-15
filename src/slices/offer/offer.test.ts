@@ -1,5 +1,5 @@
 import { fetchOfferAction } from '../../store/api-actions';
-import { makeMockOffer } from '../../util';
+import { makeMockOffer } from '../../util/util';
 import { offerSlice } from './offer';
 
 describe('Offer slice', () => {

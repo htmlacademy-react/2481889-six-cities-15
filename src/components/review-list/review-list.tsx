@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Review } from '../../types/review';
-import { formatDate } from '../../util';
+import { formatDate } from '../../util/util';
 
 type ReviewListProps = {reviews:Review[]}
 

@@ -3,6 +3,7 @@ import { useAppDispatch } from '../../hooks/use-app';
 import { loginAction } from '../../store/api-actions';
 import { Link } from 'react-router-dom';
 import { AppRoutes, CITIES } from '../../constants';
+import { validateEmail, validatePassword } from '../../util/util';
 
 function LoginPage(): JSX.Element {
   const randomCity = useMemo(() =>CITIES[Math.floor(Math.random() * CITIES.length)],[]);
@@ -13,13 +14,13 @@ function LoginPage(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginRef.current !== null && passwordRef.current !== null) {
+    if (loginRef.current !== null && passwordRef.current !== null
+      && validateEmail(loginRef.current.value) && validatePassword(passwordRef.current.value)) {
       dispatch(loginAction({
         login: loginRef.current.value,
         password: passwordRef.current.value
       }));
     }
-
   };
   return (
     <div className="page page--gray page--login">

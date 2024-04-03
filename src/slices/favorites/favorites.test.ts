@@ -1,6 +1,6 @@
 import { fetchFavoritesAction } from '../../store/api-actions';
 import { Offer } from '../../types/offer';
-import { makeMockOffers } from '../../util';
+import { makeMockOffers } from '../../util/util';
 
 import { favoritesSlice } from './favorites';
 

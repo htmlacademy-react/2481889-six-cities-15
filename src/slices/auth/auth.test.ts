@@ -1,7 +1,7 @@
 import { AuthorizationStatus } from '../../constants';
 import { checkAuthAction, loginAction, logoutAction } from '../../store/api-actions';
 import { authSlice } from './auth';
-import { makeMockAuthData, makeMockUser } from '../../util';
+import { makeMockAuthData, makeMockUser } from '../../util/util';
 
 describe('Auth slice', () => {
 

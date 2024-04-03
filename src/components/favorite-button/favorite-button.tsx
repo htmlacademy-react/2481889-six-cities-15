@@ -26,8 +26,8 @@ const FavoriteButton = ({offer, type, width, height}: FavoriteButtonProps) => {
       offer: offer,
       newBool:!isFavorite
     };
-    setIsFavorite(!isFavorite);
     dispatch(postFavoriteAction(data));
+    setIsFavorite(!isFavorite);
 
   };
 

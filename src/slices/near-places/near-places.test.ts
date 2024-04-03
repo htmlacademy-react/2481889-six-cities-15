@@ -1,5 +1,5 @@
 import { fetchNearPlacesAction } from '../../store/api-actions';
-import { makeMockOffers } from '../../util';
+import { makeMockOffers } from '../../util/util';
 import { nearPlacesSlice } from './near-places';
 
 describe('Near Places slice', () => {

@@ -1,7 +1,7 @@
 import { CITIES, SORTS } from '../../constants';
 import { fetchOffersAction } from '../../store/api-actions';
 import { Offer } from '../../types/offer';
-import { makeMockOffers } from '../../util';
+import { makeMockOffers } from '../../util/util';
 import { offerSlice } from '../offer/offer';
 import { OffersState, offersSlice } from './offers';
 

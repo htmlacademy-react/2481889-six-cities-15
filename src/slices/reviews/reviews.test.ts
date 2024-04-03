@@ -1,6 +1,6 @@
 import { NOTCHECK } from '../../constants';
 import { postReviewAction } from '../../store/api-actions';
-import { makeMockReview } from '../../util';
+import { makeMockReview } from '../../util/util';
 import { reviewsSlice } from './reviews';
 
 describe('Reviews slice', () => {

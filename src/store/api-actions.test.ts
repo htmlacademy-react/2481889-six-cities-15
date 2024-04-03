@@ -6,7 +6,7 @@ import {Action} from 'redux';
 import {ThunkDispatch} from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import { APIRoute } from '../constants';
-import { makeMockOffers, makeMockReview } from '../util';
+import { makeMockOffers, makeMockReview } from '../util/util';
 import { State } from '../types/store';
 import { AuthData } from '../types/auth-data';
 import { ReviewData } from '../types/review-data';

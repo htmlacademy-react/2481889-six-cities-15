@@ -1,5 +1,5 @@
 import { AppData } from '../../constants';
-import { makeMockOffers } from '../../util';
+import { makeMockOffers } from '../../util/util';
 import { favoritesSelectors } from './favorites'; // Assuming you have defined initialState and favoritesSelectors in the favorites file
 
 
