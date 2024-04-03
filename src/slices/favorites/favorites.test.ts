@@ -45,12 +45,11 @@ describe('Favorites slice', () => {
       isFavoritesDataLoading: true,
     };
 
-    const newOffer = { id: '1' } as Offer;
+    const newOffer = { id: '1', isFavorite: true } as Offer;
     const action = favoritesSlice.actions.setFavorites({ offer: newOffer, newBool: true });
-
     const newState = favoritesSlice.reducer(initialState, action);
 
-    expect(newState.favorites).toContain(newOffer);
+    expect(newState.favorites).toEqual([newOffer]);
   });
 
   it('should remove an offer from favorites correctly', () => {

@@ -48,7 +48,7 @@ export const fetchNearPlacesAction = createAsyncThunk<Offers, OfferData, {
   'data/fetchNearPlaces',
   async (id, {extra: api}) => {
     const {data} = await api.get<Offers>(APIRoute.NearPlaces.replace(':id', id));
-    return data.slice(0, 3);
+    return data;
   },
 );
 
@@ -84,7 +84,7 @@ export const checkAuthAction = createAsyncThunk<UserData, undefined, {
   'user/checkAuth',
   async (_arg, {dispatch, extra: api}) => {
     const {data: user} = await api.get<UserData>(APIRoute.Login);
-    dispatch(fetchFavoritesAction());
+    await dispatch(fetchFavoritesAction());
     return user;
   },
 );
@@ -98,6 +98,7 @@ export const loginAction = createAsyncThunk<UserData, AuthData, {
   async ({login: email, password}, {dispatch, extra: api}) => {
     const {data: user} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(user.token);
+    await dispatch(fetchFavoritesAction());
     dispatch(redirectToRoute(AppRoutes.Main));
     return user;
   },

@@ -22,7 +22,7 @@ export const favoritesSlice = createSlice({
     },
     setFavorites: (state, action: PayloadAction<{offer: Offer; newBool: boolean}>) => {
       if(action.payload.newBool){
-        state.favorites.push(action.payload.offer);
+        state.favorites.push({...action.payload.offer, isFavorite:true});
       } else{
         state.favorites = state.favorites.filter((offer) => offer.id !== action.payload.offer.id);
       }

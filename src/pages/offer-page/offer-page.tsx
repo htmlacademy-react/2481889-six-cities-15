@@ -1,6 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom';
 import ReviewForm from '../../components/review-form/review-form';
-import Layout from '../../components/layout-component/layout-component';
+import Layout from '../../components/header-component/header-component';
 import Map from '../../components/map-component/map-component';
 import OfferList from '../../components/offer-list/offer-list';
 import OfferGallery from './offer-gallery/offer-gallery';

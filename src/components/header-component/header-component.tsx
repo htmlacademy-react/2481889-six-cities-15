@@ -6,7 +6,7 @@ import { authSelectors } from '../../slices/auth/auth';
 import { memo } from 'react';
 import { favoritesSelectors } from '../../slices/favorites/favorites';
 
-const Layout = () =>{
+const Header = () =>{
   const authStatus = useAppSelector(authSelectors.getAuthorizationStatus);
   const user = useAppSelector(authSelectors.getUser);
   const favoritesAmount = useAppSelector(favoritesSelectors.getFavoritesAmount);
@@ -36,7 +36,9 @@ const Layout = () =>{
                     className="header__nav-link header__nav-link--profile"
                     to={AppRoutes.Favorites}
                   >
-                    <div className="header__avatar-wrapper user__avatar-wrapper"/>
+                    <div className="header__avatar-wrapper user__avatar-wrapper">
+                      <img src={user?.avatarUrl}/>
+                    </div>
                     <span className="header__user-name user__name">
                       {user?.email}
                     </span>
@@ -71,5 +73,5 @@ const Layout = () =>{
   );
 };
 
-const MemorizedLayout = memo(Layout);
+const MemorizedLayout = memo(Header);
 export default MemorizedLayout;

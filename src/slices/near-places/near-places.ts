@@ -31,7 +31,7 @@ export const nearPlacesSlice = createSlice({
       });
   },
   selectors: {
-    getNearPlaces: (state:NearPlacesState) => state.nearPlaces,
+    getNearPlaces: (state:NearPlacesState) => state.nearPlaces.slice(0,3),
     getIsNearPlacesDataLoading: (state:NearPlacesState) => state.isNearPlacesDataLoading,
   },
 

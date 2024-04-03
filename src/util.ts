@@ -45,10 +45,10 @@ export const makeMockUser = () : UserData =>
     token: datatype.string(),
   });
 
-export const makeMockReviews = () : Review =>
+export const makeMockReview = () : Review =>
   ({
     id: datatype.uuid(),
-    date: new Date(),
+    date: new Date('2017-02-01'),
     user: makeMockUser(),
     comment: random.words(),
     rating: datatype.number(),
@@ -63,3 +63,8 @@ export const makeMockAuthData = () :AuthData =>
   );
 
 export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
+
+export const formatDate = (date: Date): string => {
+  const options : Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' } as const;
+  return new Intl.DateTimeFormat('en-US', options).format(date);
+};

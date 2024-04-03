@@ -1,6 +1,6 @@
 import { NOTCHECK } from '../../constants';
 import { postReviewAction } from '../../store/api-actions';
-import { makeMockReviews } from '../../util';
+import { makeMockReview } from '../../util';
 import { reviewsSlice } from './reviews';
 
 describe('Reviews slice', () => {
@@ -57,7 +57,7 @@ describe('Reviews slice', () => {
   });
 
   it('should handle postReviewAction.pending', () => {
-    const review = makeMockReviews();
+    const review = makeMockReview();
     const action = postReviewAction.pending;
 
     const newState = reviewsSlice.reducer(undefined, action('',review));
@@ -66,7 +66,7 @@ describe('Reviews slice', () => {
   });
 
   it('should handle postReviewAction.fulfilled', () => {
-    const mockReview = makeMockReviews();
+    const mockReview = makeMockReview();
     const action = postReviewAction.fulfilled(mockReview, '', mockReview);
 
     const newState = reviewsSlice.reducer(undefined, action);
@@ -78,12 +78,11 @@ describe('Reviews slice', () => {
   });
 
   it('should handle postReviewAction.rejected', () => {
-    const review = makeMockReviews();
+    const review = makeMockReview();
     const action = postReviewAction.rejected;
 
     const newState = reviewsSlice.reducer(undefined, action(null, '',review));
 
     expect(newState.blockForm).toEqual(false);
-    // You can also check if the toast warning was triggered here
   });
 });

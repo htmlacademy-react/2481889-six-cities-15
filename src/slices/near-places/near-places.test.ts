@@ -54,7 +54,7 @@ describe('Near Places slice', () => {
       nearPlaces: [], // Initialize with an empty array or relevant data structure
     };
 
-    const mockNearPlaces = makeMockOffers(); // Replace with actual data
+    const mockNearPlaces = makeMockOffers();
     const action = fetchNearPlacesAction.fulfilled(mockNearPlaces, '', '');
 
     const newState = nearPlacesSlice.reducer(initialState, action);

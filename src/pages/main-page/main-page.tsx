@@ -1,4 +1,4 @@
-import Layout from '../../components/layout-component/layout-component';
+import Layout from '../../components/header-component/header-component';
 import CitiesList from '../../components/cities-list/cities-list';
 import { CITIES} from '../../constants';
 import OffersCity from './offers/offers-city';
