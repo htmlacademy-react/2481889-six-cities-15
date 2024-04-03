@@ -86,7 +86,7 @@ export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
         </p>
         <button className="reviews__submit form__submit button"
           type="submit"
-          disabled={!CHECKFORM}
+          disabled={!CHECKFORM || blockForm}
         >Submit
         </button>
       </div>
