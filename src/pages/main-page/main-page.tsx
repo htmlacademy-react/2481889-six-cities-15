@@ -1,9 +1,9 @@
-import Layout from '../../components/layout-component/layout-component';
+import Layout from '../../components/header-component/header-component';
 import CitiesList from '../../components/cities-list/cities-list';
 import { CITIES} from '../../constants';
 import OffersCity from './offers/offers-city';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
-import { offersSelectors, setCity } from '../../slices/offers';
+import { offersSelectors, setCity } from '../../slices/offers/offers';
 import Spinner from '../../components/spinner/spinner';
 import NoOffers from './no-offers/no-offers';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -24,8 +24,8 @@ export const MainPage = () => {
       }
     }
   }, [cityName, dispatch, navigate]);
-  const isOffersDataLoading = useAppSelector(offersSelectors.isOffersDataLoading);
-  const offers = useAppSelector(offersSelectors.offers);
+  const isOffersDataLoading = useAppSelector(offersSelectors.getIsOffersDataLoading);
+  const offers = useAppSelector(offersSelectors.getOffersByCityAndSort);
   return(
     <div className={`page page--gray page--main ${offers.length === 0 && 'page__main--index-empty'}`}>
       <Layout/>

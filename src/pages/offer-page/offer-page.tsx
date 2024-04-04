@@ -1,30 +1,30 @@
 import { Navigate, useParams } from 'react-router-dom';
 import ReviewForm from '../../components/review-form/review-form';
-import Layout from '../../components/layout-component/layout-component';
+import Layout from '../../components/header-component/header-component';
 import Map from '../../components/map-component/map-component';
 import OfferList from '../../components/offer-list/offer-list';
 import OfferGallery from './offer-gallery/offer-gallery';
 import { useAppSelector } from '../../hooks/use-app';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
-import { offerSelectors } from '../../slices/offer';
+import { offerSelectors } from '../../slices/offer/offer';
 import { useEffect } from 'react';
 import { store } from '../../store';
 import Spinner from '../../components/spinner/spinner';
 import { AppRoutes } from '../../constants';
-import { nearPlacesSelectors } from '../../slices/near-places';
-import { reviewsSelectors } from '../../slices/reviews';
+import { nearPlacesSelectors } from '../../slices/near-places/near-places';
+import { reviewsSelectors } from '../../slices/reviews/reviews';
 import FavoriteButton from '../../components/favorite-button/favorite-button';
 
 function OfferPage(): JSX.Element {
   const param = useParams();
   const offerId = param.id;
-  const offer = useAppSelector(offerSelectors.offer);
-  const nearPlaces = useAppSelector(nearPlacesSelectors.nearPlaces);
-  const reviews = useAppSelector(reviewsSelectors.reviews);
-  const isOfferDataLoading = useAppSelector(offerSelectors.isOfferDataLoading);
-  const isNearPlacesLoading = useAppSelector(nearPlacesSelectors.isNearPlacesDataLoading);
-  const isReviewsLoading = useAppSelector(reviewsSelectors.isReviewsDataLoading);
-  const isOfferNotFound = useAppSelector(offerSelectors.isOfferNotFound);
+  const offer = useAppSelector(offerSelectors.getOffer);
+  const nearPlaces = useAppSelector(nearPlacesSelectors.getFirstThreeNearPlaces);
+  const reviews = useAppSelector(reviewsSelectors.getReviews);
+  const isOfferDataLoading = useAppSelector(offerSelectors.getIsOfferDataLoading);
+  const isNearPlacesLoading = useAppSelector(nearPlacesSelectors.getIsNearPlacesDataLoading);
+  const isReviewsLoading = useAppSelector(reviewsSelectors.getIsReviewsDataLoading);
+  const isOfferNotFound = useAppSelector(offerSelectors.getIsOfferNotFound);
   useEffect(() => {
     if (offerId) {
       store.dispatch(fetchOfferAction(offerId));

@@ -14,6 +14,7 @@ export enum AuthorizationStatus {
     Auth = 'AUTH',
     NoAuth = 'NO_AUTH',
     Unknown = 'UNKNOWN',
+    Authorized = 'Authorized',
   }
 export const EnumerateConstants = {
   rentAmount:5
@@ -80,7 +81,7 @@ export const CITIES: City[] = [
 ];
 
 
-export const SORTS: { [key: string]: Sort } = {
+export const Sorts: { [key: string]: Sort } = {
   Popular: {
     name: 'Popular',
     func: () => 0 // Функция сортировки для Popular (в данном случае не изменяет порядок)

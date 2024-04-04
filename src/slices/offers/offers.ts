@@ -1,9 +1,9 @@
-import { AppData, CITIES, SORTS } from '../constants';
-import { City } from '../types/city';
-import { Offer, Offers } from '../types/offer';
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Sort } from '../types/sort';
-import { fetchOffersAction } from '../store/api-actions';
+import { AppData, CITIES, Sorts } from '../../constants';
+import { City } from '../../types/city';
+import { Offer, Offers } from '../../types/offer';
+import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
+import { Sort } from '../../types/sort';
+import { fetchOffersAction } from '../../store/api-actions';
 
 export type OffersState = {
     city: City;
@@ -11,10 +11,10 @@ export type OffersState = {
     sort: Sort;
     isOffersDataLoading: boolean;
 }
-const initialState : OffersState = {
+export const initialState : OffersState = {
   city: CITIES[0],
   offers: [],
-  sort: SORTS.Popular,
+  sort: Sorts.Popular,
   isOffersDataLoading: false,
 };
 
@@ -52,13 +52,16 @@ const offersSlice = createSlice({
     });
   },
   selectors: {
-    city: (state:OffersState) => state.city,
-    offers: (state:OffersState) => state.offers.filter((offer) => offer.city.name === state.city.name).sort(state.sort.func),
-    sort: (state:OffersState) => state.sort,
-    isOffersDataLoading: (state:OffersState) => state.isOffersDataLoading,
+    getCity: (state:OffersState) => state.city,
+    getOffers: (state:OffersState) => state.offers,
+    getSort: (state:OffersState) => state.sort,
+    getIsOffersDataLoading: (state:OffersState) => state.isOffersDataLoading,
   }
 });
 export const {setFavoriteOffers, setCity, setIsOffersDataLoading, setSort} = offersSlice.actions;
-const offersSelectors = offersSlice.selectors;
+const offersSelectors = {...offersSlice.selectors,
+  getOffersByCityAndSort: createSelector(offersSlice.selectors.getOffers,
+    offersSlice.selectors.getCity, offersSlice.selectors.getSort, (allOffers, city, sort) =>
+      allOffers.filter((offer) => offer.city.name === city.name).sort(sort.func))};
 
 export { offersSlice, offersSelectors};

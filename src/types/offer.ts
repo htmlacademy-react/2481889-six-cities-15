@@ -2,6 +2,7 @@ import { City } from './city';
 import { Host } from './host';
 
 export type Offer = {
+    category: string;
     id: string;
     title: string;
     type: string;

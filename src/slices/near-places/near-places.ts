@@ -1,14 +1,14 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit/react';
-import { Offers } from '../types/offer';
-import { fetchNearPlacesAction } from '../store/api-actions';
-import { AppData } from '../constants';
+import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit/react';
+import { Offers } from '../../types/offer';
+import { fetchNearPlacesAction } from '../../store/api-actions';
+import { AppData } from '../../constants';
 
 export type NearPlacesState = {
     nearPlaces: Offers;
     isNearPlacesDataLoading: boolean;
 }
 
-const initialState: NearPlacesState = {
+export const initialState: NearPlacesState = {
   nearPlaces: [],
   isNearPlacesDataLoading: true,
 };
@@ -31,12 +31,14 @@ export const nearPlacesSlice = createSlice({
       });
   },
   selectors: {
-    nearPlaces: (state:NearPlacesState) => state.nearPlaces,
-    isNearPlacesDataLoading: (state:NearPlacesState) => state.isNearPlacesDataLoading,
+    getNearPlaces: (state:NearPlacesState) => state.nearPlaces,
+    getIsNearPlacesDataLoading: (state:NearPlacesState) => state.isNearPlacesDataLoading,
   },
 
 },
 );
 
-export const nearPlacesSelectors = nearPlacesSlice.selectors;
+export const nearPlacesSelectors = {
+  getFirstThreeNearPlaces: createSelector(nearPlacesSlice.selectors.getNearPlaces,
+    (nearPlaces) => nearPlaces.slice(0,3)) ,...nearPlacesSlice.selectors};
 

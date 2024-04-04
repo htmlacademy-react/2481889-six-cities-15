@@ -2,14 +2,14 @@ import OfferList from '../../../components/offer-list/offer-list';
 import SortForm from '../../../components/sort-form/sort-form';
 import Map from '../../../components/map-component/map-component';
 import { useAppSelector } from '../../../hooks/use-app';
-import { offersSelectors } from '../../../slices/offers';
+import { offersSelectors } from '../../../slices/offers/offers';
 import { Nullable } from '../../../types/nullable';
 import { memo, useState } from 'react';
 import { Offer } from '../../../types/offer';
 
 const OffersCity = () => {
-  const city = useAppSelector(offersSelectors.city);
-  const offers = useAppSelector(offersSelectors.offers);
+  const city = useAppSelector(offersSelectors.getCity);
+  const offers = useAppSelector(offersSelectors.getOffersByCityAndSort);
   const [activeCard, setActiveCard] = useState<Nullable<Offer>>(null);
   return(
     <div className="cities__places-container container">
