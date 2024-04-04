@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit/react';
+import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit/react';
 import { Offer, Offers } from '../../types/offer';
 import { AppData } from '../../constants';
 import { fetchFavoritesAction } from '../../store/api-actions';
@@ -43,9 +43,12 @@ export const favoritesSlice = createSlice({
   },
   selectors: {
     getFavoritesAmount: (state: FavoritesType) => state.favorites.length,
-    getFavoritesByCity: (state: FavoritesType) => Object.groupBy(state.favorites, (favorite) => favorite.city.name),
+    getFavorites: (state: FavoritesType) => state.favorites,
     getIsFavoritesDataLoading: (state: FavoritesType) => state.isFavoritesDataLoading,
   },
 });
 export const {setFavorites, setIsFavoritesDataLoading} = favoritesSlice.actions;
-export const favoritesSelectors = favoritesSlice.selectors;
+export const favoritesSelectors = {
+  getFavoritesByCity:createSelector(favoritesSlice.selectors.getFavorites,
+    (favorites) => Object.groupBy(favorites, (favorite) => favorite.city.name))
+  ,...favoritesSlice.selectors};

@@ -1,7 +1,7 @@
 import { AppData, CITIES, SORTS } from '../../constants';
 import { City } from '../../types/city';
 import { Offer, Offers } from '../../types/offer';
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 import { Sort } from '../../types/sort';
 import { fetchOffersAction } from '../../store/api-actions';
 
@@ -53,12 +53,15 @@ const offersSlice = createSlice({
   },
   selectors: {
     getCity: (state:OffersState) => state.city,
-    getOffers: (state:OffersState) => state.offers.filter((offer) => offer.city.name === state.city.name).sort(state.sort.func),
+    getOffers: (state:OffersState) => state.offers,
     getSort: (state:OffersState) => state.sort,
     getIsOffersDataLoading: (state:OffersState) => state.isOffersDataLoading,
   }
 });
 export const {setFavoriteOffers, setCity, setIsOffersDataLoading, setSort} = offersSlice.actions;
-const offersSelectors = offersSlice.selectors;
+const offersSelectors = {...offersSlice.selectors,
+  getOffersByCityAndSort: createSelector(offersSlice.selectors.getOffers,
+    offersSlice.selectors.getCity, offersSlice.selectors.getSort, (allOffers, city, sort) =>
+      allOffers.filter((offer) => offer.city.name === city.name).sort(sort.func))};
 
 export { offersSlice, offersSelectors};

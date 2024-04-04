@@ -13,7 +13,7 @@ describe('Offers selectors', () => {
   it('getOffers selector should return the correct offers based on city and sort', () => {
     const {offers, city, sort} = state[AppData.Offers];
     const expectedOffers = offers.filter((offer) => offer.city.name === city.name).sort(sort.func);
-    const result = offersSelectors.getOffers(state);
+    const result = offersSelectors.getOffersByCityAndSort(state);
     expect(result).toEqual(expectedOffers);
   });
 

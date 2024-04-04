@@ -18,10 +18,8 @@ export const FavoritesPage = () => {
       {!isFavoritesDataLoading && favoritesAmount === 0 && <NoFavorites/>}
       {!isFavoritesDataLoading && favoritesAmount !== 0 && <FavoritesCity/>}
       <footer className="footer container">
-        <Link to={AppRoutes.Main}>
-          <a className="footer__logo-link">
-            <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
-          </a>
+        <Link className="footer__logo-link" to={AppRoutes.Main}>
+          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
         </Link>
       </footer>
 

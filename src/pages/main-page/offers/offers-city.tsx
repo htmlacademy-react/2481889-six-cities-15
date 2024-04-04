@@ -9,7 +9,7 @@ import { Offer } from '../../../types/offer';
 
 const OffersCity = () => {
   const city = useAppSelector(offersSelectors.getCity);
-  const offers = useAppSelector(offersSelectors.getOffers);
+  const offers = useAppSelector(offersSelectors.getOffersByCityAndSort);
   const [activeCard, setActiveCard] = useState<Nullable<Offer>>(null);
   return(
     <div className="cities__places-container container">

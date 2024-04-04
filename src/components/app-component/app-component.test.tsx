@@ -15,7 +15,8 @@ describe('Application Routing', () => {
 
   it('should render "MainPage" with Paris when user navigate to "/"', () => {
     const withHistoryComponent = withHistory(<App />, mockHistory);
-    const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore());
+    const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore(
+    ));
     mockHistory.push(AppRoutes.Main);
 
     render(withStoreComponent);
