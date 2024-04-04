@@ -19,7 +19,7 @@ function OfferPage(): JSX.Element {
   const param = useParams();
   const offerId = param.id;
   const offer = useAppSelector(offerSelectors.getOffer);
-  const nearPlaces = useAppSelector(nearPlacesSelectors.getNearPlaces);
+  const nearPlaces = useAppSelector(nearPlacesSelectors.getFirstThreeNearPlaces);
   const reviews = useAppSelector(reviewsSelectors.getReviews);
   const isOfferDataLoading = useAppSelector(offerSelectors.getIsOfferDataLoading);
   const isNearPlacesLoading = useAppSelector(nearPlacesSelectors.getIsNearPlacesDataLoading);
