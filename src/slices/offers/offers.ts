@@ -1,4 +1,4 @@
-import { AppData, CITIES, SORTS } from '../../constants';
+import { AppData, CITIES, Sorts } from '../../constants';
 import { City } from '../../types/city';
 import { Offer, Offers } from '../../types/offer';
 import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
@@ -14,7 +14,7 @@ export type OffersState = {
 export const initialState : OffersState = {
   city: CITIES[0],
   offers: [],
-  sort: SORTS.Popular,
+  sort: Sorts.Popular,
   isOffersDataLoading: false,
 };
 

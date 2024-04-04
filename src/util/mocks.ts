@@ -1,7 +1,7 @@
 import { Action, ThunkDispatch } from '@reduxjs/toolkit/react';
 import { createAPI } from '../services/api';
 import { State } from '../types/store';
-import { AuthorizationStatus, CITIES, NOTCHECK, SORTS } from '../constants';
+import { AuthorizationStatus, CITIES, NOTCHECK, Sorts } from '../constants';
 import { makeMockOffers } from './util';
 
 export type AppThunkDispatch =
@@ -17,6 +17,6 @@ export const makeFakeStore = (initialState?: Partial<State>): State => ({
     rating : NOTCHECK,
   },
   offer: {offer: null, isOfferDataLoading: false, isOfferNotFound: false},
-  offers: {city: CITIES[0], offers: makeMockOffers(), isOffersDataLoading:false, sort:SORTS.Popular},
+  offers: {city: CITIES[0], offers: makeMockOffers(), isOffersDataLoading:false, sort:Sorts.Popular},
   ...initialState ?? {},
 });

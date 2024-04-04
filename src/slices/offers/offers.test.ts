@@ -1,4 +1,4 @@
-import { CITIES, SORTS } from '../../constants';
+import { CITIES, Sorts } from '../../constants';
 import { fetchOffersAction } from '../../store/api-actions';
 import { Offer } from '../../types/offer';
 import { makeMockOffers } from '../../util/util';
@@ -10,7 +10,7 @@ describe('Offers slice', () => {
     const expectedState : OffersState = {
       city: CITIES[0],
       offers: [],
-      sort: SORTS.Popular,
+      sort: Sorts.Popular,
       isOffersDataLoading: false,
     };
 
@@ -25,7 +25,7 @@ describe('Offers slice', () => {
     const expectedState : OffersState = {
       city: CITIES[0],
       offers: [],
-      sort: SORTS.Popular,
+      sort: Sorts.Popular,
       isOffersDataLoading: false,
     };
 
@@ -57,7 +57,7 @@ describe('Offers slice', () => {
 
   it('should set the sort correctly', () => {
 
-    const sort = SORTS[1];
+    const sort = Sorts[1];
     const action = offersSlice.actions.setSort(sort);
 
     const newState = offersSlice.reducer(undefined, action);
@@ -70,7 +70,7 @@ describe('Offers slice', () => {
     const initialState: OffersState = {
       city: CITIES[0],
       offers: [emptyOffer],
-      sort: SORTS.Popular,
+      sort: Sorts.Popular,
       isOffersDataLoading: false,
     };
     const actionPayload = { offer: emptyOffer, newBool: true };

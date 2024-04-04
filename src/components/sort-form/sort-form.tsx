@@ -1,7 +1,7 @@
 
 import { memo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
-import { SORTS } from '../../constants';
+import { Sorts } from '../../constants';
 import { offersSelectors, setSort } from '../../slices/offers/offers';
 import { Sort } from '../../types/sort';
 
@@ -26,7 +26,7 @@ const SortForm = () => {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${open ? 'places__options--opened' : ''}`}>
-        {Object.values(SORTS).map((i) => (
+        {Object.values(Sorts).map((i) => (
           <li key={i.name}
             className={`places__option ${sort === i ? 'places__option--active' : ''}`}
             tabIndex={0}
