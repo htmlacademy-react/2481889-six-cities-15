@@ -13,7 +13,6 @@ import { ReviewData } from '../types/review-data';
 import { datatype } from 'faker';
 
 type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createAPI>, Action>;
-
 describe('Async actions', () => {
   const axios = createAPI();
   const mockAxiosAdapter = new MockAdapter(axios);

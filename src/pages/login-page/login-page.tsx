@@ -56,7 +56,7 @@ function LoginPage(): JSX.Element {
               onSubmit={handleSubmit}
             >
               <div className="login__input-wrapper form__input-wrapper">
-                <label className="visually-hidden">
+                <label className="visually-hidden" data-testid = 'email-container'>
                   E-mail
                 </label>
                 <input
@@ -69,7 +69,7 @@ function LoginPage(): JSX.Element {
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
-                <label className="visually-hidden">
+                <label className="visually-hidden" data-testid = 'password-container'>
                   Password
                 </label>
                 <input
