@@ -14,7 +14,7 @@ export enum AuthorizationStatus {
     Auth = 'AUTH',
     NoAuth = 'NO_AUTH',
     Unknown = 'UNKNOWN',
-    Authorized = "Authorized",
+    Authorized = 'Authorized',
   }
 export const EnumerateConstants = {
   rentAmount:5
