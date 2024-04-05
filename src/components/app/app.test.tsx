@@ -3,7 +3,7 @@ import { render, screen} from '@testing-library/react';
 import { AppRoutes, AuthorizationStatus} from '../../constants';
 import { withHistory, withStore } from '../../util/mock-component';
 import { makeFakeStore } from '../../util/mocks';
-import App from './app-component';
+import App from './app';
 import { makeMockOffer } from '../../util/util';
 
 describe('Application Routing', () => {
