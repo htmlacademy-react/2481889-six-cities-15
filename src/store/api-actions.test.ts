@@ -154,7 +154,7 @@ describe('Async actions', () => {
   });
   describe('loginAction', () => {
     it('should dispatch "loginAction.pending", "redirectToRoute", "loginAction.fulfilled" when server response 200', async() => {
-      const fakeUser: AuthData = { login: 'test@test.ru', password: '123456' };
+      const fakeUser: AuthData = { login: 'test@test.ru', password: '12345' };
       const fakeServerReplay = { token: 'secret' };
       mockAxiosAdapter.onPost(APIRoute.Login).reply(200, fakeServerReplay);
       mockAxiosAdapter.onGet(APIRoute.Favorite).reply(200);
