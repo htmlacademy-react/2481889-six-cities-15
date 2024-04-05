@@ -1,14 +1,15 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit/react';
-import { Offer, Offers } from '../types/offer';
-import { AppData } from '../constants';
-import { fetchFavoritesAction } from '../store/api-actions';
+import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit/react';
+import { Offer, Offers } from '../../types/offer';
+import { AppData } from '../../constants';
+import { fetchFavoritesAction } from '../../store/api-actions';
+
 
 export type FavoritesType = {
     favorites: Offers;
     isFavoritesDataLoading: boolean;
 }
 
-const initialState: FavoritesType = {
+export const initialState: FavoritesType = {
   favorites: [],
   isFavoritesDataLoading: true,
 };
@@ -21,7 +22,7 @@ export const favoritesSlice = createSlice({
     },
     setFavorites: (state, action: PayloadAction<{offer: Offer; newBool: boolean}>) => {
       if(action.payload.newBool){
-        state.favorites.push(action.payload.offer);
+        state.favorites.push({...action.payload.offer, isFavorite:true});
       } else{
         state.favorites = state.favorites.filter((offer) => offer.id !== action.payload.offer.id);
       }
@@ -41,10 +42,13 @@ export const favoritesSlice = createSlice({
       });
   },
   selectors: {
-    favoritesAmount: (state: FavoritesType) => state.favorites.length,
-    favoritesByCity: (state: FavoritesType) => Object.groupBy(state.favorites, (favorite) => favorite.city.name),
-    isFavoritesDataLoading: (state: FavoritesType) => state.isFavoritesDataLoading,
+    getFavoritesAmount: (state: FavoritesType) => state.favorites.length,
+    getFavorites: (state: FavoritesType) => state.favorites,
+    getIsFavoritesDataLoading: (state: FavoritesType) => state.isFavoritesDataLoading,
   },
 });
 export const {setFavorites, setIsFavoritesDataLoading} = favoritesSlice.actions;
-export const favoritesSelectors = favoritesSlice.selectors;
+export const favoritesSelectors = {
+  getFavoritesByCity:createSelector(favoritesSlice.selectors.getFavorites,
+    (favorites) => Object.groupBy(favorites, (favorite) => favorite.city.name))
+  ,...favoritesSlice.selectors};

@@ -1,13 +1,13 @@
 
 import { memo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
-import { SORTS } from '../../constants';
-import { offersSelectors, setSort } from '../../slices/offers';
+import { Sorts } from '../../constants';
+import { offersSelectors, setSort } from '../../slices/offers/offers';
 import { Sort } from '../../types/sort';
 
 const SortForm = () => {
   const [open, setOpen] = useState(false);
-  const sort = useAppSelector(offersSelectors.sort);
+  const sort = useAppSelector(offersSelectors.getSort);
   const dispatch = useAppDispatch();
   function handleChangeSort(item: Sort) {
     dispatch(setSort(item));
@@ -18,7 +18,7 @@ const SortForm = () => {
   }
   return (
     <form className="places__sorting" action="#" method="get">
-      <span className="places__sorting-caption">Sort by</span>
+      <span className="places__sorting-caption">Sort by </span>
       <span className="places__sorting-type" tabIndex={0} onClick={handleClick}>
         {sort.name}
         <svg className="places__sorting-arrow" width={7} height={4}>
@@ -26,7 +26,7 @@ const SortForm = () => {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${open ? 'places__options--opened' : ''}`}>
-        {Object.values(SORTS).map((i) => (
+        {Object.values(Sorts).map((i) => (
           <li key={i.name}
             className={`places__option ${sort === i ? 'places__option--active' : ''}`}
             tabIndex={0}

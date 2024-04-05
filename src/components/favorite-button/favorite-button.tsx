@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 import { Offer } from '../../types/offer';
-import { authSelectors } from '../../slices/auth';
+import { authSelectors } from '../../slices/auth/auth';
 import { AppRoutes, AuthorizationStatus } from '../../constants';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
@@ -17,7 +17,7 @@ const FavoriteButton = ({offer, type, width, height}: FavoriteButtonProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [isFavorite, setIsFavorite] = useState(offer.isFavorite);
-  const authStatus = useAppSelector(authSelectors.authorizationStatus);
+  const authStatus = useAppSelector(authSelectors.getAuthorizationStatus);
   const handleToggle = () => {
     if(authStatus !== AuthorizationStatus.Auth){
       navigate(AppRoutes.Login);
@@ -26,8 +26,8 @@ const FavoriteButton = ({offer, type, width, height}: FavoriteButtonProps) => {
       offer: offer,
       newBool:!isFavorite
     };
-    setIsFavorite(!isFavorite);
     dispatch(postFavoriteAction(data));
+    setIsFavorite(!isFavorite);
 
   };
 

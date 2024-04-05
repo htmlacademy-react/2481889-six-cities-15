@@ -1,10 +1,10 @@
 import { memo } from 'react';
 import { useAppSelector } from '../../../hooks/use-app';
-import { offersSelectors } from '../../../slices/offers';
+import { offersSelectors } from '../../../slices/offers/offers';
 
 
 const NoOffers = () => {
-  const city = useAppSelector(offersSelectors.city);
+  const city = useAppSelector(offersSelectors.getCity);
   return(
     <div className="cities">
       <div className="cities__places-container cities__places-container--empty container">

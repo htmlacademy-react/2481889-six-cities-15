@@ -1,7 +1,7 @@
 import { FormEvent, Fragment } from 'react';
 import { postReviewAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
-import { reviewsSelectors, setCommentaryText, setRating } from '../../slices/reviews';
+import { reviewsSelectors, setCommentaryText, setRating } from '../../slices/reviews/reviews';
 import { NOTCHECK, STARS } from '../../constants';
 
 
@@ -10,9 +10,9 @@ type CommentaryFormProps = {offerId: string}
 export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
   const dispatch = useAppDispatch();
 
-  const blockForm = useAppSelector(reviewsSelectors.blockForm);
-  const commentaryText = useAppSelector(reviewsSelectors.commentaryText);
-  const rating = useAppSelector(reviewsSelectors.rating);
+  const blockForm = useAppSelector(reviewsSelectors.getBlockForm);
+  const commentaryText = useAppSelector(reviewsSelectors.getCommentaryText);
+  const rating = useAppSelector(reviewsSelectors.getRating);
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(setCommentaryText(e.target.value));
@@ -80,13 +80,13 @@ export const CommentaryForm = ({offerId}:CommentaryFormProps) => {
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
                       To submit review please make sure to set
-          <span className="reviews__star">rating</span>
-          and describe your stay with at least
-          <b className="reviews__text-amount">50 characters</b>.
+          <span className="reviews__star">rating </span>
+           and describe your stay with at least
+          <b className="reviews__text-amount"> 50 characters</b>.
         </p>
         <button className="reviews__submit form__submit button"
           type="submit"
-          disabled={!CHECKFORM}
+          disabled={!CHECKFORM || blockForm}
         >Submit
         </button>
       </div>

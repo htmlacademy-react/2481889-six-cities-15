@@ -1,11 +1,8 @@
 import { useMemo } from 'react';
 import { Review } from '../../types/review';
+import { formatDate } from '../../util/util';
 
 type ReviewListProps = {reviews:Review[]}
-const formatDate = (date: Date): string => {
-  const options : Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' } as const;
-  return new Intl.DateTimeFormat('en-US', options).format(date);
-};
 
 export const ReviewList = ({reviews}:ReviewListProps)=> {
   const sortedReviews = useMemo(() => [...reviews].sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0,10), [reviews]);

@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Nullable } from '../types/nullable';
-import { Offer} from '../types/offer';
-import { fetchOfferAction } from '../store/api-actions';
-import { AppData } from '../constants';
+import { Nullable } from '../../types/nullable';
+import { Offer} from '../../types/offer';
+import { fetchOfferAction } from '../../store/api-actions';
+import { AppData } from '../../constants';
 
 export type OfferState ={
     offer: Nullable<Offer>;
@@ -10,7 +10,7 @@ export type OfferState ={
     isOfferNotFound: boolean;
 }
 
-const initialState: OfferState = {
+export const initialState: OfferState = {
   offer: null,
   isOfferDataLoading: true,
   isOfferNotFound: false,
@@ -42,9 +42,9 @@ export const offerSlice = createSlice({
       });
   },
   selectors: {
-    offer: (state: OfferState) => state.offer,
-    isOfferDataLoading: (state: OfferState) => state.isOfferDataLoading,
-    isOfferNotFound: (state: OfferState) => state.isOfferNotFound,
+    getOffer: (state: OfferState) => state.offer,
+    getIsOfferDataLoading: (state: OfferState) => state.isOfferDataLoading,
+    getIsOfferNotFound: (state: OfferState) => state.isOfferNotFound,
   }
 });
 

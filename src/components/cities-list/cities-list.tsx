@@ -1,7 +1,7 @@
 
 import classNames from 'classnames';
 import { useAppSelector } from '../../hooks/use-app';
-import { offersSelectors } from '../../slices/offers';
+import { offersSelectors } from '../../slices/offers/offers';
 import { City } from '../../types/city';
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
@@ -9,7 +9,7 @@ import { memo } from 'react';
 type CitiesListProps = {cities: City[]}
 
 const CitiesList = (props: CitiesListProps) => {
-  const city = useAppSelector(offersSelectors.city);
+  const city = useAppSelector(offersSelectors.getCity);
 
   return (
     props.cities.map((c) => (

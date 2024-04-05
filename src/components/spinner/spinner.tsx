@@ -6,10 +6,16 @@ function Spinner(): JSX.Element {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      height: '100vh', // Высота может быть любой, в данном случае центрируется по вертикали
+      height: '100vh',
     }}
+    data-testid='spinner-container'
     >
-      <SpinnerRoundFilled size={50} thickness={100} speed={100} color="rgba(105, 57, 172, 1)" />
+      <SpinnerRoundFilled
+        size={50}
+        thickness={100}
+        speed={100}
+        color="rgba(105, 57, 172, 1)"
+      />
     </div>
   );
 }

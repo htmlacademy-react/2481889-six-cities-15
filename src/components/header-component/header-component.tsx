@@ -2,14 +2,14 @@ import { Link, NavLink } from 'react-router-dom';
 import { AppRoutes, AuthorizationStatus } from '../../constants';
 import { logoutAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
-import { authSelectors } from '../../slices/auth';
+import { authSelectors } from '../../slices/auth/auth';
 import { memo } from 'react';
-import { favoritesSelectors } from '../../slices/favorites';
+import { favoritesSelectors } from '../../slices/favorites/favorites';
 
-const Layout = () =>{
-  const authStatus = useAppSelector(authSelectors.authorizationStatus);
-  const user = useAppSelector(authSelectors.user);
-  const favoritesAmount = useAppSelector(favoritesSelectors.favoritesAmount);
+const Header = () =>{
+  const authStatus = useAppSelector(authSelectors.getAuthorizationStatus);
+  const user = useAppSelector(authSelectors.getUser);
+  const favoritesAmount = useAppSelector(favoritesSelectors.getFavoritesAmount);
   const dispatch = useAppDispatch();
   return (
     <div className='page  page--gray'>
@@ -36,7 +36,9 @@ const Layout = () =>{
                     className="header__nav-link header__nav-link--profile"
                     to={AppRoutes.Favorites}
                   >
-                    <div className="header__avatar-wrapper user__avatar-wrapper"/>
+                    <div className="header__avatar-wrapper user__avatar-wrapper">
+                      <img src={user?.avatarUrl}/>
+                    </div>
                     <span className="header__user-name user__name">
                       {user?.email}
                     </span>
@@ -71,5 +73,5 @@ const Layout = () =>{
   );
 };
 
-const MemorizedLayout = memo(Layout);
+const MemorizedLayout = memo(Header);
 export default MemorizedLayout;

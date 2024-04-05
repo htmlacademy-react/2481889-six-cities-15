@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit/react';
-import { fetchReviewsAction, postReviewAction } from '../store/api-actions';
-import { Reviews } from '../types/review';
-import { AppData, NOTCHECK } from '../constants';
+import { fetchReviewsAction, postReviewAction } from '../../store/api-actions';
+import { Reviews } from '../../types/review';
+import { AppData, NOTCHECK } from '../../constants';
 import { toast } from 'react-toastify';
 
 export type ReviewsState = {
@@ -12,7 +12,7 @@ export type ReviewsState = {
     rating:number;
 }
 
-const initialState: ReviewsState = {
+export const initialState: ReviewsState = {
   reviews: [],
   isReviewsDataLoading: true,
   blockForm: false,
@@ -56,11 +56,11 @@ export const reviewsSlice = createSlice({
       });
   },
   selectors: {
-    reviews: (state: ReviewsState) => state.reviews,
-    isReviewsDataLoading: (state: ReviewsState) => state.isReviewsDataLoading,
-    blockForm: (state: ReviewsState) => state.blockForm,
-    commentaryText: (state: ReviewsState) => state.commentaryText,
-    rating: (state: ReviewsState) => state.rating,
+    getReviews: (state: ReviewsState) => state.reviews,
+    getIsReviewsDataLoading: (state: ReviewsState) => state.isReviewsDataLoading,
+    getBlockForm: (state: ReviewsState) => state.blockForm,
+    getCommentaryText: (state: ReviewsState) => state.commentaryText,
+    getRating: (state: ReviewsState) => state.rating,
   },
 
 },

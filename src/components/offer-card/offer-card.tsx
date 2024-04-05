@@ -28,16 +28,16 @@ export const OfferCard : FC<OfferCardsOffer> = ({offer, setActiveCard, className
       onMouseEnter={handleMouseOn}
       onMouseLeave={handleMouseOff}
     >
-      <Link to={AppRoutes.Offer.replace(':id', offer.id)} >
-        {offer.isPremium ?
-          <div className="place-card__mark"> <span>Premium</span> </div> : null}
 
-        <div className={`${className}__image-wrapper place-card__image-wrapper`}>
-          <a href="#">
-            <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image"/>
-          </a>
-        </div>
-      </Link>
+      {offer.isPremium ?
+        <div className="place-card__mark"> <span>Premium</span> </div> : null}
+
+      <div className={`${className}__image-wrapper place-card__image-wrapper`}>
+        <Link to={AppRoutes.Offer.replace(':id', offer.id)} >
+          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image"/>
+        </Link>
+      </div>
+
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
@@ -46,18 +46,18 @@ export const OfferCard : FC<OfferCardsOffer> = ({offer, setActiveCard, className
           </div>
           <FavoriteButton offer={offer} type='place-card' height={19} width={18} />
         </div>
-        <Link to={AppRoutes.Offer.replace(':id', offer.id)} >
-          <div className="place-card__rating rating">
-            <div className="place-card__stars rating__stars">
-              <span style={{width: `${(Math.round(offer.rating) * 100 / 5)}%`}}></span>
-              <span className="visually-hidden">Rating</span>
-            </div>
+
+        <div className="place-card__rating rating">
+          <div className="place-card__stars rating__stars">
+            <span style={{width: `${(Math.round(offer.rating) * 100 / 5)}%`}}></span>
+            <span className="visually-hidden">Rating</span>
           </div>
-          <h2 className="place-card__name">
-            <a href="#">{offer.title}</a>
-          </h2>
-          <p className="place-card__type">{offer.type}</p>
-        </Link>
+        </div>
+        <h2 className="place-card__name">
+          <Link to={AppRoutes.Offer.replace(':id', offer.id)} >{offer.title}</Link>
+        </h2>
+        <p className="place-card__type">{offer.type}</p>
+
       </div>
     </article>
   );
