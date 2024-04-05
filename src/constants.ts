@@ -16,9 +16,6 @@ export enum AuthorizationStatus {
     Unknown = 'UNKNOWN',
     Authorized = 'Authorized',
   }
-export const EnumerateConstants = {
-  rentAmount:5
-} as const;
 
 export const URL_MARKER_DEFAULT =
   'img/pin.svg';
